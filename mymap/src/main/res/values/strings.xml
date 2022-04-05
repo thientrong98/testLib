@@ -1,0 +1,7 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="access_token">pk.eyJ1IjoidHJhbnRoaWVudHJvbmciLCJhIjoiY2wxbHNjbmgyMGN0YjNibzZsY2MyaXg5biJ9.Sxf2SKiCCpui_dW4k8mzQg</string>
+
+    <string name="no_connect_error">Ứng dụng không kết nối được Internet. Xin hãy kiểm tra lại.</string>
+</resources>

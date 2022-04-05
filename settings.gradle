@@ -1,0 +1,3 @@
+include ':mymap'
+include ':app'
+rootProject.name = "qqqqq"
