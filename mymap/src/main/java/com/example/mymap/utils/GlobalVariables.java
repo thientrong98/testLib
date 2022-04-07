@@ -1,5 +1,7 @@
 package com.example.mymap.utils;
 
+import com.mapbox.mapboxsdk.maps.MapboxMap;
+
 import java.util.ArrayList;
 
 
@@ -13,4 +15,5 @@ public class GlobalVariables {
     public static float ratioProgress = 100;
     public static int height = 0;
     public static int width = 0;
+    public static MapboxMap mMap;
 }

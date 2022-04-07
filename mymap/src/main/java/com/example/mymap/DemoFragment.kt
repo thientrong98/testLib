@@ -8,6 +8,8 @@ import android.widget.Button
 import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import com.example.mymap.R
+import com.example.mymap.utils.Constants
+import com.example.mymap.utils.GlobalVariables
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapView
@@ -23,8 +25,10 @@ import com.mapbox.mapboxsdk.style.sources.TileSet
 
  class DemoFragment : Fragment(), OnMapReadyCallback, OnMapClickListener {
 
-    private lateinit var btnBack: Button
-    var mapView: MapView? = null
+    private lateinit var btnSo: Button
+     private lateinit var btnGiay: Button
+
+     var mapView: MapView? = null
     var center = LatLng(10.7994064, 106.7116703)
     private lateinit var mMap: MapboxMap
 
@@ -40,10 +44,16 @@ import com.mapbox.mapboxsdk.style.sources.TileSet
         var view = inflater.inflate(R.layout.fragment_demo, container, false)
 
         // enable back button
-//        btnBack = view.findViewById(R.id.btn_back)
-//        btnBack.setOnClickListener {
-//            this.activity?.supportFragmentManager?.popBackStack()
-//        }
+        btnSo = view.findViewById(R.id.btn_so)
+        btnSo.setOnClickListener {
+            ChangeLayer().changeMapForeground(Constants.Style.FG_TTQH_SO ,null)
+        }
+        btnGiay = view.findViewById(R.id.btn_so)
+        btnGiay.setOnClickListener {
+            ChangeLayer().changeMapForeground(Constants.Style.FG_TTQH_GIAY ,null)
+        }
+
+
         mapView = view.findViewById(R.id.mapview)
 
         mapView?.getMapAsync { mapboxMap ->
@@ -55,13 +65,16 @@ import com.mapbox.mapboxsdk.style.sources.TileSet
 
       override fun onMapReady(mapboxMap:MapboxMap) {
          this.mMap = mapboxMap
+          GlobalVariables.mMap = mapboxMap
           mapboxMap.setStyle(Style.DARK)
             mapboxMap.uiSettings.isRotateGesturesEnabled = false
           mapboxMap.cameraPosition = CameraPosition.Builder()
               .target(center)
               .zoom(16.0)
               .build()
-          showTitleBanDoSo(mapboxMap)
+          ChangeLayer().changeMapForeground(Constants.Style.FG_TTQH_SO ,null)
+
+//          showTitleBanDoSo(mapboxMap)
      }
 
 

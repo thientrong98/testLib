@@ -13,15 +13,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        Mapbox.getInstance(getApplicationContext(), getString(com.example.mymap.R.string.access_token))
+        Mapbox.getInstance(applicationContext, getString(R.string.access_token))
 
 //                btnSwitch = findViewById(R.id.btn_switch)
 //        btnSwitch.setOnClickListener {
-//            FragmentManager.showFragment(this)
+//            FragmentManager.changeMap("TTQH_GIAY")
 //        }
-        FragmentManager.showFragment(this)
-
-        FragmentManager.changeMap("TTQH_SO")
+//
+//        FragmentManager.showFragment(this)
+//
     }
 }

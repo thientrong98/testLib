@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">qqqqq</string>
     <string name="nenBanDoVaScan">mapbox://styles/ttqhhcm/cj7zwlqoc77rj2sry51zbnubu</string>
+    <string name="access_token">pk.eyJ1IjoidHJhbnRoaWVudHJvbmciLCJhIjoiY2p6c203dWk3MDg1ajNub2F0bGF0amd3ayJ9.n-hWk8Fpr0nbdSofppiJ9g</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
