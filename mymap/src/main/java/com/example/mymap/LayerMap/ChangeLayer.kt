@@ -4,13 +4,31 @@ import com.example.mymap.R
 import com.example.mymap.utils.Constants
 import com.example.mymap.utils.GlobalVariables
 import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.style.layers.RasterLayer
 import com.mapbox.mapboxsdk.style.sources.RasterSource
 import com.mapbox.mapboxsdk.style.sources.TileSet
 
 
 class ChangeLayer {
-    fun changeMapForeground(style: Constants.Style, activity: Activity?) {
+    fun changeMapBackground(name: String, activity: Activity?) {
+        if (GlobalVariables.mMap == null) {
+            Toast.makeText(activity, R.string.no_connect_error, Toast.LENGTH_LONG).show()
+            return
+        }
+
+        when (name) {
+            "BG_NEN_BAN_DO" -> {
+                GlobalVariables.mMap.setStyle(Style.Builder().fromUri(Constants.BG_NEN_BAN_DO))
+            }
+            "BG_NEN_VE_TINH" -> {
+                GlobalVariables.mMap.setStyle(Style.Builder().fromUri(Constants.BG_NEN_VE_TINH))
+            }
+        }
+    }
+
+
+    fun changeMapForeground(style: String, activity: Activity?) {
         if (GlobalVariables.mMap == null) {
             Toast.makeText(activity, R.string.no_connect_error, Toast.LENGTH_LONG).show()
             return
@@ -18,30 +36,41 @@ class ChangeLayer {
 
         when (style) {
 
-            Constants.Style.FG_CDN_SO -> {
-                GlobalVariables.getCurrentForeground = Constants.Style.FG_CDN_SO
-
-                addNewStyle(Constants.URL_CDN_DIGITAL, "1", GlobalVariables.mMap, activity)
-            }
-            Constants.Style.FG_CDN_GIAY -> {
-                GlobalVariables.getCurrentForeground = Constants.Style.FG_CDN_GIAY
-
-                addNewStyle(
-                    if (GlobalVariables.currentBackgroud === Constants.Style.BG_NEN_BAN_DO) Constants.URL_CDN_RASTER else Constants.URL_CDN_RASTER_SATELLITE,
-                    "2", GlobalVariables.mMap, activity
-                )
-            }
-            Constants.Style.FG_TTQH_SO -> {
-                GlobalVariables.getCurrentForeground = Constants.Style.FG_TTQH_SO
-                addNewStyle(Constants.URL_DIGITAL_LAND_NEW_QQQ, "5", GlobalVariables.mMap, activity)
+            "FG_CDN_SO" -> {
+                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_CDN_SO) {
+                    GlobalVariables.getCurrentForeground = Constants.Style.FG_CDN_SO
+                    addNewStyle(Constants.URL_CDN_DIGITAL, "1", GlobalVariables.mMap, activity)
+                }
 
             }
-            Constants.Style.FG_TTQH_GIAY -> {
-                GlobalVariables.getCurrentForeground = Constants.Style.FG_TTQH_GIAY
-                addNewStyle(
-                    if (GlobalVariables.currentBackgroud === Constants.Style.BG_NEN_BAN_DO) Constants.URL_RASTER_LAND else Constants.URL_RASTER_LAND_SATELLITE,
-                    "4", GlobalVariables.mMap, activity
-                )
+            "FG_CDN_GIAY" -> {
+                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_CDN_GIAY) {
+                    GlobalVariables.getCurrentForeground = Constants.Style.FG_CDN_GIAY
+                    addNewStyle(
+                        if (GlobalVariables.currentBackgroud === Constants.Style.BG_NEN_BAN_DO) Constants.URL_CDN_RASTER else Constants.URL_CDN_RASTER_SATELLITE,
+                        "2", GlobalVariables.mMap, activity
+                    )
+                }
+            }
+            "FG_TTQH_SO" -> {
+                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_SO) {
+                    GlobalVariables.getCurrentForeground = Constants.Style.FG_TTQH_SO
+                    addNewStyle(
+                        Constants.URL_DIGITAL_LAND_NEW_QQQ,
+                        "5",
+                        GlobalVariables.mMap,
+                        activity
+                    )
+                }
+            }
+            "FG_TTQH_GIAY" -> {
+                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_GIAY) {
+                    GlobalVariables.getCurrentForeground = Constants.Style.FG_TTQH_GIAY
+                    addNewStyle(
+                        if (GlobalVariables.currentBackgroud === Constants.Style.BG_NEN_BAN_DO) Constants.URL_RASTER_LAND else Constants.URL_RASTER_LAND_SATELLITE,
+                        "4", GlobalVariables.mMap, activity
+                    )
+                }
             }
         }
 

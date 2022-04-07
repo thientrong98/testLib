@@ -31,7 +31,7 @@ class MapFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         Log.d("hiih", "onstart")
-        FragmentManager.showFragment(activity as AppCompatActivity)
+        FragmentManager.showFragment(activity as AppCompatActivity, null,null,null,null,null,fgMapFirst ="FG_TTQH_GIAY")
     }
 
 }

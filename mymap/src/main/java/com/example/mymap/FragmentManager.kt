@@ -2,46 +2,30 @@ package com.example.fragmentlib
 
 import ChangeLayer
 import DemoFragment
-import android.provider.Settings.Global.getString
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.mymap.R
 import com.example.mymap.utils.Constants
 import com.example.mymap.utils.GlobalVariables
-import com.mapbox.mapboxsdk.Mapbox
-import com.mapbox.mapboxsdk.Mapbox.getApplicationContext
-import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.geojson.BoundingBox
+import com.mapbox.mapboxsdk.geometry.LatLng
 
 class FragmentManager {
     companion object {
-        /**
-         * displays the fragment
-         */
-        fun showFragment(activity: AppCompatActivity) {
+        fun showFragment(activity: AppCompatActivity, center: LatLng?, bb: BoundingBox?, zoom: Double?, maxZoom: Double?, minZoom:Double?, fgMapFirst: String) {
             if (activity.supportFragmentManager.findFragmentById(android.R.id.content) == null) {
                 activity.supportFragmentManager.beginTransaction()
-                    .add(android.R.id.content, DemoFragment())
+                    .add(android.R.id.content, DemoFragment( center, bb,zoom,minZoom,maxZoom,fgMapFirst))
                     .addToBackStack(null)
                     .commit()
             }
         }
 
-        fun changeMap(name: String) {
-            when (name) {
-                "FG-TTQH_SO" ->       {
-                    if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_SO)
-                    ChangeLayer().changeMapForeground(Constants.Style.FG_TTQH_SO,null)
-                }
+        fun changeBGMap(name: String){
+          ChangeLayer().changeMapBackground(name,null)
+        }
 
-                "FG-TTQH_GIAY"->  {
-                    if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_GIAY){
-                        ChangeLayer().changeMapForeground(Constants.Style.FG_TTQH_GIAY ,null)
-
-                    }
-                }
-
+        fun changeFGMap(name: String) {
+            ChangeLayer().changeMapForeground(name,null)
             }
 
         }
-    }
 }
