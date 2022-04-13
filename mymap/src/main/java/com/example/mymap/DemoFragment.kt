@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.mymap.R
 import com.example.mymap.utils.Constants
@@ -16,11 +17,6 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.MapboxMap.OnMapClickListener
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
-import com.mapbox.mapboxsdk.style.layers.RasterLayer
-import com.mapbox.mapboxsdk.style.sources.CannotAddSourceException
-import com.mapbox.mapboxsdk.style.sources.RasterSource
-import com.mapbox.mapboxsdk.style.sources.Source
-import com.mapbox.mapboxsdk.style.sources.TileSet
 
 class DemoFragment(
     center: LatLng?,
@@ -28,17 +24,20 @@ class DemoFragment(
     zoom: Double?,
     minZoom: Double?,
     maxZoom: Double?,
-    fgMapFirst: String
+    fgMapFirst: String,
+    bgMapFirst: String
 ) : Fragment(), OnMapReadyCallback, OnMapClickListener {
 
     private lateinit var btnSo: Button
     private lateinit var btnGiay: Button
+    private lateinit var btnNen: Button
 
 
     var mapView: MapView? = null
     private var centerPoint = center ?: LatLng(10.7994064, 106.7116703)
     private var zoomMap = zoom ?: 16.0
     private var styleFGMapFirst = fgMapFirst
+    private var styleBGMapFirst = bgMapFirst
 
     private lateinit var mMap: MapboxMap
 
@@ -55,20 +54,25 @@ class DemoFragment(
         // enable back button
         btnSo = view.findViewById(R.id.btn_so)
         btnSo.setOnClickListener {
-            if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_SO) {
                 ChangeLayer().changeMapForeground("FG_TTQH_SO", null)
-            }
         }
         btnGiay = view.findViewById(R.id.btn_giay)
         btnGiay.setOnClickListener {
-            if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_GIAY) {
-                ChangeLayer().changeMapForeground("FG_TTQH_GIAY", null)
-            }
+
+            ChangeLayer().changeMapForeground("FG_TTQH_GIAY", null)
+        }
+
+        btnNen = view.findViewById(R.id.btn_nen)
+        btnNen.setOnClickListener {
+            ChangeLayer().changeMapBackground( "BG_NEN_VE_TINH", null)
+
+//            ChangeLayer().changeMapForeground("FG_TTQH_GIAY", null)
         }
 
         mapView = view.findViewById(R.id.mapview)
         mapView?.getMapAsync { mapboxMap ->
             onMapReady(mapboxMap)
+
         }
 
         return view
@@ -77,14 +81,19 @@ class DemoFragment(
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mMap = mapboxMap
         GlobalVariables.mMap = mapboxMap
-        mapboxMap.setStyle(Style.DARK)
         mapboxMap.uiSettings.isRotateGesturesEnabled = false
         mapboxMap.cameraPosition = CameraPosition.Builder()
             .target(centerPoint)
             .zoom(zoomMap)
             .build()
-//        ChangeLayer().changeMapBackground( "BG_NEN_BAN_DO", null)
+        ChangeLayer().changeMapBackground( styleBGMapFirst, null)
         ChangeLayer().changeMapForeground( styleFGMapFirst, null)
+
+        mapboxMap.addOnMapClickListener { point ->
+            onMapClick(point)
+            true
+        }
+
     }
 
     override fun onStart() {
@@ -109,7 +118,54 @@ class DemoFragment(
 
     override fun onMapClick(point: LatLng): Boolean {
         Log.d("huhu", point.toString())
+//        if (mMap == null) {
+//            ToastUtils.showLong(getText(R.string.txt_loi_thu_lai));
+//            return;
+//        }
+//        if (!NetworkUtils.isConnected()) {
+//            ToastUtils.showLong(getText(R.string.no_connect_error));
+//            return;
+//        }
+        when (GlobalVariables.getCurrentForeground) {
+//            case FG_CDN_SO:
+//            mapPresenter.showCaoDoNenHienTrang(point, mapView.getWidth(), mapView.getHeight());
+//            break;
+//            case FG_CDN_GIAY:
+//            PointF pixelCDN = mMap.getProjection().toScreenLocation(point);// get map pixel touched
+//            List<Feature> featuresCDN = mMap.queryRenderedFeatures(pixelCDN); // get features from that pixel
+//            if (featuresCDN.size() > 0) {
+//                try {
+//                    for (Feature f : featuresCDN) {
+//                        if (f.properties() != null && f.getStringProperty("diem_cao_do") != null) {
+//                            if (f.getStringProperty("diem_cao_do").equalsIgnoreCase("1")) {
+//                                mapPresenter.addMarkerCaoDo(point, f.getStringProperty("qh"), f.getStringProperty("hh"), getContext());
+//                                return;
+//                            }
+//                        }
+//                    }
+//                } catch (NullPointerException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            mapPresenter.showBanDoGiayCaDoNen(point);
+//            break;
+//            case FG_TTQH_SO:
+//            mMap.removeAnnotations();
+//            removeBDSLayers();
+//            new Thread(() -> mapPresenter.getDigitalLandMapinfo(point)).start();
+//            break;
+             Constants.Style.FG_TTQH_GIAY ->{
+                 //            PointF pixel = mMap.getProjection().toScreenLocation(point);// get map pixel touched
+//            List<Feature> features = mMap.queryRenderedFeatures(pixel); // get features from that pixel
+//            if (features.size() > 0) {
+//                mapPresenter.showDCCBCrop(features, point);
+//            } else {
+//                isClickDCCB = false;
+                 MapPresenter().showBanDoGiayQHPK(point,mMap);
+//            }
+             }
 
+        }
         return false;
     }
 

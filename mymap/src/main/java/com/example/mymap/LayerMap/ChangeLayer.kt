@@ -19,12 +19,17 @@ class ChangeLayer {
 
         when (name) {
             "BG_NEN_BAN_DO" -> {
-                GlobalVariables.mMap.setStyle(Style.Builder().fromUri(Constants.BG_NEN_BAN_DO))
+                GlobalVariables.mMap.setStyle(Style.Builder().fromUri("mapbox://styles/tranthientrong/ckr0po0y67exw17rwcwg3ttrv")){
+                }
             }
             "BG_NEN_VE_TINH" -> {
-                GlobalVariables.mMap.setStyle(Style.Builder().fromUri(Constants.BG_NEN_VE_TINH))
+                GlobalVariables.mMap.setStyle(Style.Builder().fromUri("mapbox://styles/tranthientrong/cl1x7xmkv001914ppuw0ne6et")){
+
+                }
             }
         }
+
+        changeMapForeground(GlobalVariables.getCurrentForeground.toString(),null)
     }
 
 
@@ -53,7 +58,7 @@ class ChangeLayer {
                 }
             }
             "FG_TTQH_SO" -> {
-                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_SO) {
+//                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_SO) {
                     GlobalVariables.getCurrentForeground = Constants.Style.FG_TTQH_SO
                     addNewStyle(
                         Constants.URL_DIGITAL_LAND_NEW_QQQ,
@@ -61,16 +66,16 @@ class ChangeLayer {
                         GlobalVariables.mMap,
                         activity
                     )
-                }
+//                }
             }
             "FG_TTQH_GIAY" -> {
-                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_GIAY) {
+//                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_GIAY) {
                     GlobalVariables.getCurrentForeground = Constants.Style.FG_TTQH_GIAY
                     addNewStyle(
                         if (GlobalVariables.currentBackgroud === Constants.Style.BG_NEN_BAN_DO) Constants.URL_RASTER_LAND else Constants.URL_RASTER_LAND_SATELLITE,
                         "4", GlobalVariables.mMap, activity
                     )
-                }
+//                }
             }
         }
 

@@ -7,36 +7,14 @@ public class Constants {
     public static final String URL_DIGITAL_LAND_NEW_NEW = "https://gis.vlab.tech/api/tiles/ttqh_tphcm/{z}/{x}/{y}";
 
     public static final String URL_DIGITAL_LAND_NEW_QQQ = "https://sqhkt-qlqh.tphcm.gov.vn/api/tiles/bandoso/{z}/{x}/{y}";
-    //"https://thongtinquyhoach.hochiminhcity.gov.vn/api/geoserver/tiles/ttqh_tphcm:ttqh_trangthanhpho/{z}/{x}/{y}";
-//            "http://gis.vlab.tech:8080/geoserver/gwc/service/wmts" +
-//            "?layer=ttqh_tphcm:ttqh_trangthanhpho&style&tilematrixset=EPSG%3A900913&Service=WMTS" +
-//            "&Request=GetTile&Version=1.0.0&Format=image%2Fpng&TileMatrix=EPSG%3A900913%3A{z}&TileCol={x}&TileRow={y}";
 
     public static final String URL_RASTER_LAND = "https://sqhkt-qlqh.tphcm.gov.vn/api/tiles/ranh_qhpk_tphcm_v1/{z}/{x}/{y}";
-    //"https://thongtinquyhoach.hochiminhcity.gov.vn/api/geoserver/tiles/ttqh_tphcm:ranh_doan_qhpk_v1/{z}/{x}/{y}";
-//            "https://gis.vlab.tech:8443/geoserver/gwc/service/wmts?layer=" +
-//            "ttqh_tphcm%3Aranh_doan_qhpk_v1&style&tilematrixset=EPSG%3A900913&Service=WMTS&Request=GetTile&Version=" +
-//            "1.0.0&Format=image%2Fpng&TileMatrix=EPSG%3A900913%3A{z}&TileCol={x}&TileRow={y}";
-    //
-
 
     public static final String URL_RASTER_LAND_SATELLITE = "https://sqhkt-qlqh.tphcm.gov.vn/api/tiles/ranh_qhpk_tphcm_v2/{z}/{x}/{y}";
-    //"https://thongtinquyhoach.hochiminhcity.gov.vn/api/geoserver/tiles/ttqh_tphcm:ranh_doan_qhpk_v2/{z}/{x}/{y}";
-//            "https://gis.vlab.tech:8443/geoserver/gwc/service/wmts?layer=" +
-//            "ttqh_tphcm%3Aranh_doan_qhpk_v2&style&tilematrixset=EPSG%3A900913&Service=WMTS&Request=GetTile&Version=" +
-//            "1.0.0&Format=image%2Fpng&TileMatrix=EPSG%3A900913%3A{z}&TileCol={x}&TileRow={y}";
 
     public static final String URL_CDN_RASTER = "https://sqhkt-qlqh.tphcm.gov.vn/api/tiles/ranh_caodonen_tphcm_v1/{z}/{x}/{y}";
-    //"https://thongtinquyhoach.hochiminhcity.gov.vn/api/geoserver/tiles/caodo:ranh_caodonen_104doan_v1/{z}/{x}/{y}";
-//            "https://gis.vlab.tech:8443/geoserver/gwc/service/wmts?layer=" +
-//            "caodo%3Aranh_caodonen_104doan_v1&style&tilematrixset=EPSG%3A900913&Service=WMTS&Request=GetTile&Version=" +
-//            "1.0.0&Format=image%2Fpng&TileMatrix=EPSG%3A900913%3A{z}&TileCol={x}&TileRow={y}";
 
     public static final String URL_CDN_RASTER_SATELLITE = "https://sqhkt-qlqh.tphcm.gov.vn/api/tiles/ranh_caodonen_tphcm_v2/{z}/{x}/{y}";
-    //"https://thongtinquyhoach.hochiminhcity.gov.vn/api/geoserver/tiles/caodo:ranh_caodonen_104doan_v2/{z}/{x}/{y}";
-//            "https://gis.vlab.tech:8443/geoserver/gwc/service/wmts?layer=" +
-//            "caodo%3Aranh_caodonen_104doan_v2&style&tilematrixset=EPSG%3A900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=" +
-//            "image%2Fpng&TileMatrix=EPSG%3A900913%3A{z}&TileCol={x}&TileRow={y}";
 
     public static final String URL_CDN_DIGITAL = "https://gis.vlab.tech:8443/geoserver/gwc/service/wmts" +
             "?layer=caodo%3Acao_do_16_quan&style&tilematrixset=EPSG%3A900913&Service=WMTS&Request=GetTile" +
@@ -56,13 +34,7 @@ public class Constants {
     public static final String dccb_crop_url = "https://sqhkt-qlqh.tphcm.gov.vn/api/tiles/dccb_crop/";
     public static final String dccb_full_url = "https://sqhkt-qlqh.tphcm.gov.vn/api/tiles/dccb_full/";
     public static final String cdn_crop_url = "https://sqhkt-qlqh.tphcm.gov.vn/api/tiles/caodonen_crop/%s/{z}/{x}/{y}";
-    ///"https://gis.vlab.tech:8443/geoserver/gwc/service/wmts?layer=caodo:anhcut_caodonen_%s" +
-    //"&style&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}";
     public static final String cdn_full_url = "https://sqhkt-qlqh.tphcm.gov.vn/api/tiles/caodonen_full/%s/{z}/{x}/{y}";
-//                    "https://gis.vlab.tech:8443/geoserver/gwc/service/wmts?layer=caodo:anhfull_caodonen_%s" +
-//            "&style&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}";
-
-
     public static String CAODONEN_API_GET = "https://gis.vlab.tech:8443/geoserver/caodo/wms?"
             + "SERVICE=WMS"
             + "&VERSION=1.1.1"
