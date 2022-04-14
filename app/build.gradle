@@ -43,7 +43,8 @@ android {
 allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
-        maven { url  "http://dl.bintray.com/piasy/maven" }
+        maven { url  "http://dl.bintray.com/piasy/maven"
+            allowInsecureProtocol = true}
         maven { url 'https://mapbox.bintray.com/mapbox' }
         mavenCentral()
         maven {
@@ -59,6 +60,7 @@ allprojects {
                 password = project.properties['MAPBOX_DOWNLOADS_TOKEN'] ?: ""
             }
         }
+
     }
 }
 

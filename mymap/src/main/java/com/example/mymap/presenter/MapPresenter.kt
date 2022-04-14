@@ -1,16 +1,19 @@
-import android.util.Log
 import androidx.annotation.NonNull
-import com.example.mymap.Helper.MapAddLayerHelper
+import androidx.fragment.app.FragmentActivity
 import com.example.mymap.utils.GlobalVariables
+import com.mapbox.geojson.Feature
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapboxMap
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
+import java.util.*
 
 class MapPresenter {
-    fun showBanDoGiayQHPK(point: LatLng,mMap:MapboxMap) {
+    fun showBanDoGiayQHPK(point: LatLng, mMap:MapboxMap, activity: FragmentActivity?) {
         val map: MutableMap<String, Double> = HashMap()
         map["Lat"] = point.latitude
         map["Lon"] = point.longitude
@@ -25,11 +28,10 @@ class MapPresenter {
                 @NonNull response: Response<ArrayList<QHPK?>?>
             ) {
                 if (response.code() == 200 && response.body() != null && response.body()!!.size > 0) {
-                    Log.d("huhu",response.body()!!.size.toString() )
                     if (response.body()!!.size > 1) {
-//                        MapPresenter.listener.onShowDialogBanDoGiayQHPKsSucess(response.body())
+                        AddLayer().onShowDialogBanDoGiayQHPKsSucess(response.body(), activity )
                     } else {
-                        AddLayer().onShowBanDoGiayQHPKSucess(response.body()!![0]!!,mMap )
+                        AddLayer().onShowBanDoGiayQHPKSucess(response.body()!![0]!!, mMap)
                     }
                 } else {
 //                    MapPresenter.listenerForActivity.onHiddenMap()
@@ -42,5 +44,44 @@ class MapPresenter {
 //                MapPresenter.listener.onShowBanDoGiayQHPKFail()
             }
         })
+    }
+
+    fun showDCCBCrop(features: List<Feature>, point: LatLng?,activity: FragmentActivity?) {
+//        MapPresenter.listenerForActivity.onClickMap()
+        var flag = false
+        for (f in features) {
+            if (f.getProperty("maDCCB") != null) {
+                flag = true
+                var g: JSONObject? = null
+                var ranh = ""
+                val dccbCurrent = f.getProperty("maDCCB").asString
+                try {
+                    g = JSONObject(Objects.requireNonNull(f.geometry())!!.toJson())
+                    ranh = g.getJSONArray("coordinates").toString()
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+                //                JSONObject jo = new JSONObject(Objects.requireNonNull(f.getProperty("qhpk")).toJson());
+                val qhpk = QHPK()
+                qhpk.tenDoAn = f.getProperty("tenDCCB").asString
+                //                JsonObject qhpk = f.getProperty("qhpk").getAsJsonObject();
+//                Log.d("haha qhpk", String.valueOf(qhpk.toString()));
+//                MapPresenter.listenerForActivity.fillPlanningInfoDCCBex(
+//                    f.getProperty("tenQHPK").asString,
+//                    f.getProperty("qh").asString,
+//                    f.getProperty("tenDCCB").asString,
+//                    f.getProperty("soqd").asString,
+//                    f.getProperty("cqpd").asString,
+//                    f.getProperty("ngayduyet").asString,
+//                    f.getProperty("maDCCB").asString,
+//                    f.getProperty("ranhDCCB").asString
+//                )
+                AddLayer().onShowBanDoGiayDCCBSucess(ranh, dccbCurrent)
+                break
+            }
+        }
+        if (!flag) {
+            showBanDoGiayQHPK(point!!, GlobalVariables.mMap, activity )
+        }
     }
 }

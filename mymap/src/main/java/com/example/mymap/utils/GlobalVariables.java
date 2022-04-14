@@ -16,4 +16,8 @@ public class GlobalVariables {
     public static int height = 0;
     public static int width = 0;
     public static MapboxMap mMap;
+    public static String qhpkIDCurrent = "";
+    public static int numberOfDCCB = 0;
+    public static String dccbCurrent = "";
+    public static boolean isClickDCCB =false;
 }

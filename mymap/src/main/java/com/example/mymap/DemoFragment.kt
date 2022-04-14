@@ -1,22 +1,23 @@
+import android.graphics.PointF
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.example.mymap.R
 import com.example.mymap.utils.Constants
 import com.example.mymap.utils.GlobalVariables
 import com.mapbox.geojson.BoundingBox
+import com.mapbox.geojson.Feature
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.MapboxMap.OnMapClickListener
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
-import com.mapbox.mapboxsdk.maps.Style
 
 class DemoFragment(
     center: LatLng?,
@@ -54,7 +55,7 @@ class DemoFragment(
         // enable back button
         btnSo = view.findViewById(R.id.btn_so)
         btnSo.setOnClickListener {
-                ChangeLayer().changeMapForeground("FG_TTQH_SO", null)
+            ChangeLayer().changeMapForeground("FG_TTQH_SO", null)
         }
         btnGiay = view.findViewById(R.id.btn_giay)
         btnGiay.setOnClickListener {
@@ -64,7 +65,7 @@ class DemoFragment(
 
         btnNen = view.findViewById(R.id.btn_nen)
         btnNen.setOnClickListener {
-            ChangeLayer().changeMapBackground( "BG_NEN_VE_TINH", null)
+            ChangeLayer().changeMapBackground("BG_NEN_VE_TINH", null)
 
 //            ChangeLayer().changeMapForeground("FG_TTQH_GIAY", null)
         }
@@ -86,11 +87,11 @@ class DemoFragment(
             .target(centerPoint)
             .zoom(zoomMap)
             .build()
-        ChangeLayer().changeMapBackground( styleBGMapFirst, null)
-        ChangeLayer().changeMapForeground( styleFGMapFirst, null)
+        ChangeLayer().changeMapBackground(styleBGMapFirst, null)
+        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
 
         mapboxMap.addOnMapClickListener { point ->
-            onMapClick(point)
+            onMapClick(point, activity)
             true
         }
 
@@ -116,7 +117,7 @@ class DemoFragment(
         mapView?.onDestroy()
     }
 
-    override fun onMapClick(point: LatLng): Boolean {
+    fun onMapClick(point: LatLng, activity: FragmentActivity?): Boolean {
         Log.d("huhu", point.toString())
 //        if (mMap == null) {
 //            ToastUtils.showLong(getText(R.string.txt_loi_thu_lai));
@@ -149,24 +150,34 @@ class DemoFragment(
 //            }
 //            mapPresenter.showBanDoGiayCaDoNen(point);
 //            break;
-//            case FG_TTQH_SO:
-//            mMap.removeAnnotations();
-//            removeBDSLayers();
-//            new Thread(() -> mapPresenter.getDigitalLandMapinfo(point)).start();
-//            break;
-             Constants.Style.FG_TTQH_GIAY ->{
-                 //            PointF pixel = mMap.getProjection().toScreenLocation(point);// get map pixel touched
-//            List<Feature> features = mMap.queryRenderedFeatures(pixel); // get features from that pixel
-//            if (features.size() > 0) {
-//                mapPresenter.showDCCBCrop(features, point);
-//            } else {
-//                isClickDCCB = false;
-                 MapPresenter().showBanDoGiayQHPK(point,mMap);
-//            }
-             }
+            Constants.Style.FG_TTQH_SO ->{
+//                mMap.removeAnnotations();
+                removeBDSLayers();
+//                new Thread(() -> mapPresenter.getDigitalLandMapinfo(point)).start();
+            }
+
+            Constants.Style.FG_TTQH_GIAY -> {
+                val pixel: PointF =
+                    mMap.projection
+                        .toScreenLocation(point) // get map pixel touched
+
+                val features: List<Feature> =
+                    mMap.queryRenderedFeatures(pixel) // get features from that pixel
+
+                if (features.isNotEmpty()) {
+                    MapPresenter().showDCCBCrop(features, point,activity)
+                } else {
+                    GlobalVariables.isClickDCCB = false
+                    MapPresenter().showBanDoGiayQHPK(point, mMap, activity);
+                }
+            }
 
         }
         return false;
+    }
+
+    override fun onMapClick(point: LatLng): Boolean {
+        TODO("Not yet implemented")
     }
 
 
