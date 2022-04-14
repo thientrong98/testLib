@@ -7,5 +7,6 @@
 
     <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/popup_background</item>
+        <item name="colorAccent">@color/light_blue_600</item>
     </style>
 </resources>

@@ -5,5 +5,9 @@
     <string name="no_connect_error">Ứng dụng không kết nối được Internet. Xin hãy kiểm tra lại.</string>
     <string name="txt_loi_thu_lai">Lỗi, vui lòng thử lại sau</string>
     <string name="choose_do_an">Vui lòng chọn đồ án cần xem</string>
+    <string name="title_data_updating">Dữ liệu đang được cập nhật</string>
+    <string name="txt_change">Bản đồ số đang được cập nhật dữ liệu, hãy thử sử dụng bản đồ giấy để tra cứu.\nChuyển sang bản đồ giấy ngay?</string>
+    <string name="txt_chuyen">Chuyển</string>
+    <string name="text_cancel">Hủy</string>
 
 </resources>

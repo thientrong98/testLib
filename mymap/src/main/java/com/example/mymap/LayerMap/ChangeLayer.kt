@@ -38,7 +38,8 @@ class ChangeLayer {
             Toast.makeText(activity, R.string.no_connect_error, Toast.LENGTH_LONG).show()
             return
         }
-
+        GlobalVariables.bottom_sheet_height = 110
+//        seek_bar_layer_opacity.setProgress(100)
         when (style) {
 
             "FG_CDN_SO" -> {
@@ -58,6 +59,7 @@ class ChangeLayer {
                 }
             }
             "FG_TTQH_SO" -> {
+                AddLayer().removeAllLayersAndVariables()
 //                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_SO) {
                     GlobalVariables.getCurrentForeground = Constants.Style.FG_TTQH_SO
                     addNewStyle(
@@ -69,6 +71,7 @@ class ChangeLayer {
 //                }
             }
             "FG_TTQH_GIAY" -> {
+                AddLayer().removeAllLayersAndVariables()
 //                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_GIAY) {
                     GlobalVariables.getCurrentForeground = Constants.Style.FG_TTQH_GIAY
                     addNewStyle(

@@ -3,6 +3,7 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import org.json.JSONArray
 import org.json.JSONException
+import kotlin.math.floor
 
 class LocationHelper {
     fun getCenterBounds(coordinates: JSONArray): LatLngBounds? {
@@ -39,4 +40,41 @@ class LocationHelper {
         bounds = builder.build()
         return bounds
     }
+
+    fun getMarkerPosition(coordinates: JSONArray): LatLng? {
+        var position: LatLng = getCenterBounds(coordinates)!!.center
+        val x = position.longitude
+        val y = position.latitude
+        var inside = false
+        var i = 0
+        var j = coordinates.length() - 1
+        while (i < coordinates.length()) {
+            try {
+                val xi = coordinates.getJSONArray(i)[0] as Double
+                val yi = coordinates.getJSONArray(i)[1] as Double
+                val xj = coordinates.getJSONArray(j)[0] as Double
+                val yj = coordinates.getJSONArray(j)[1] as Double
+                val intersect = yi > y != yj > y && x < (xj - xi) * (y - yi) / (yj - yi) + xi
+                if (intersect) {
+                    inside = !inside
+                }
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+            j = i++
+        }
+        if (!inside) {
+            val pos = floor(Math.random() * coordinates.length()).toInt()
+            try {
+                position = LatLng(
+                    (coordinates.getJSONArray(pos)[1] as Double),
+                    (coordinates.getJSONArray(pos)[0] as Double)
+                )
+            } catch (e: JSONException) {
+                e.printStackTrace()
+            }
+        }
+        return position
+    }
+
 }

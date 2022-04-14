@@ -73,7 +73,6 @@ class DemoFragment(
         mapView = view.findViewById(R.id.mapview)
         mapView?.getMapAsync { mapboxMap ->
             onMapReady(mapboxMap)
-
         }
 
         return view
@@ -94,6 +93,8 @@ class DemoFragment(
             onMapClick(point, activity)
             true
         }
+
+
 
     }
 
@@ -152,8 +153,8 @@ class DemoFragment(
 //            break;
             Constants.Style.FG_TTQH_SO ->{
 //                mMap.removeAnnotations();
-                removeBDSLayers();
-//                new Thread(() -> mapPresenter.getDigitalLandMapinfo(point)).start();
+                AddLayer().removeBDSLayers()
+                Thread { MapPresenter().getDigitalLandMapinfo(point,activity) }.start()
             }
 
             Constants.Style.FG_TTQH_GIAY -> {

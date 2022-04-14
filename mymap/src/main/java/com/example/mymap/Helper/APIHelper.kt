@@ -15,4 +15,13 @@ class ApiHelper {
             )
     }
 
+    fun getPlanningInfoService(): PlanningInfoService? {
+        return RetrofitClient.getClient(API_HCM_URL)
+            .create(
+                PlanningInfoService::class.java
+            )
+    }
+
+
+
 }

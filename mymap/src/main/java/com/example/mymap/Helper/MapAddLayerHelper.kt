@@ -7,6 +7,7 @@ import android.util.Log
 import com.example.mymap.utils.Constants
 import com.example.mymap.utils.Constants.qhpk_crop_url
 import com.example.mymap.utils.GlobalVariables
+import com.example.mymap.utils.GlobalVariables.count_id_layer
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.exceptions.InvalidLatLngBoundsException
 import com.mapbox.mapboxsdk.maps.MapboxMap
@@ -19,7 +20,6 @@ import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
 
 class MapAddLayerHelper {
     val id: String = ""
-    private val count_id_layer = 0
     private val temp = 0
     private val strokee: LineLayer? = null
 
@@ -96,7 +96,7 @@ class MapAddLayerHelper {
     }
 
     fun addRasterDCCBLayer(mMap: MapboxMap, maDCCB: String) {
-//        MapAddLayerHelper.id = maDCCB
+        GlobalVariables.id = maDCCB
 //        MyApplication.getInstance().trackEvent(
 //            "F8",
 //            MyApplication.CLIENT_ID,
@@ -194,7 +194,6 @@ class MapAddLayerHelper {
             try {
                 if (coordinates.getJSONArray(0).length() > 1) {
                     //this is polygon
-                    Log.d("zoomToRaster", coordinates.getJSONArray(0).toString())
                     mMap.animateCamera(
                         CameraUpdateFactory.newLatLngBounds(
                             LocationHelper().getCenterBounds(coordinates.getJSONArray(0))!!,

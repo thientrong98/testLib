@@ -1,6 +1,9 @@
 package com.example.mymap.utils;
 
+
 import com.mapbox.mapboxsdk.maps.MapboxMap;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 
@@ -20,4 +23,11 @@ public class GlobalVariables {
     public static int numberOfDCCB = 0;
     public static String dccbCurrent = "";
     public static boolean isClickDCCB =false;
+    public static JSONArray savedQHPK;
+    public static JSONArray savedQHN;
+    public static int count_id_layer = 0;
+    public static int temp =0;
+    public static String id;
+
+
 }

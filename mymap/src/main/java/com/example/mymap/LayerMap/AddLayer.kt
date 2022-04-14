@@ -5,23 +5,29 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
+import com.example.mymap.Helper.MapAddLayerBDSHelper
 import com.example.mymap.Helper.MapAddLayerHelper
 import com.example.mymap.R
 import com.example.mymap.utils.GlobalVariables
+import com.google.gson.GsonBuilder
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.maps.MapboxMap
+import org.json.JSONArray
+import org.json.JSONException
 import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
 
 class AddLayer {
 
+    var gson = GsonBuilder().create()
 
 
     fun onShowBanDoGiayQHPKSucess(qhpk: QHPK, mMap: MapboxMap) {
-//        if (tech.vlab.ttqhhcm.new_ui.map.view.MapFragment.mMap == null) {
+//        if (it == null) {
 //            ToastUtils.showLong(R.string.txt_loi_thu_lai)
 //            return
 //        }
 //        MapPresenter.showInfoQHPK(qhpk)
-//        if (tech.vlab.ttqhhcm.new_ui.map.view.MapFragment.qhpkIDCurrent.equals(
+//        if (.qhpkIDCurrent.equals(
 //                qhpk.getMaQH(),
 //                ignoreCase = true
 //            )
@@ -101,6 +107,48 @@ class AddLayer {
         dialog.show()
     }
 
+    fun onLoadLandInfoSuccess(body: PlanningInfo,activity: FragmentActivity?) {
+        if (GlobalVariables.mMap == null) {
+//            ToastUtils.showLong(R.string.txt_loi_thu_lai)
+            return
+        }
+        try {
+            GlobalVariables.mMap.removeAnnotations()
+            removeBDSLayers()
+                GlobalVariables.savedQHPK = JSONArray(body.qHPK)
+            GlobalVariables.savedQHN = JSONArray(body.qHNganh)
+            MapAddLayerBDSHelper().addQHPKLayers(
+                activity ,
+                GlobalVariables.mMap,
+                JSONArray(body.qHNganh),
+                JSONArray(body.qHPK)
+            )
+            val ttc: ThongTinChung =
+                gson.fromJson(body.thongTinChung, ThongTinChung::class.java)
+            onLandZoomed(ttc.ranh)
+//            MyApplication.getInstance().trackEvent(
+//                "VIEW_LAND", MyApplication.CLIENT_ID,
+//                MyApplication.CURRENT_LOCATION.toString() + "::" + ttc.getMathuadat()
+//            )
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+    }
+
+   private fun onLandZoomed(coordinate: String?) {
+        try {
+            val landCoordinate = JSONArray(coordinate).getJSONArray(0).getJSONArray(0)
+            GlobalVariables.mMap.animateCamera(
+                CameraUpdateFactory.newLatLngBounds(
+                    LocationHelper().getCenterBounds(landCoordinate)!!, 110,
+                    110, 110, GlobalVariables.bottom_sheet_height
+                )
+            )
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+    }
+
     private fun removeDCCB(mMap: MapboxMap) {
         //xoa tat ca dieu chinh cuc bo neu co
         for (i in 0..GlobalVariables.numberOfDCCB) {
@@ -113,7 +161,7 @@ class AddLayer {
     }
 
     private fun removeBDGQHPK(mMap: MapboxMap) {
-//        if (tech.vlab.ttqhhcm.new_ui.map.view.MapFragment.mMap == null) {
+//        if (it == null) {
 //            ToastUtils.showLong(R.string.txt_loi_thu_lai)
 //            return
 //        }
@@ -147,5 +195,55 @@ class AddLayer {
             }
 
         }
+    }
+
+     fun removeBDSLayers() {
+//        if (it == null) {
+//            ToastUtils.showLong(R.string.txt_loi_thu_lai)
+//            return
+//        }
+        //xoa het layer da ve o ban do so
+        if (GlobalVariables.savedQHPK != null && GlobalVariables.savedQHN != null) {
+            for (i in 0 until GlobalVariables.savedQHPK.length() + GlobalVariables.savedQHN.length()) {
+                GlobalVariables.mMap.getStyle {
+                    if (it.getLayer("qhpksdd-stroke-" + (i + 1).toString()) != null) {
+                        it.removeLayer("qhpksdd-stroke-" + (i + 1).toString())
+                    }
+                    if (it.getLayer("qhpksdd-layer-" + (i + 1).toString()) != null) {
+                        it.removeLayer("qhpksdd-layer-" + (i + 1).toString())
+                    }
+                    if (it.getSource("qhpksdd-source-" + (i + 1).toString()) != null) {
+                        it.removeSource("qhpksdd-source-" + (i + 1).toString())
+                    }
+                    if (it.getLayer("QHN-layer-" + (i + 1).toString()) != null) {
+                        it.removeLayer("QHN-layer-" + (i + 1).toString())
+                    }
+                    if (it.getSource("QHN-source-" + (i + 1).toString()) != null) {
+                        it.removeSource("QHN-source-" + (i + 1).toString())
+                    }
+                }
+               
+            }
+        }
+//        .removeOChucNangLayer()
+
+    }
+
+    private fun resetVariable() {
+        GlobalVariables.numberOfDCCB = 0
+        GlobalVariables.qhpkIDCurrent = ""
+        GlobalVariables.dccbCurrent = ""
+//        GlobalVariables.currentCdnID = ""
+        GlobalVariables.isClickDCCB = false
+    }
+
+    fun removeAllLayersAndVariables() {
+        removeBDGQHPK(GlobalVariables.mMap)
+        removeBDSLayers()
+        removeDCCB(GlobalVariables.mMap)
+//        removeCDNLayer()
+//        mMap.deselectMarkers()
+        GlobalVariables.mMap.removeAnnotations()
+        resetVariable()
     }
 }

@@ -1,5 +1,7 @@
+import android.util.Log
 import androidx.annotation.NonNull
 import androidx.fragment.app.FragmentActivity
+import com.example.mymap.LayerMap.ChangeMap
 import com.example.mymap.utils.GlobalVariables
 import com.mapbox.geojson.Feature
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -83,5 +85,52 @@ class MapPresenter {
         if (!flag) {
             showBanDoGiayQHPK(point!!, GlobalVariables.mMap, activity )
         }
+    }
+
+    fun getDigitalLandMapinfo(point: LatLng, activity: FragmentActivity?) {
+//        MapPresenter.listenerForActivity.onClickMap()
+        getDigitalLandMapinfoByLink(point, activity )
+    }
+
+
+    private fun getDigitalLandMapinfoByLink(point: LatLng,activity: FragmentActivity?) {
+        val searchPlanningInfo: Call<PlanningInfo?>? =
+            if (GlobalVariables.getCurrentLanguage.equals("vi")) {
+                ApiHelper().getPlanningInfoService()
+                    ?.getPlanningInfoByLatLng(point.latitude, point.longitude)
+            } else {
+                ApiHelper().getPlanningInfoService()
+                    ?.getPlanningInfoByLatLngEnglish(point.latitude, point.longitude)
+            }
+        searchPlanningInfo?.enqueue(object : Callback<PlanningInfo?> {
+            override fun onResponse(
+                @NonNull call: Call<PlanningInfo?>,
+                @NonNull response: Response<PlanningInfo?>
+            ) {
+                Log.d("hmm", response.code().toString())
+                if (response.code() == 200 && response.body() != null) {
+                    val landInfo = response.body()
+                    if (!landInfo?.thongTinChung.equals("{}")) {
+                        AddLayer().onLoadLandInfoSuccess(response.body()!!, activity )
+//                        MapPresenter.listener.onLoadLandInfoSuccess(response.body())
+                    } else {
+//                        MapPresenter.point_send = point
+                        ChangeMap().showInfoChangeMap(point, activity!!)
+                    }
+                } else {
+//                    MapPresenter.point_send = point
+//                    MapPresenter.listenerForActivity.onChangeMap()
+                    ChangeMap().showInfoChangeMap(point, activity!!)
+
+                }
+            }
+
+            override fun onFailure(@NonNull call: Call<PlanningInfo?>, @NonNull t: Throwable) {
+//                MapPresenter.point_send = point
+                ChangeMap().showInfoChangeMap(point, activity!!)
+
+
+            }
+        })
     }
 }
