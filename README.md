@@ -1,6 +1,7 @@
 ** Add this line in build.gradle file
 
 dependencies{
+  ...
   implementation 'com.github.thientrong98:testLib:1.0.2' //add line
   ...
 }
