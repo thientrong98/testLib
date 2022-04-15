@@ -49,6 +49,7 @@
                 android:scaleType="fitXY"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
+                android:layout_gravity="top"
                 android:background="@drawable/new_bg_gps"
                 android:src="@drawable/gps"
                 android:layout_marginRight="18dp"

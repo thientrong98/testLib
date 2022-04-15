@@ -1,26 +1,31 @@
 package com.example.qqqqq
 
-import androidx.appcompat.app.AppCompatActivity
+import DemoFragment
 import android.os.Bundle
 import android.widget.Button
-import com.example.fragmentlib.FragmentManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.mapbox.mapboxsdk.Mapbox
 
 class MainActivity : AppCompatActivity() {
     lateinit var btnSwitch: Button
-
+    private var currentFragment: Fragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
         Mapbox.getInstance(applicationContext, getString(R.string.access_token))
 
-//                btnSwitch = findViewById(R.id.btn_switch)
-//        btnSwitch.setOnClickListener {
-//            FragmentManager.changeMap("TTQH_GIAY")
-//        }
-//
-//        FragmentManager.showFragment(this)
-//
+        currentFragment = DemoFragment.newInstance(center=null,bb=null, zoom = null, maxZoom = null,
+         minZoom = null,fgMapFirst ="FG_TTQH_SO",bgMapFirst= "BG_NEN_BAN_DO", tileBaseMap = "", tileSatellite = "")
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragment, currentFragment as DemoFragment, "")
+            .commit();
+        setContentView(R.layout.activity_main)
+
+
+
+
     }
+
+
 }

@@ -1,6 +1,4 @@
-import android.graphics.PointF
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +10,6 @@ import com.example.mymap.R
 import com.example.mymap.utils.Constants
 import com.example.mymap.utils.GlobalVariables
 import com.mapbox.geojson.BoundingBox
-import com.mapbox.geojson.Feature
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapView
@@ -21,15 +18,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap.OnMapClickListener
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 
 class DemoFragment(
-    center: LatLng?,
-    bb: BoundingBox?,
-    zoom: Double?,
-    minZoom: Double?,
-    maxZoom: Double?,
-    fgMapFirst: String,
-    bgMapFirst: String,
-    tileBaseMap: String,
-    tileSatellite: String
+
 ) : Fragment(), OnMapReadyCallback, OnMapClickListener {
 
     private lateinit var btnSo: Button
@@ -39,29 +28,69 @@ class DemoFragment(
 
 
     var mapView: MapView? = null
-    private var centerPoint = center ?: LatLng(10.7994064, 106.7116703)
-    private var zoomMap = zoom ?: 16.0
-    private var styleFGMapFirst = fgMapFirst
-    private var styleBGMapFirst = bgMapFirst
-    private var tileBaseMap = tileBaseMap
-    private var tileSatellite = tileSatellite
+    private var centerPoint: LatLng = LatLng(10.7994064, 106.7116703)
+    private var zoomMap: Double = 16.0
 
+    private lateinit var styleFGMapFirst: String
+    private lateinit var styleBGMapFirst: String
     private lateinit var mMap: MapboxMap
 
 
+    companion object {
+        fun newInstance(
+            center: LatLng?,
+            bb: BoundingBox?,
+            zoom: Double?,
+            minZoom: Double?,
+            maxZoom: Double?,
+            fgMapFirst: String,
+            bgMapFirst: String,
+            tileBaseMap: String,
+            tileSatellite: String
+        ): DemoFragment {
+            val data = Bundle()
+            data.putString("fgMapFirst", fgMapFirst)
+            data.putString("bgMapFirst", bgMapFirst)
+            data.putString("tileBaseMap", tileBaseMap)
+            data.putString("tileSatellite", tileSatellite)
+
+            return DemoFragment().apply {
+                arguments = data
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Constants.BG_NEN_BAN_DO =
-            if (tileBaseMap.isNullOrEmpty()) "mapbox://styles/tranthientrong/ckr0po0y67exw17rwcwg3ttrv" else tileBaseMap
-        Constants.BG_NEN_VE_TINH =
-            if (tileSatellite.isNullOrEmpty()) "mapbox://styles/tranthientrong/cl1x7xmkv001914ppuw0ne6et" else tileBaseMap
+
+        arguments?.let {
+            styleFGMapFirst = it.getString("fgMapFirst")!!
+            styleBGMapFirst = it.getString("bgMapFirst")!!
+            Constants.BG_NEN_BAN_DO =
+                if (it.getString("tileBaseMap")
+                        .isNullOrEmpty()
+                ) "mapbox://styles/tranthientrong/ckr0po0y67exw17rwcwg3ttrv" else it.getString(
+                    "tileBaseMap"
+                )
+            Constants.BG_NEN_VE_TINH =
+                if (it.getString("tileSatellite")
+                        .isNullOrEmpty()
+                ) "mapbox://styles/tranthientrong/cl1x7xmkv001914ppuw0ne6et" else it.getString(
+                    "tileSatellite"
+                )
+
+        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         var view = inflater.inflate(R.layout.fragment_demo, container, false)
+
 
         // enable back button
         btnSo = view.findViewById(R.id.btn_so)
@@ -118,7 +147,7 @@ class DemoFragment(
 
     }
 
-   private fun onMapClick(point: LatLng, activity: FragmentActivity?): Boolean {
+    private fun onMapClick(point: LatLng, activity: FragmentActivity?): Boolean {
         AddLayer().removeBDSLayers()
         Thread { MapPresenter().getDigitalLandMapinfo(point, activity) }.start()
         return false;
@@ -143,7 +172,6 @@ class DemoFragment(
         super.onDestroy()
         mapView?.onDestroy()
     }
-
 
 
     override fun onMapClick(point: LatLng): Boolean {

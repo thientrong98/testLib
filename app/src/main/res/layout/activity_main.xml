@@ -6,33 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<!--   <fragment-->
-<!--       android:layout_width="match_parent"-->
-<!--       android:layout_height="match_parent"-->
-<!--       tools:layout="@layout/fragment_demo">-->
-
-<!--    <androidx.fragment.app.FragmentContainerView-->
-<!--        android:id="@+id/mapframe"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        tools:layout="@layout/fragment_map"-->
-<!--        ></androidx.fragment.app.FragmentContainerView>-->
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmemt_map"
+        android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.qqqqq.MapFragment">
-    </androidx.fragment.app.FragmentContainerView>
-
-<!--    <Button-->
-<!--        android:id="@+id/btn_switch"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Switch Fragment"-->
-<!--        android:textSize="24sp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+></androidx.fragment.app.FragmentContainerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

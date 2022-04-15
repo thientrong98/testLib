@@ -23,7 +23,7 @@ class FragmentManager {
         ) {
             if (activity.supportFragmentManager.findFragmentById(android.R.id.content) == null) {
                 activity.supportFragmentManager.beginTransaction()
-                    .add(android.R.id.content, DemoFragment( center, bb,zoom,minZoom,maxZoom,fgMapFirst, bgMapFirst,tileBaseMap, tileSatellite ))
+                    .add(android.R.id.content, DemoFragment( ))
                     .addToBackStack(null)
                     .commit()
             }
