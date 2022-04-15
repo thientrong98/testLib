@@ -1,14 +1,21 @@
 package com.example.mymap.LayerMap
 
 import ApiHelper
-import ChangeLayer
-import MapPresenter
 import android.app.AlertDialog
-import android.content.DialogInterface.OnShowListener
+import android.content.Context.LAYOUT_INFLATER_SERVICE
+import android.provider.Settings.Global.getString
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.TextView
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.res.TypedArrayUtils.getText
 import androidx.fragment.app.FragmentActivity
 import com.example.mymap.R
-import com.example.mymap.utils.Constants
 import com.example.mymap.utils.GlobalVariables
 import com.mapbox.mapboxsdk.geometry.LatLng
 import retrofit2.Call
@@ -18,62 +25,34 @@ import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
 
 
 class ChangeMap {
-     fun showInfoChangeMap(point: LatLng,activity: FragmentActivity) {
-//        val point: LatLng = MapPresenter.point()
-        val map: MutableMap<String, Double> = HashMap()
-        map["Lat"] = point.latitude
-        map["Lon"] = point.longitude
-         val call: Call<java.util.ArrayList<QHPK?>?>? = if (GlobalVariables.getCurrentLanguage.equals("vi"))
-             ApiHelper().getRasterPlanningInfoService()?.getQHPK(map)
-         else
-             ApiHelper().getRasterPlanningInfoService()?.getQHPKEnglish(map)
-
-         call?.enqueue(object : Callback<ArrayList<QHPK?>?> {
-            override fun onResponse(
-                call: Call<ArrayList<QHPK?>?>,
-                response: Response<ArrayList<QHPK?>?>
-            ) {
-                val qhpks = response.body()!!
-                Log.d("hmm123", response.code().toString())
-                if (response.code() == 200 && qhpks.size > 0) {
-                    showInfoHaveData(point, activity )
-                } else {
-                    showInfoNoData()
-                }
-            }
-
-            override fun onFailure(call: Call<ArrayList<QHPK?>?>, t: Throwable) {
-                showInfoNoData()
-            }
-        })
-    }
-
-    private fun showInfoNoData() {
+     fun showInfoNoData(activity: FragmentActivity) {
 //        runOnUiThread { onPopup(0) }
+         onPopup(0, activity )
     }
 
-    private fun showInfoHaveData(point: LatLng,activity:FragmentActivity) {
-
-//        runOnUiThread {
-            val builder: AlertDialog.Builder = AlertDialog.Builder(activity, R.style.CustomAlertDialog)
-            builder.setTitle(R.string.title_data_updating)
-            builder.setMessage(R.string.txt_change)
-            builder.setCancelable(false)
-            builder.setPositiveButton(R.string.txt_chuyen) { dialog, which ->
-                // Dismiss dialog and quit
-//                GlobalVariables.getCurrentForeground =Constants.Style.FG_TTQH_GIAY
-//                ChangeLayer().changeMapForeground("FG_TTQH_GIAY",activity)
-//                MapPresenter().showBanDoGiayQHPK(point,GlobalVariables.mMap,activity)
-                dialog.dismiss()
-            }
-
-            builder.setNegativeButton(R.string.text_cancel) { dialog, which ->
-                // Dismiss dialog and quit
-                dialog.dismiss()
-            }
-
-
-        builder.show()
-//        }
+    private fun onPopup(str: Int,activity: FragmentActivity) {
+        val inflater = activity.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val popupView: View = inflater.inflate(R.layout.popup_window, null)
+        val width = LinearLayout.LayoutParams.MATCH_PARENT
+        val height = LinearLayout.LayoutParams.WRAP_CONTENT
+        val focusable = true // lets taps outside the popup also dismiss it
+        val popupWindow = PopupWindow(popupView, width, height, focusable)
+        popupWindow.showAtLocation(activity.window.decorView.rootView, Gravity.TOP, 0, 0)
+        val tvError = popupView.findViewById<View>(R.id.tv_error_popup) as TextView
+        val ivClose = popupView.findViewById<View>(R.id.im_close_popup) as ImageView
+        val ivFeedback = popupView.findViewById<View>(R.id.iv_feedback) as ImageView
+        if (str == 0) {
+            tvError.text = "Thửa đất thuộc khu vực chưa được lập Quy hoạch Phân khu."
+        } else if (str == 1) {
+            tvError.text = "Không tìm thấy số tờ, số thửa bạn nhập. Vui lòng thử tìm kiếm bằng tọa độ góc ranh. Xin cảm ơn."
+        }
+        ivClose.setOnClickListener { popupWindow.dismiss() }
+        ivFeedback.setOnClickListener {
+            popupWindow.dismiss()
+//            onLoadFormFeedBack()
+        }
     }
+
+
+
 }

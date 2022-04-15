@@ -58,17 +58,11 @@ class MapAddLayerBDSHelper {
                     "qhpksdd-stroke-" + (i + 1).toString(),
                     "qhpksdd-source-" + (i + 1).toString()
                 ) // Draw stroke around polygon
-                if (GlobalVariables.getCurrentForeground == Constants.Style.FG_TTQH_GIAY) {
-                    stroke.setProperties(
-                        PropertyFactory.lineWidth(2f),
-                        PropertyFactory.lineColor(Color.RED)
-                    )
-                } else {
-                    stroke.setProperties(
-                        PropertyFactory.lineWidth(2f),
-                        PropertyFactory.lineColor(Color.BLACK)
-                    )
-                }
+
+                stroke.setProperties(
+                    PropertyFactory.lineWidth(2f),
+                    PropertyFactory.lineColor(Color.BLACK)
+                )
                 var RGBColor: String
                 if (i < jsonArray.length()) {
                     //quy hoach phan khu
@@ -112,33 +106,10 @@ class MapAddLayerBDSHelper {
                 } catch (e: CannotAddSourceException) {
                     e.printStackTrace()
                 }
-                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_GIAY) {
-                    try {
-                        mMap.getStyle {
-                            if (it.getLayer("base-layer-so") != null) {
-                                it.addLayerBelow(layer, "base-layer-so")
-                            } else {
-                                it.addLayerBelow(layer, "base-layer-giay")
-                            }
-                            it.getLayer("qhpksdd-layer-" + (i + 1).toString())?.setProperties(
-                                PropertyFactory.fillOpacity(GlobalVariables.ratioProgress as Float / 100)
-                            )
-                        }
 
-
-                    } catch (e: CannotAddLayerException) {
-                        e.printStackTrace()
-                    }
-                }
                 try {
                     mMap.getStyle {
-                        if (GlobalVariables.getCurrentForeground == Constants.Style.FG_TTQH_GIAY)
-
-                                it.addLayerAbove(
-                                    stroke,
-                                    GlobalVariables.id + "-qhpk-layer")
-
-                        else it.addLayerBelow(stroke, GlobalVariables.id + "-qhpk-layer")
+                         it.addLayerBelow(stroke, GlobalVariables.id + "-qhpk-layer")
                     }
 
                 } catch (e: CannotAddLayerException) {
@@ -163,7 +134,12 @@ class MapAddLayerBDSHelper {
                 edtNumber.text = index.toString()
                 val iconFactory = IconFactory.getInstance(activity)
                 val icon =
-                    iconFactory.fromBitmap(BitmapHelper().createDrawableFromView(activity, marker)!!)
+                    iconFactory.fromBitmap(
+                        BitmapHelper().createDrawableFromView(
+                            activity,
+                            marker
+                        )!!
+                    )
                 if (index >= 10) { // Move number in marker to left when that number > 9
                     val paddingLeft = 10
                     val paddingTop = 2
@@ -189,7 +165,7 @@ class MapAddLayerBDSHelper {
 
 
     private fun addQHNRanhLayer(mMap: MapboxMap, ranh: String, color: String, index: Int) {
-       GlobalVariables.temp = index
+        GlobalVariables.temp = index
         try {
             val source: Source = GeoJsonSource(
                 "QHN-source-$index", ranh

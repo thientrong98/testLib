@@ -101,6 +101,8 @@ class DemoFragment(
         GlobalVariables.mMap = mapboxMap
 
         mapboxMap.uiSettings.isRotateGesturesEnabled = false
+        mapboxMap.uiSettings.isAttributionEnabled = false;
+        mapboxMap.uiSettings.isLogoEnabled = false;
         mapboxMap.cameraPosition = CameraPosition.Builder()
             .target(centerPoint)
             .zoom(zoomMap)
@@ -114,6 +116,12 @@ class DemoFragment(
         }
 
 
+    }
+
+   private fun onMapClick(point: LatLng, activity: FragmentActivity?): Boolean {
+        AddLayer().removeBDSLayers()
+        Thread { MapPresenter().getDigitalLandMapinfo(point, activity) }.start()
+        return false;
     }
 
     override fun onStart() {
@@ -136,64 +144,7 @@ class DemoFragment(
         mapView?.onDestroy()
     }
 
-    fun onMapClick(point: LatLng, activity: FragmentActivity?): Boolean {
-        Log.d("huhu", point.toString())
-//        if (mMap == null) {
-//            ToastUtils.showLong(getText(R.string.txt_loi_thu_lai));
-//            return;
-//        }
-//        if (!NetworkUtils.isConnected()) {
-//            ToastUtils.showLong(getText(R.string.no_connect_error));
-//            return;
-//        }
-        when (GlobalVariables.getCurrentForeground) {
-//            case FG_CDN_SO:
-//            mapPresenter.showCaoDoNenHienTrang(point, mapView.getWidth(), mapView.getHeight());
-//            break;
-//            case FG_CDN_GIAY:
-//            PointF pixelCDN = mMap.getProjection().toScreenLocation(point);// get map pixel touched
-//            List<Feature> featuresCDN = mMap.queryRenderedFeatures(pixelCDN); // get features from that pixel
-//            if (featuresCDN.size() > 0) {
-//                try {
-//                    for (Feature f : featuresCDN) {
-//                        if (f.properties() != null && f.getStringProperty("diem_cao_do") != null) {
-//                            if (f.getStringProperty("diem_cao_do").equalsIgnoreCase("1")) {
-//                                mapPresenter.addMarkerCaoDo(point, f.getStringProperty("qh"), f.getStringProperty("hh"), getContext());
-//                                return;
-//                            }
-//                        }
-//                    }
-//                } catch (NullPointerException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            mapPresenter.showBanDoGiayCaDoNen(point);
-//            break;
-            Constants.Style.FG_TTQH_SO -> {
-//                mMap.removeAnnotations();
-                AddLayer().removeBDSLayers()
-                Thread { MapPresenter().getDigitalLandMapinfo(point, activity) }.start()
-            }
 
-            Constants.Style.FG_TTQH_GIAY -> {
-                val pixel: PointF =
-                    mMap.projection
-                        .toScreenLocation(point) // get map pixel touched
-
-                val features: List<Feature> =
-                    mMap.queryRenderedFeatures(pixel) // get features from that pixel
-
-                if (features.isNotEmpty()) {
-                    MapPresenter().showDCCBCrop(features, point, activity)
-                } else {
-                    GlobalVariables.isClickDCCB = false
-                    MapPresenter().showBanDoGiayQHPK(point, mMap, activity);
-                }
-            }
-
-        }
-        return false;
-    }
 
     override fun onMapClick(point: LatLng): Boolean {
         TODO("Not yet implemented")

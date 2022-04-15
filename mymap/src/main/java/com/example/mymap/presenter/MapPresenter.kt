@@ -107,27 +107,21 @@ class MapPresenter {
                 @NonNull call: Call<PlanningInfo?>,
                 @NonNull response: Response<PlanningInfo?>
             ) {
-                Log.d("hmm", response.code().toString())
                 if (response.code() == 200 && response.body() != null) {
                     val landInfo = response.body()
                     if (!landInfo?.thongTinChung.equals("{}")) {
                         AddLayer().onLoadLandInfoSuccess(response.body()!!, activity )
 //                        MapPresenter.listener.onLoadLandInfoSuccess(response.body())
                     } else {
-//                        MapPresenter.point_send = point
-                        ChangeMap().showInfoChangeMap(point, activity!!)
+                        ChangeMap().showInfoNoData(activity!!)
                     }
                 } else {
-//                    MapPresenter.point_send = point
-//                    MapPresenter.listenerForActivity.onChangeMap()
-                    ChangeMap().showInfoChangeMap(point, activity!!)
-
+                    ChangeMap().showInfoNoData(activity!!)
                 }
             }
 
             override fun onFailure(@NonNull call: Call<PlanningInfo?>, @NonNull t: Throwable) {
-//                MapPresenter.point_send = point
-                ChangeMap().showInfoChangeMap(point, activity!!)
+                ChangeMap().showInfoNoData(activity!!)
 
 
             }

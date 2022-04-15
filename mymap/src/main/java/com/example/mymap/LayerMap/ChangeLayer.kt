@@ -70,16 +70,6 @@ class ChangeLayer {
                     )
 //                }
             }
-            "FG_TTQH_GIAY" -> {
-                AddLayer().removeAllLayersAndVariables()
-//                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_GIAY) {
-                    GlobalVariables.getCurrentForeground = Constants.Style.FG_TTQH_GIAY
-                    addNewStyle(
-                        if (GlobalVariables.currentBackgroud === Constants.Style.BG_NEN_BAN_DO) Constants.URL_RASTER_LAND else Constants.URL_RASTER_LAND_SATELLITE,
-                        "4", GlobalVariables.mMap, activity
-                    )
-//                }
-            }
         }
 
 
