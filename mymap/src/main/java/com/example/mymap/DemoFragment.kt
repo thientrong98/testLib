@@ -17,9 +17,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.MapboxMap.OnMapClickListener
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 
-class DemoFragment(
-
-) : Fragment(), OnMapReadyCallback, OnMapClickListener {
+class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
 
     private lateinit var btnSo: Button
     private lateinit var btnGiay: Button
@@ -31,22 +29,22 @@ class DemoFragment(
     private var centerPoint: LatLng = LatLng(10.7994064, 106.7116703)
     private var zoomMap: Double = 16.0
 
-    private lateinit var styleFGMapFirst: String
-    private lateinit var styleBGMapFirst: String
+    private  var styleFGMapFirst: String = "FG_TTQH_SO"
+    private  var styleBGMapFirst: String = "BG_NEN_BAN_DO"
     private lateinit var mMap: MapboxMap
 
 
     companion object {
         fun newInstance(
-            center: LatLng?,
-            bb: BoundingBox?,
-            zoom: Double?,
-            minZoom: Double?,
-            maxZoom: Double?,
+//            center: LatLng?,
+//            bb: BoundingBox?,
+//            zoom: Double?,
+//            minZoom: Double?,
+//            maxZoom: Double?,
             fgMapFirst: String,
             bgMapFirst: String,
-            tileBaseMap: String,
-            tileSatellite: String
+            tileBaseMap: String?,
+            tileSatellite: String?
         ): DemoFragment {
             val data = Bundle()
             data.putString("fgMapFirst", fgMapFirst)
@@ -58,14 +56,16 @@ class DemoFragment(
                 arguments = data
             }
         }
+
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            styleFGMapFirst = it.getString("fgMapFirst")!!
-            styleBGMapFirst = it.getString("bgMapFirst")!!
+            styleFGMapFirst = it.getString("fgMapFirst").toString()
+            styleBGMapFirst = it.getString("bgMapFirst").toString()
             Constants.BG_NEN_BAN_DO =
                 if (it.getString("tileBaseMap")
                         .isNullOrEmpty()
