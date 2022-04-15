@@ -106,10 +106,24 @@ class MapAddLayerBDSHelper {
                 } catch (e: CannotAddSourceException) {
                     e.printStackTrace()
                 }
+                    try {
+                        mMap.getStyle {
+                            if (it.getLayer("base-layer-so") != null) {
+                                it.addLayerBelow(layer, "base-layer-so")
+                            } else {
+                                it.addLayerBelow(layer, "base-layer-giay")
+                            }
+                            it.getLayer("qhpksdd-layer-" + (i + 1).toString())?.setProperties(
+                                PropertyFactory.fillOpacity(GlobalVariables.ratioProgress as Float / 100)
+                            )
+                        }
 
+                    } catch (e: CannotAddLayerException) {
+                        e.printStackTrace()
+                    }
                 try {
                     mMap.getStyle {
-                         it.addLayerBelow(stroke, GlobalVariables.id + "-qhpk-layer")
+                        it.addLayerBelow(stroke, GlobalVariables.id + "-qhpk-layer")
                     }
 
                 } catch (e: CannotAddLayerException) {
