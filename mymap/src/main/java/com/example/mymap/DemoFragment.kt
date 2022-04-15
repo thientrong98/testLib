@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.mymap.R
@@ -26,12 +27,15 @@ class DemoFragment(
     minZoom: Double?,
     maxZoom: Double?,
     fgMapFirst: String,
-    bgMapFirst: String
+    bgMapFirst: String,
+    tileBaseMap: String,
+    tileSatellite: String
 ) : Fragment(), OnMapReadyCallback, OnMapClickListener {
 
     private lateinit var btnSo: Button
     private lateinit var btnGiay: Button
     private lateinit var btnNen: Button
+    private lateinit var btnBackgroundMap: ImageButton
 
 
     var mapView: MapView? = null
@@ -39,11 +43,18 @@ class DemoFragment(
     private var zoomMap = zoom ?: 16.0
     private var styleFGMapFirst = fgMapFirst
     private var styleBGMapFirst = bgMapFirst
+    private var tileBaseMap = tileBaseMap
+    private var tileSatellite = tileSatellite
 
     private lateinit var mMap: MapboxMap
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Constants.BG_NEN_BAN_DO =
+            if (tileBaseMap.isNullOrEmpty()) "mapbox://styles/tranthientrong/ckr0po0y67exw17rwcwg3ttrv" else tileBaseMap
+        Constants.BG_NEN_VE_TINH =
+            if (tileSatellite.isNullOrEmpty()) "mapbox://styles/tranthientrong/cl1x7xmkv001914ppuw0ne6et" else tileBaseMap
     }
 
     override fun onCreateView(
@@ -63,11 +74,18 @@ class DemoFragment(
             ChangeLayer().changeMapForeground("FG_TTQH_GIAY", null)
         }
 
-        btnNen = view.findViewById(R.id.btn_nen)
-        btnNen.setOnClickListener {
-            ChangeLayer().changeMapBackground("BG_NEN_VE_TINH", null)
-
-//            ChangeLayer().changeMapForeground("FG_TTQH_GIAY", null)
+        btnBackgroundMap = view.findViewById(R.id.btn_background_map)
+        btnBackgroundMap.setOnClickListener {
+            if (GlobalVariables.currentBackgroud == Constants.Style.BG_NEN_VE_TINH) {
+                GlobalVariables.currentBackgroud = Constants.Style.BG_NEN_BAN_DO
+                ChangeLayer().changeMapBackground(
+                    "BG_NEN_BAN_DO",
+                    null
+                )
+            } else {
+                GlobalVariables.currentBackgroud = Constants.Style.BG_NEN_VE_TINH
+                ChangeLayer().changeMapBackground("BG_NEN_VE_TINH", null)
+            }
         }
 
         mapView = view.findViewById(R.id.mapview)
@@ -81,6 +99,7 @@ class DemoFragment(
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mMap = mapboxMap
         GlobalVariables.mMap = mapboxMap
+
         mapboxMap.uiSettings.isRotateGesturesEnabled = false
         mapboxMap.cameraPosition = CameraPosition.Builder()
             .target(centerPoint)
@@ -93,7 +112,6 @@ class DemoFragment(
             onMapClick(point, activity)
             true
         }
-
 
 
     }
@@ -151,10 +169,10 @@ class DemoFragment(
 //            }
 //            mapPresenter.showBanDoGiayCaDoNen(point);
 //            break;
-            Constants.Style.FG_TTQH_SO ->{
+            Constants.Style.FG_TTQH_SO -> {
 //                mMap.removeAnnotations();
                 AddLayer().removeBDSLayers()
-                Thread { MapPresenter().getDigitalLandMapinfo(point,activity) }.start()
+                Thread { MapPresenter().getDigitalLandMapinfo(point, activity) }.start()
             }
 
             Constants.Style.FG_TTQH_GIAY -> {
@@ -166,7 +184,7 @@ class DemoFragment(
                     mMap.queryRenderedFeatures(pixel) // get features from that pixel
 
                 if (features.isNotEmpty()) {
-                    MapPresenter().showDCCBCrop(features, point,activity)
+                    MapPresenter().showDCCBCrop(features, point, activity)
                 } else {
                     GlobalVariables.isClickDCCB = false
                     MapPresenter().showBanDoGiayQHPK(point, mMap, activity);

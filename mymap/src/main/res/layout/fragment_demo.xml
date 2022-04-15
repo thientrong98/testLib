@@ -11,7 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#4EE1B7">
+        android:background="#4EE1B7"
+        >
 
         <com.mapbox.mapboxsdk.maps.MapView
             android:id="@+id/mapview"
@@ -19,15 +20,52 @@
             android:layout_height="match_parent"
             />
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Hello from the Library"-->
-<!--            android:textSize="34sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+
+            <!--        <ImageButton-->
+
+            <!--            android:scaleType="fitXY"-->
+            <!--            android:layout_width="45dp"-->
+            <!--            android:layout_height="45dp"-->
+            <!--            android:layout_gravity="top"-->
+            <!--            android:background="@drawable/new_bg_map"-->
+            <!--            android:src="@drawable/backgound_map"-->
+            <!--            />-->
+        <ImageButton
+            android:id="@+id/btn_background_map"
+            android:scaleType="fitXY"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/new_bg_map"
+            android:src="@drawable/backgound_map"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+            <ImageButton
+                android:id="@+id/btn_location"
+                android:scaleType="fitXY"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/new_bg_gps"
+                android:src="@drawable/gps"
+                android:layout_marginRight="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_background_map"
+                />
+            <ImageButton
+                android:id="@+id/btn_transparent"
+                android:scaleType="fitXY"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="18dp"
+                android:background="@drawable/new_bg_transparent"
+                android:src="@drawable/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_location"
+                />
 
         <Button
             android:id="@+id/btn_giay"
@@ -37,7 +75,7 @@
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
         <Button
             android:id="@+id/btn_so"
             android:layout_width="wrap_content"
@@ -47,7 +85,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/btn_nen"

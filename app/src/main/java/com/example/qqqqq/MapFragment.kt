@@ -1,13 +1,13 @@
 package com.example.qqqqq
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fragmentlib.FragmentManager
+import com.mapbox.mapboxsdk.geometry.LatLng
 
 
 class MapFragment : Fragment() {
@@ -26,7 +26,8 @@ class MapFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        FragmentManager.showFragment(activity as AppCompatActivity, null,null,null,null,null,fgMapFirst ="FG_TTQH_GIAY",bgMapFirst= "BG_NEN_BAN_DO")
+        FragmentManager.showFragment(activity as AppCompatActivity, location = LatLng(),center=null,bb=null, zoom = null, maxZoom = null,
+            minZoom = null,fgMapFirst ="FG_TTQH_SO",bgMapFirst= "BG_NEN_BAN_DO", tileBaseMap = "", tileSatellite = "")
     }
 
 }

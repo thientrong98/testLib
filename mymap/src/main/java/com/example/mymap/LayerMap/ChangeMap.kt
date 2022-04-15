@@ -61,9 +61,10 @@ class ChangeMap {
             builder.setCancelable(false)
             builder.setPositiveButton(R.string.txt_chuyen) { dialog, which ->
                 // Dismiss dialog and quit
-                GlobalVariables.getCurrentForeground =Constants.Style.FG_TTQH_GIAY
-                ChangeLayer().changeMapForeground("FG_TTQH_GIAY",activity)
-                MapPresenter().showBanDoGiayQHPK(point,GlobalVariables.mMap,activity)
+//                GlobalVariables.getCurrentForeground =Constants.Style.FG_TTQH_GIAY
+//                ChangeLayer().changeMapForeground("FG_TTQH_GIAY",activity)
+//                MapPresenter().showBanDoGiayQHPK(point,GlobalVariables.mMap,activity)
+                dialog.dismiss()
             }
 
             builder.setNegativeButton(R.string.text_cancel) { dialog, which ->

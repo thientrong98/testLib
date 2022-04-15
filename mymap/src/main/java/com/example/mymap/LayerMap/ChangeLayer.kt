@@ -19,11 +19,11 @@ class ChangeLayer {
 
         when (name) {
             "BG_NEN_BAN_DO" -> {
-                GlobalVariables.mMap.setStyle(Style.Builder().fromUri("mapbox://styles/tranthientrong/ckr0po0y67exw17rwcwg3ttrv")){
+                GlobalVariables.mMap.setStyle(Style.Builder().fromUri(Constants.BG_NEN_BAN_DO)){
                 }
             }
             "BG_NEN_VE_TINH" -> {
-                GlobalVariables.mMap.setStyle(Style.Builder().fromUri("mapbox://styles/tranthientrong/cl1x7xmkv001914ppuw0ne6et")){
+                GlobalVariables.mMap.setStyle(Style.Builder().fromUri(Constants.BG_NEN_VE_TINH)){
 
                 }
             }
@@ -42,22 +42,22 @@ class ChangeLayer {
 //        seek_bar_layer_opacity.setProgress(100)
         when (style) {
 
-            "FG_CDN_SO" -> {
-                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_CDN_SO) {
-                    GlobalVariables.getCurrentForeground = Constants.Style.FG_CDN_SO
-                    addNewStyle(Constants.URL_CDN_DIGITAL, "1", GlobalVariables.mMap, activity)
-                }
-
-            }
-            "FG_CDN_GIAY" -> {
-                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_CDN_GIAY) {
-                    GlobalVariables.getCurrentForeground = Constants.Style.FG_CDN_GIAY
-                    addNewStyle(
-                        if (GlobalVariables.currentBackgroud === Constants.Style.BG_NEN_BAN_DO) Constants.URL_CDN_RASTER else Constants.URL_CDN_RASTER_SATELLITE,
-                        "2", GlobalVariables.mMap, activity
-                    )
-                }
-            }
+//            "FG_CDN_SO" -> {
+//                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_CDN_SO) {
+//                    GlobalVariables.getCurrentForeground = Constants.Style.FG_CDN_SO
+//                    addNewStyle(Constants.URL_CDN_DIGITAL, "1", GlobalVariables.mMap, activity)
+//                }
+//
+//            }
+//            "FG_CDN_GIAY" -> {
+//                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_CDN_GIAY) {
+//                    GlobalVariables.getCurrentForeground = Constants.Style.FG_CDN_GIAY
+//                    addNewStyle(
+//                        if (GlobalVariables.currentBackgroud === Constants.Style.BG_NEN_BAN_DO) Constants.URL_CDN_RASTER else Constants.URL_CDN_RASTER_SATELLITE,
+//                        "2", GlobalVariables.mMap, activity
+//                    )
+//                }
+//            }
             "FG_TTQH_SO" -> {
                 AddLayer().removeAllLayersAndVariables()
 //                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_SO) {
