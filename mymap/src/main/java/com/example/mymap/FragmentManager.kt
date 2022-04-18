@@ -1,13 +1,35 @@
-package com.example.fragmentlib
 
 import ChangeLayer
 import DemoFragment
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.mapbox.geojson.BoundingBox
 import com.mapbox.mapboxsdk.geometry.LatLng
 
 class FragmentManager {
     companion object {
+        fun newInstance(
+//            center: LatLng?,
+//            bb: BoundingBox?,
+//            zoom: Double?,
+//            minZoom: Double?,
+//            maxZoom: Double?,
+            fgMapFirst: String,
+            bgMapFirst: String,
+            tileBaseMap: String?,
+            tileSatellite: String?
+        ): DemoFragment {
+            val data = Bundle()
+            data.putString("fgMapFirst", fgMapFirst)
+            data.putString("bgMapFirst", bgMapFirst)
+            data.putString("tileBaseMap", tileBaseMap)
+            data.putString("tileSatellite", tileSatellite)
+
+            return DemoFragment().apply {
+                arguments = data
+            }
+        }
+
         fun showFragment(
             activity: AppCompatActivity,
             center: LatLng?,
