@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/panelLanInfo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/draggerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginBottom="4dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="74dp"
+            android:layout_height="5dp"
+            android:background="@drawable/new_bg_land_info" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/new_bg_land_info"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp">
+
+            <TextView
+                android:id="@+id/txtHeaderInfoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center"
+                android:layout_marginLeft="18dp"
+                android:text="@string/title_bangthongtin"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnBackToLandInfo"
+                    android:layout_width="40dp"
+                    android:layout_height="32dp"
+                    android:background="@android:color/transparent"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_new_back"
+                    android:visibility="visible" />
+
+                <ImageButton
+                    android:id="@+id/btnRemoveFullRaster"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@android:color/transparent"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/zoom_out"
+                    android:visibility="gone" />
+
+                <ImageButton
+                    android:id="@+id/btnFullRaster"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@android:color/transparent"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/full_dccb"
+                    android:visibility="visible" />
+
+                <ImageButton
+                    android:id="@+id/btnDownloadPDF"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@android:color/transparent"
+                    android:padding="5dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/threedot"
+                    android:visibility="gone" />
+
+                <ProgressBar
+                    android:id="@+id/indicator"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/colorPrimary"
+                    android:padding="3dp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <!--        <include layout="@layout/fragment_land_info" />-->
+        <!--        <include layout="@layout/fragment_o_chuc_nang"/>-->
+        <!--        <include layout="@layout/fragment_o_qhpk"/>-->
+        <!--        <include layout="@layout/layout_quy_hoach_nganh"/>-->
+        <!--        <include layout="@layout/fragment_land_info_giay" />-->
+        <!--        <include layout="@layout/fragment_info_dccb_detail" />-->
+    </LinearLayout>
+</LinearLayout>

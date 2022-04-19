@@ -113,6 +113,7 @@ class AddLayer {
             return
         }
         try {
+
             GlobalVariables.mMap.removeAnnotations()
             removeBDSLayers()
                 GlobalVariables.savedQHPK = JSONArray(body.qHPK)
@@ -167,7 +168,6 @@ class AddLayer {
 //        }
         val qhpkIDCurrent = GlobalVariables.qhpkIDCurrent
         val dccbCurrent = GlobalVariables.dccbCurrent
-        Log.d("hihi2", qhpkIDCurrent)
         //xoa het cac layer ban do giay
         mMap.getStyle {
             if (qhpkIDCurrent.isNotEmpty()) {

@@ -12,5 +12,8 @@
     <string name="error_search">Thửa đất chưa được cập nhật trong Cơ sở dữ liệu.</string>
     <string name="txt_error_no_data">Thửa đất thuộc khu vực chưa được lập Quy hoạch Phân khu.</string>
     <string name="txt_error_search_by_id">Không tìm thấy số tờ, số thửa bạn nhập. Vui lòng thử tìm kiếm bằng tọa độ góc ranh. Xin cảm ơn.</string>
+    <string name="title_bangthongtin">Bảng thông tin</string>
+    <string name="txt_search">Tìm kiếm</string>
+    <string name="txt_noti_gps">Đang tìm vị trí của bạn</string>
 
 </resources>

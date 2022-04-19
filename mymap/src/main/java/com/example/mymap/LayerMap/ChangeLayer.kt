@@ -29,7 +29,7 @@ class ChangeLayer {
             }
         }
 
-        changeMapForeground(GlobalVariables.getCurrentForeground.toString(),null)
+//        changeMapForeground(GlobalVariables.getCurrentForeground.toString(),null)
     }
 
 
@@ -42,25 +42,8 @@ class ChangeLayer {
 //        seek_bar_layer_opacity.setProgress(100)
         when (style) {
 
-//            "FG_CDN_SO" -> {
-//                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_CDN_SO) {
-//                    GlobalVariables.getCurrentForeground = Constants.Style.FG_CDN_SO
-//                    addNewStyle(Constants.URL_CDN_DIGITAL, "1", GlobalVariables.mMap, activity)
-//                }
-//
-//            }
-//            "FG_CDN_GIAY" -> {
-//                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_CDN_GIAY) {
-//                    GlobalVariables.getCurrentForeground = Constants.Style.FG_CDN_GIAY
-//                    addNewStyle(
-//                        if (GlobalVariables.currentBackgroud === Constants.Style.BG_NEN_BAN_DO) Constants.URL_CDN_RASTER else Constants.URL_CDN_RASTER_SATELLITE,
-//                        "2", GlobalVariables.mMap, activity
-//                    )
-//                }
-//            }
             "FG_TTQH_SO" -> {
                 AddLayer().removeAllLayersAndVariables()
-//                if (GlobalVariables.getCurrentForeground != Constants.Style.FG_TTQH_SO) {
                     GlobalVariables.getCurrentForeground = Constants.Style.FG_TTQH_SO
                     addNewStyle(
                         Constants.URL_DIGITAL_LAND_NEW_QQQ,
@@ -68,7 +51,6 @@ class ChangeLayer {
                         GlobalVariables.mMap,
                         activity
                     )
-//                }
             }
         }
 
