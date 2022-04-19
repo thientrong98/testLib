@@ -1,0 +1,205 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:clickable="true"
+    android:id="@+id/include_layout_OQHPK_info">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_viewOCN"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5">
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/txt_ttdoanqhpk"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="20dp"/>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/txt_ten_do_an"
+                        android:textColor="@color/new_text_color"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="50dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_ten_do_an"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-"
+                        android:textColor="@color/new_text_color"
+                        android:textSize="15sp" />
+                </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    android:background="@color/grey_text_color" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/quanhuyen"
+                        android:textColor="@color/new_text_color"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="50dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_quan_huyen"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-"
+                        android:textColor="@color/new_text_color"
+                        android:textSize="15sp" />
+                </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    android:background="@color/grey_text_color" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/txt_soqd"
+                        android:textColor="@color/new_text_color"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="50dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_so_quyet_dinh"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-"
+                        android:textColor="@color/new_text_color"
+                        android:textSize="15sp" />
+                </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    android:background="@color/grey_text_color" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/txt_cqpd"
+                        android:textColor="@color/new_text_color"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="50dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_cqpd"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-"
+                        android:textColor="@color/new_text_color"
+                        android:textSize="15sp" />
+                </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="gone"
+                    android:background="@color/grey_text_color" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/txt_ngay_duyet"
+                        android:textColor="@color/new_text_color"
+                        android:textSize="15sp"
+                        android:layout_marginLeft="50dp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tv_ngay_duyet"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-"
+                        android:textColor="@color/new_text_color"
+                        android:textSize="15sp" />
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

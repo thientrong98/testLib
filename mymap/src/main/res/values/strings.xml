@@ -1,19 +1,1270 @@
 <resources>
+    <string name="app_name">TTQH HCM</string>
+    <string name="title_activity_maps">Bản đồ quy hoạch</string>
+    <string name="header_main_instruction">Bản đồ trực tuyến</string>
+    <string name="access_token">pk.eyJ1IjoidHRxaGhjbSIsImEiOiJjajd6dnhqYmc2YnE0MnFwa2NxMHY2eG9mIn0.dOaZg1xI6C3ECh7QesZ8UA</string>
+
+    <!-- Map style -->
+    <string name="nenBanDoVaScan">mapbox://styles/ttqhhcm/cj7zwlqoc77rj2sry51zbnubu</string>
+    <string name="nenBanDoVaSo">mapbox://styles/ttqhhcm/cj97zlef811zv2rqdv27zrqch</string>
+    <string name="nenVeTinhVaScan">mapbox://styles/ttqhhcm/cj7zwwpd077p22rqeudwleidw</string>
+    <string name="nenVeTinhVaSo">mapbox://styles/ttqhhcm/cj97zo06v12qa2rmo9oxc74st</string>
+
+    <!-- Raster url -->
+    <string name="qhpk_crop_url">https://thongtinquyhoach.hochiminhcity.gov.vn/api/tiles/qhpk_crop/</string>
+    <string name="qhpk_full_url">https://thongtinquyhoach.hochiminhcity.gov.vn/api/tiles/qhpk_full/</string>
+    <string name="dccb_crop_url">https://thongtinquyhoach.hochiminhcity.gov.vn/api/tiles/dccb_crop/</string>
+    <string name="dccb_full_url">https://thongtinquyhoach.hochiminhcity.gov.vn/api/tiles/dccb_full/</string>
+
+    <!-- thua dat info url -->
+    <string name="download_pdf_url">https://sqhkt-qlqh.tphcm.gov.vn/api/thua-dat/</string>
+    <string name="download_pdf_url_new">https://thongtinquyhoach.hochiminhcity.gov.vn/api/thua-dat/</string>
+    <string name="guide_pdf_url">https://thongtinquyhoach.hochiminhcity.gov.vn/files/huong-dan-su-dung.pdf</string>
+    <string name="coordinate_sample_url">https://thongtinquyhoach.hochiminhcity.gov.vn/files/ttqh_hcm__toa-do-mau.txt</string>
+
+    <!-- Spinner drop list -->
+    <string name="maptype_prompt">Loại bản đồ</string>
+    <string-array name="maptype_arrays">
+        <item>Nền thửa đất</item>
+        <item>Nền bản đồ</item>
+        <item>Nền không ảnh</item>
+    </string-array>
+
+    <string name="district_prompt">Quận/Huyện</string>
+    <string-array name="district_arrays">
+        <item>Quận 1</item>
+        <item>Quận 2</item>
+        <item>Quận 3</item>
+        <item>Quận 4</item>
+        <item>Quận 5</item>
+        <item>Quận 6</item>
+        <item>Quận 7</item>
+        <item>Quận 8</item>
+        <item>Quận 9</item>
+        <item>Quận 10</item>
+        <item>Quận 11</item>
+        <item>Quận 12</item>
+        <item>Quận Bình Tân</item>
+        <item>Quận Bình Thạnh</item>
+        <item>Quận Gò Vấp</item>
+        <item>Quận Phú Nhuận</item>
+        <item>Quận Tân Bình</item>
+        <item>Quận Tân Phú</item>
+        <item>Quận Thủ Đức</item>
+        <item>Huyện Bình Chánh</item>
+        <item>Huyện Cần Giờ</item>
+        <item>Huyện Củ Chi</item>
+        <item>Huyện Hóc Môn</item>
+        <item>Huyện Nhà Bè</item>
+        <item>Khu đô thị mới Thủ Thiêm</item>
+        <item>Khu đô thị du lịch biển Cần Giờ 2780 ha</item>
+        <item>Đồ án khu dân cư phường Tân Hưng</item>
+    </string-array>
+
+    <string-array name="district_Quan1_townId_arrays">
+        <item>26740</item>
+        <item>26743</item>
+        <item>26761</item>
+        <item>26752</item>
+        <item>26755</item>
+        <item>26737</item>
+        <item>26758</item>
+        <item>26746</item>
+        <item>26749</item>
+        <item>26734</item>
+    </string-array>
+    <string-array name="district_Quan2_townId_arrays">
+        <item>27106</item>
+        <item>27106,27094</item>
+        <item>27115</item>
+        <item>27091</item>
+        <item>27094</item>
+        <item>27103</item>
+        <item>27103,27106</item>
+        <item>27103,27094</item>
+        <item>27103,27094,27106</item>
+        <item>27097</item>
+        <item>27100</item>
+        <item>27109</item>
+        <item>27112</item>
+        <item>27088</item>
+    </string-array>
+    <string-array name="district_Quan3_townId_arrays">
+        <item>27160</item>
+        <item>27157</item>
+        <item>27154</item>
+        <item>27148</item>
+        <item>27151</item>
+        <item>27139</item>
+        <item>27124</item>
+        <item>27121</item>
+        <item>27142</item>
+        <item>27145</item>
+        <item>27133</item>
+        <item>27130</item>
+        <item>27136</item>
+        <item>27127</item>
+    </string-array>
+    <string-array name="district_Quan4_townId_arrays">
+        <item>27298</item>
+        <item>27292</item>
+        <item>27286</item>
+        <item>27283</item>
+        <item>27274</item>
+        <item>27265</item>
+        <item>27268</item>
+        <item>27262</item>
+        <item>27271</item>
+        <item>27256</item>
+        <item>27259</item>
+        <item>27280</item>
+        <item>27295</item>
+        <item>27289</item>
+        <item>27277</item>
+    </string-array>
+    <string-array name="district_Quan5_townId_arrays">
+        <item>27325</item>
+        <item>27313</item>
+        <item>27307</item>
+        <item>27301</item>
+        <item>27334</item>
+        <item>27337</item>
+        <item>27322</item>
+        <item>27316</item>
+        <item>27304</item>
+        <item>27340</item>
+        <item>27328</item>
+        <item>27310</item>
+        <item>27343</item>
+        <item>27331</item>
+        <item>27319</item>
+    </string-array>
+    <string-array name="district_Quan6_townId_arrays">
+        <item>27370</item>
+        <item>27367</item>
+        <item>27379</item>
+        <item>27373</item>
+        <item>27361</item>
+        <item>27355</item>
+        <item>27382</item>
+        <item>27376</item>
+        <item>27352</item>
+        <item>27385</item>
+        <item>27364</item>
+        <item>27358</item>
+        <item>27349</item>
+        <item>27346</item>
+    </string-array>
+    <string-array name="district_Quan7_townId_arrays">
+        <item>27478</item>
+        <item>27493</item>
+        <item>27484</item>
+        <item>27475</item>
+        <item>27472</item>
+        <item>27490</item>
+        <item>27487</item>
+        <item>27481</item>
+        <item>27466</item>
+        <item>27469</item>
+    </string-array>
+    <string-array name="district_Quan8_townId_arrays">
+        <item>27394</item>
+        <item>27391</item>
+        <item>27397</item>
+        <item>27409</item>
+        <item>27418</item>
+        <item>27424</item>
+        <item>27433</item>
+        <item>27388</item>
+        <item>27403</item>
+        <item>27406</item>
+        <item>27400</item>
+        <item>27415</item>
+        <item>27412</item>
+        <item>27421</item>
+        <item>27427</item>
+        <item>27430</item>
+    </string-array>
+    <string-array name="district_Quan9_townId_arrays">
+        <item>26839</item>
+        <item>26830</item>
+        <item>26857</item>
+        <item>26833</item>
+        <item>26860</item>
+        <item>26866</item>
+        <item>26863</item>
+        <item>26851</item>
+        <item>26848</item>
+        <item>26842</item>
+        <item>26845</item>
+        <item>26836</item>
+        <item>26854</item>
+    </string-array>
+    <string-array name="district_Quan10_townId_arrays">
+        <item>27184</item>
+        <item>27190</item>
+        <item>27205</item>
+        <item>27193</item>
+        <item>27199</item>
+        <item>27202</item>
+        <item>27196</item>
+        <item>27187</item>
+        <item>27181</item>
+        <item>27178</item>
+        <item>27175</item>
+        <item>27172</item>
+        <item>27166</item>
+        <item>27169</item>
+        <item>27163</item>
+    </string-array>
+    <string-array name="district_Quan11_townId_arrays">
+        <item>27247</item>
+        <item>27250</item>
+        <item>27220</item>
+        <item>27244</item>
+        <item>27211</item>
+        <item>27241</item>
+        <item>27238</item>
+        <item>27229</item>
+        <item>27232</item>
+        <item>27223</item>
+        <item>27217</item>
+        <item>27235</item>
+        <item>27226</item>
+        <item>27214</item>
+        <item>27208</item>
+        <item>27253</item>
+    </string-array>
+    <string-array name="district_Quan12_townId_arrays">
+        <item>26779</item>
+        <item>26788</item>
+        <item>26770</item>
+        <item>26776</item>
+        <item>26787</item>
+        <item>26782</item>
+        <item>26791</item>
+        <item>26767</item>
+        <item>26764</item>
+        <item>26773</item>
+        <item>26785</item>
+    </string-array>
+    <string-array name="district_QuanBinhTan_townId_arrays">
+        <item>27460</item>
+        <item>27463</item>
+        <item>27436</item>
+        <item>27439</item>
+        <item>27442</item>
+        <item>27445</item>
+        <item>27448</item>
+        <item>27451</item>
+        <item>27454</item>
+        <item>27457</item>
+    </string-array>
+    <string-array name="district_QuanBinhThanh_townId_arrays">
+        <item>26944</item>
+        <item>26941</item>
+        <item>26947</item>
+        <item>26923</item>
+        <item>26932</item>
+        <item>26926</item>
+        <item>26908</item>
+        <item>26917</item>
+        <item>26905</item>
+        <item>26935</item>
+        <item>26938</item>
+        <item>26950</item>
+        <item>26959</item>
+        <item>26953</item>
+        <item>26956</item>
+        <item>26929</item>
+        <item>26920</item>
+        <item>26914</item>
+        <item>26911</item>
+        <item>26962</item>
+    </string-array>
+    <string-array name="district_QuanGoVap_townId_arrays">
+        <item>26896</item>
+        <item>26902</item>
+        <item>26893</item>
+        <item>26887</item>
+        <item>26876</item>
+        <item>26890</item>
+        <item>26898</item>
+        <item>26897</item>
+        <item>26884</item>
+        <item>26899</item>
+        <item>26881</item>
+        <item>26872</item>
+        <item>26882</item>
+        <item>26869</item>
+        <item>26878</item>
+        <item>26875</item>
+    </string-array>
+    <string-array name="district_QuanPhuNhuan_townId_arrays">
+        <item>27058</item>
+        <item>27061</item>
+        <item>27055</item>
+        <item>27043</item>
+        <item>27046</item>
+        <item>27052</item>
+        <item>27064</item>
+        <item>27049</item>
+        <item>27070</item>
+        <item>27073</item>
+        <item>27082</item>
+        <item>27085</item>
+        <item>27079</item>
+        <item>27067</item>
+        <item>27076</item>
+    </string-array>
+    <string-array name="district_QuanTanBinh_townId_arrays">
+        <item>26977</item>
+        <item>26965</item>
+        <item>26980</item>
+        <item>26968</item>
+        <item>26989</item>
+        <item>26995</item>
+        <item>26986</item>
+        <item>26998</item>
+        <item>27001</item>
+        <item>26992</item>
+        <item>26983</item>
+        <item>26971</item>
+        <item>26974</item>
+        <item>27004</item>
+        <item>27007</item>
+    </string-array>
+    <string-array name="district_QuanTanPhu_townId_arrays">
+        <item>27037</item>
+        <item>27034</item>
+        <item>27028</item>
+        <item>27025</item>
+        <item>27031</item>
+        <item>27016</item>
+        <item>27019</item>
+        <item>27010</item>
+        <item>27022</item>
+        <item>27040</item>
+        <item>27013</item>
+    </string-array>
+    <string-array name="district_QuanThuDuc_townId_arrays">
+        <item>26797</item>
+        <item>26824</item>
+        <item>26812</item>
+        <item>26809</item>
+        <item>26815</item>
+        <item>26821</item>
+        <item>26818</item>
+        <item>26800</item>
+        <item>26794</item>
+        <item>26803</item>
+        <item>26806</item>
+        <item>26827</item>
+    </string-array>
+    <string-array name="district_HuyenBinhChanh_townId_arrays">
+        <item>27595</item>
+        <item>27625</item>
+        <item>27637</item>
+        <item>27619</item>
+        <item>27607</item>
+        <item>27631</item>
+        <item>27628</item>
+        <item>27610</item>
+        <item>27598</item>
+        <item>27622</item>
+        <item>27640</item>
+        <item>27616</item>
+        <item>27613</item>
+        <item>27634</item>
+        <item>27601</item>
+        <item>27604</item>
+    </string-array>
+    <string-array name="district_HuyenCanGio_townId_arrays">
+        <item>27664</item>
+        <item>27673</item>
+        <item>27667</item>
+        <item>27679</item>
+        <item>27682</item>
+        <item>27670</item>
+        <item>27676</item>
+    </string-array>
+    <string-array name="district_HuyenCuChi_townId_arrays">
+        <item>27496</item>
+        <item>27508</item>
+        <item>27502</item>
+        <item>27550</item>
+        <item>27544</item>
+        <item>27511</item>
+        <item>27514</item>
+        <item>27517</item>
+        <item>27499</item>
+        <item>27529</item>
+        <item>27526</item>
+        <item>27535</item>
+        <item>27532</item>
+        <item>27553</item>
+        <item>27547</item>
+        <item>27541</item>
+        <item>27556</item>
+        <item>27538</item>
+        <item>27523</item>
+        <item>27520</item>
+        <item>27505</item>
+    </string-array>
+    <string-array name="district_HuyenHocMon_townId_arrays">
+        <item>27559</item>
+        <item>27592</item>
+        <item>27568</item>
+        <item>27565</item>
+        <item>27562</item>
+        <item>27571</item>
+        <item>27580</item>
+        <item>27574</item>
+        <item>27586</item>
+        <item>27583</item>
+        <item>27577</item>
+        <item>27589</item>
+    </string-array>
+    <string-array name="district_HuyenNhaBe_townId_arrays">
+        <item>27643</item>
+        <item>27661</item>
+        <item>27658</item>
+        <item>27652</item>
+        <item>27646</item>
+        <item>27649</item>
+        <item>27655</item>
+    </string-array>
+
+    <string-array name="district_KhudothimoiThuThiem_townId_arrays"></string-array>
+    <!--<string-array name="district_1_townId_arrays">-->
+    <!--<item>26746</item>-->
+    <!--<item>26743</item>-->
+    <!--<item>26740</item>-->
+    <!--<item>26749</item>-->
+    <!--<item>26752</item>-->
+    <!--<item>26737</item>-->
+    <!--<item>26734</item>-->
+    <!--<item>26755</item>-->
+    <!--<item>26758</item>-->
+    <!--<item>26761</item>-->
+    <!--</string-array>-->
+
+    <!--<string-array name="district_3_townId_arrays">-->
+    <!--<item>27139</item>-->
+    <!--<item>27124</item>-->
+    <!--</string-array>-->
+
+    <!--<string-array name="district_4_townId_arrays">-->
+    <!--<item>27262</item>-->
+    <!--<item>27256</item>-->
+    <!--<item>27259</item>-->
+    <!--<item>27277</item>-->
+    <!--</string-array>-->
+
+    <!--<string-array name="district_BT_townId_arrays">-->
+    <!--<item>26959</item>-->
+    <!--<item>26956</item>-->
+    <!--</string-array>-->
+
+    <!--<string-array name="district_TD_townId_arrays">-->
+    <!--<item>26815</item>-->
+    <!--<item>26821</item>-->
+    <!--<item>26818</item>-->
+    <!--<item>26824</item>-->
+    <!--<item>26800</item>-->
+    <!--<item>26794</item>-->
+    <!--<item>26827</item>-->
+    <!--<item>26806</item>-->
+    <!--<item>26803</item>-->
+    <!--<item>26812</item>-->
+    <!--<item>26809</item>-->
+    <!--<item>26797</item>-->
+    <!--</string-array>-->
+    <!--<string-array name="district_TT_townId_arrays">-->
+    <!--<item>27088</item>-->
+    <!--<item>27091</item>-->
+    <!--<item>27094</item>-->
+    <!--<item>27097</item>-->
+    <!--<item>27100</item>-->
+    <!--<item>27103</item>-->
+    <!--<item>27106</item>-->
+    <!--<item>27109</item>-->
+    <!--<item>27112</item>-->
+    <!--<item>27115</item>-->
+    <!--<item>27118</item>-->
+    <!--</string-array>-->
+
+    <!--<string-array name="district_Q12_townId_arrays">-->
+    <!--<item>26764</item>-->
+    <!--<item>26767</item>-->
+    <!--<item>26770</item>-->
+    <!--<item>26773</item>-->
+    <!--<item>26776</item>-->
+    <!--<item>26779</item>-->
+    <!--<item>26782</item>-->
+    <!--<item>26785</item>-->
+    <!--<item>26787</item>-->
+    <!--<item>26788</item>-->
+    <!--<item>26791</item>-->
+    <!--</string-array>-->
+
+    <string-array name="district_Quan1_town_arrays">
+        <item>Phường Bến Nghé</item>
+        <item>Phường Bến Thành</item>
+        <item>Phường Cầu Kho</item>
+        <item>Phường Cầu Ông Lãnh</item>
+        <item>Phường Cô Giang</item>
+        <item>Phường Đa Kao</item>
+        <item>Phường Nguyễn Cư Trinh</item>
+        <item>Phường Nguyễn Thái Bình</item>
+        <item>Phường Phạm Ngũ Lão</item>
+        <item>Phường Tân Định</item>
+    </string-array>
+    <string-array name="district_Quan2_town_arrays">
+        <item>Phường An Khánh</item>
+        <item>Phường An Khánh, Phường Bình An</item>
+        <item>Phường An Lợi Đông</item>
+        <item>Phường An Phú</item>
+        <item>Phường Bình An</item>
+        <item>Phường Bình Khánh</item>
+        <item>Phường Bình Khánh, Phường An Khánh</item>
+        <item>Phường Bình Khánh, Phường Bình An</item>
+        <item>Phường Bình Khánh, Phường Bình An, Phường An Khánh</item>
+        <item>Phường Bình Trưng Đông</item>
+        <item>Phường Bình Trưng Tây</item>
+        <item>Phường Cát Lái</item>
+        <item>Phường Thạnh Mỹ Lợi</item>
+        <item>Phường Thảo Điền</item>
+    </string-array>
+    <string-array name="district_Quan3_town_arrays">
+        <item>Phường 1</item>
+        <item>Phường 2</item>
+        <item>Phường 3</item>
+        <item>Phường 4</item>
+        <item>Phường 5</item>
+        <item>Phường 6</item>
+        <item>Phường 7</item>
+        <item>Phường 8</item>
+        <item>Phường 9</item>
+        <item>Phường 10</item>
+        <item>Phường 11</item>
+        <item>Phường 12</item>
+        <item>Phường 13</item>
+        <item>Phường 14</item>
+    </string-array>
+    <string-array name="district_Quan4_town_arrays">
+        <item>Phường 1</item>
+        <item>Phường 2</item>
+        <item>Phường 3</item>
+        <item>Phường 4</item>
+        <item>Phường 5</item>
+        <item>Phường 6</item>
+        <item>Phường 8</item>
+        <item>Phường 9</item>
+        <item>Phường 10</item>
+        <item>Phường 12</item>
+        <item>Phường 13</item>
+        <item>Phường 14</item>
+        <item>Phường 15</item>
+        <item>Phường 16</item>
+        <item>Phường 18</item>
+    </string-array>
+    <string-array name="district_Quan5_town_arrays">
+        <item>Phường 1</item>
+        <item>Phường 2</item>
+        <item>Phường 3</item>
+        <item>Phường 4</item>
+        <item>Phường 5</item>
+        <item>Phường 6</item>
+        <item>Phường 7</item>
+        <item>Phường 8</item>
+        <item>Phường 9</item>
+        <item>Phường 10</item>
+        <item>Phường 11</item>
+        <item>Phường 12</item>
+        <item>Phường 13</item>
+        <item>Phường 14</item>
+        <item>Phường 15</item>
+    </string-array>
+    <string-array name="district_Quan6_town_arrays">
+        <item>Phường 1</item>
+        <item>Phường 2</item>
+        <item>Phường 3</item>
+        <item>Phường 4</item>
+        <item>Phường 5</item>
+        <item>Phường 6</item>
+        <item>Phường 7</item>
+        <item>Phường 8</item>
+        <item>Phường 9</item>
+        <item>Phường 10</item>
+        <item>Phường 11</item>
+        <item>Phường 12</item>
+        <item>Phường 13</item>
+        <item>Phường 14</item>
+    </string-array>
+    <string-array name="district_Quan7_town_arrays">
+        <item>Phường Bình Thuận</item>
+        <item>Phường Phú Mỹ</item>
+        <item>Phường Phú Thuận</item>
+        <item>Phường Tân Hưng</item>
+        <item>Phường Tân Kiểng</item>
+        <item>Phường Tân Phong</item>
+        <item>Phường Tân Phú</item>
+        <item>Phường Tân Quy</item>
+        <item>Phường Tân Thuận Đông</item>
+        <item>Phường Tân Thuận Tây</item>
+    </string-array>
+    <string-array name="district_Quan8_town_arrays">
+        <item>Phường 1</item>
+        <item>Phường 2</item>
+        <item>Phường 3</item>
+        <item>Phường 4</item>
+        <item>Phường 5</item>
+        <item>Phường 6</item>
+        <item>Phường 7</item>
+        <item>Phường 8</item>
+        <item>Phường 9</item>
+        <item>Phường 10</item>
+        <item>Phường 11</item>
+        <item>Phường 12</item>
+        <item>Phường 13</item>
+        <item>Phường 14</item>
+        <item>Phường 15</item>
+        <item>Phường 16</item>
+    </string-array>
+    <string-array name="district_Quan9_town_arrays">
+        <item>Phường Hiệp Phú</item>
+        <item>Phường Long Bình</item>
+        <item>Phường Long Phước</item>
+        <item>Phường Long Thạnh Mỹ</item>
+        <item>Phường Long Trường</item>
+        <item>Phường Phú Hữu</item>
+        <item>Phường Phước Bình</item>
+        <item>Phường Phước Long A</item>
+        <item>Phường Phước Long B</item>
+        <item>Phường Tăng Nhơn Phú A</item>
+        <item>Phường Tăng Nhơn Phú B</item>
+        <item>Phường Tân Phú</item>
+        <item>Phường Trường Thạnh</item>
+    </string-array>
+    <string-array name="district_Quan10_town_arrays">
+        <item>Phường 1</item>
+        <item>Phường 2</item>
+        <item>Phường 3</item>
+        <item>Phường 4</item>
+        <item>Phường 5</item>
+        <item>Phường 6</item>
+        <item>Phường 7</item>
+        <item>Phường 8</item>
+        <item>Phường 9</item>
+        <item>Phường 10</item>
+        <item>Phường 11</item>
+        <item>Phường 12</item>
+        <item>Phường 13</item>
+        <item>Phường 14</item>
+        <item>Phường 15</item>
+    </string-array>
+    <string-array name="district_Quan11_town_arrays">
+        <item>Phường 1</item>
+        <item>Phường 2</item>
+        <item>Phường 3</item>
+        <item>Phường 4</item>
+        <item>Phường 5</item>
+        <item>Phường 6</item>
+        <item>Phường 7</item>
+        <item>Phường 8</item>
+        <item>Phường 9</item>
+        <item>Phường 10</item>
+        <item>Phường 11</item>
+        <item>Phường 12</item>
+        <item>Phường 13</item>
+        <item>Phường 14</item>
+        <item>Phường 15</item>
+        <item>Phường 16</item>
+    </string-array>
+    <string-array name="district_Quan12_town_arrays">
+        <item>Phường An Phú Đông</item>
+        <item>Phường Đông Hưng Thuận</item>
+        <item>Phường Hiệp Thành</item>
+        <item>Phường Tân Chánh Hiệp</item>
+        <item>Phường Tân Hưng Thuận</item>
+        <item>Phường Tân Thới Hiệp</item>
+        <item>Phường Tân Thới Nhất</item>
+        <item>Phường Thạnh Lộc</item>
+        <item>Phường Thạnh Xuân</item>
+        <item>Phường Thới An</item>
+        <item>Phường Trung Mỹ Tây</item>
+    </string-array>
+    <string-array name="district_QuanBinhTan_town_arrays">
+        <item>Phường An Lạc</item>
+        <item>Phường An Lạc A</item>
+        <item>Phường Bình Hưng Hòa</item>
+        <item>Phường Bình Hưng Hoà A</item>
+        <item>Phường Bình Hưng Hoà B</item>
+        <item>Phường Bình Trị Đông</item>
+        <item>Phường Bình Trị Đông A</item>
+        <item>Phường Bình Trị Đông B</item>
+        <item>Phường Tân Tạo</item>
+        <item>Phường Tân Tạo A</item>
+    </string-array>
+    <string-array name="district_QuanBinhThanh_town_arrays">
+        <item>Phường 1</item>
+        <item>Phường 2</item>
+        <item>Phường 3</item>
+        <item>Phường 5</item>
+        <item>Phường 6</item>
+        <item>Phường 7</item>
+        <item>Phường 11</item>
+        <item>Phường 12</item>
+        <item>Phường 13</item>
+        <item>Phường 14</item>
+        <item>Phường 15</item>
+        <item>Phường 17</item>
+        <item>Phường 19</item>
+        <item>Phường 21</item>
+        <item>Phường 22</item>
+        <item>Phường 24</item>
+        <item>Phường 25</item>
+        <item>Phường 26</item>
+        <item>Phường 27</item>
+        <item>Phường 28</item>
+    </string-array>
+    <string-array name="district_QuanGoVap_town_arrays">
+        <item>Phường 1</item>
+        <item>Phường 3</item>
+        <item>Phường 4</item>
+        <item>Phường 5</item>
+        <item>Phường 6</item>
+        <item>Phường 7</item>
+        <item>Phường 8</item>
+        <item>Phường 9</item>
+        <item>Phường 10</item>
+        <item>Phường 11</item>
+        <item>Phường 12</item>
+        <item>Phường 13</item>
+        <item>Phường 14</item>
+        <item>Phường 15</item>
+        <item>Phường 16</item>
+        <item>Phường 17</item>
+    </string-array>
+    <string-array name="district_QuanPhuNhuan_town_arrays">
+        <item>Phường 1</item>
+        <item>Phường 2</item>
+        <item>Phường 3</item>
+        <item>Phường 4</item>
+        <item>Phường 5</item>
+        <item>Phường 7</item>
+        <item>Phường 8</item>
+        <item>Phường 9</item>
+        <item>Phường 10</item>
+        <item>Phường 11</item>
+        <item>Phường 12</item>
+        <item>Phường 13</item>
+        <item>Phường 14</item>
+        <item>Phường 15</item>
+        <item>Phường 17</item>
+    </string-array>
+    <string-array name="district_QuanTanBinh_town_arrays">
+        <item>Phường 1</item>
+        <item>Phường 2</item>
+        <item>Phường 3</item>
+        <item>Phường 4</item>
+        <item>Phường 5</item>
+        <item>Phường 6</item>
+        <item>Phường 7</item>
+        <item>Phường 8</item>
+        <item>Phường 9</item>
+        <item>Phường 10</item>
+        <item>Phường 11</item>
+        <item>Phường 12</item>
+        <item>Phường 13</item>
+        <item>Phường 14</item>
+        <item>Phường 15</item>
+    </string-array>
+    <string-array name="district_QuanTanPhu_town_arrays">
+        <item>Phường Hiệp Tân</item>
+        <item>Phường Hòa Thạnh</item>
+        <item>Phường Phú Thạnh</item>
+        <item>Phường Phú Thọ Hòa</item>
+        <item>Phường Phú Trung</item>
+        <item>Phường Sơn Kỳ</item>
+        <item>Phường Tân Quý</item>
+        <item>Phường Tân Sơn Nhì</item>
+        <item>Phường Tân Thành</item>
+        <item>Phường Tân Thới Hòa</item>
+        <item>Phường Tây Thạnh</item>
+    </string-array>
+    <string-array name="district_QuanThuDuc_town_arrays">
+        <item>Phường Bình Chiểu</item>
+        <item>Phường Bình Thọ</item>
+        <item>Phường Hiệp Bình Chánh</item>
+        <item>Phường Hiệp Bình Phước</item>
+        <item>Phường Linh Chiểu</item>
+        <item>Phường Linh Đông</item>
+        <item>Phường Linh Tây</item>
+        <item>Phường Linh Trung</item>
+        <item>Phường Linh Xuân</item>
+        <item>Phường Tam Bình</item>
+        <item>Phường Tam Phú</item>
+        <item>Phường Trường Thọ</item>
+    </string-array>
+    <string-array name="district_HuyenBinhChanh_town_arrays">
+        <item>Thị trấn Tân Túc</item>
+        <item>Xã An Phú Tây</item>
+        <item>Xã Bình Chánh</item>
+        <item>Xã Bình Hưng</item>
+        <item>Xã Bình Lợi</item>
+        <item>Xã Đa Phước</item>
+        <item>Xã Hưng Long</item>
+        <item>Xã Lê Minh Xuân</item>
+        <item>Xã Phạm Văn Hai</item>
+        <item>Xã Phong Phú</item>
+        <item>Xã Quy Đức</item>
+        <item>Xã Tân Kiên</item>
+        <item>Xã Tân Nhựt</item>
+        <item>Xã Tân Quý Tây</item>
+        <item>Xã Vĩnh Lộc A</item>
+        <item>Xã Vĩnh Lộc B</item>
+    </string-array>
+    <string-array name="district_HuyenCanGio_town_arrays">
+        <item>Thị trấn Cần Thạnh</item>
+        <item>Xã An Thới Đông</item>
+        <item>Xã Bình Khánh</item>
+        <item>Xã Long Hòa</item>
+        <item>Xã Lý Nhơn</item>
+        <item>Xã Tam Thôn Hiệp</item>
+        <item>Xã Thạnh An</item>
+    </string-array>
+    <string-array name="district_HuyenCuChi_town_arrays">
+        <item>Thị trấn Củ Chi</item>
+        <item>Xã An Nhơn Tây</item>
+        <item>Xã An Phú</item>
+        <item>Xã Bình Mỹ</item>
+        <item>Xã Hòa Phú</item>
+        <item>Xã Nhuận Đức</item>
+        <item>Xã Phạm Văn Cội</item>
+        <item>Xã Phú Hòa Đông</item>
+        <item>Xã Phú Mỹ Hưng</item>
+        <item>Xã Phước Hiệp</item>
+        <item>Xã Phước Thạnh</item>
+        <item>Xã Phước Vĩnh An</item>
+        <item>Xã Tân An Hội</item>
+        <item>Xã Tân Phú Trung</item>
+        <item>Xã Tân Thạnh Đông</item>
+        <item>Xã Tân Thạnh Tây</item>
+        <item>Xã Tân Thông Hội</item>
+        <item>Xã Thái Mỹ</item>
+        <item>Xã Trung An</item>
+        <item>Xã Trung Lập Hạ</item>
+        <item>Xã Trung Lập Thượng</item>
+    </string-array>
+    <string-array name="district_HuyenHocMon_town_arrays">
+        <item>Thị trấn Hóc Môn</item>
+        <item>Xã Bà Điểm</item>
+        <item>Xã Đông Thạnh</item>
+        <item>Xã Nhị Bình</item>
+        <item>Xã Tân Hiệp</item>
+        <item>Xã Tân Thới Nhì</item>
+        <item>Xã Tân Xuân</item>
+        <item>Xã Thới Tam Thôn</item>
+        <item>Xã Trung Chánh</item>
+        <item>Xã Xuân Thới Đông</item>
+        <item>Xã Xuân Thới Sơn</item>
+        <item>Xã Xuân Thới Thượng</item>
+    </string-array>
+    <string-array name="district_HuyenNhaBe_town_arrays">
+        <item>Thị trấn Nhà Bè</item>
+        <item>Xã Hiệp Phước</item>
+        <item>Xã Long Thới</item>
+        <item>Xã Nhơn Đức</item>
+        <item>Xã Phước Kiển</item>
+        <item>Xã Phước Lộc</item>
+        <item>Xã Phú Xuân</item>
+    </string-array>
+
+    <string-array name="district_KhudothimoiThuThiem_town_arrays"></string-array>
+
+    <!--<string-array name="district_1_town_arrays">-->
+    <!--<item>Nguyễn Thái Bình</item>-->
+    <!--<item>Bến Thành</item>-->
+    <!--<item>Bến Nghé</item>-->
+    <!--<item>Phạm Ngũ Lão</item>-->
+    <!--<item>Cầu Ông Lãnh</item>-->
+    <!--<item>Đa Kao</item>-->
+    <!--<item>Tân Định</item>-->
+    <!--<item>Cô Giang</item>-->
+    <!--<item>Nguyễn Cư Trinh</item>-->
+    <!--<item>Cầu Kho</item>-->
+    <!--</string-array>-->
+
+    <!--<string-array name="district_3_town_arrays">-->
+    <!--<item>Phường 6</item>-->
+    <!--<item>Phường 7</item>-->
+    <!--</string-array>-->
+
+    <!--<string-array name="district_4_town_arrays">-->
+    <!--<item>Phường 9</item>-->
+    <!--<item>Phường 12</item>-->
+    <!--<item>Phường 13</item>-->
+    <!--<item>Phường 18</item>-->
+    <!--</string-array>-->
+
+    <!--<string-array name="district_BT_town_arrays">-->
+    <!--<item>Phường 19</item>-->
+    <!--<item>Phường 22</item>-->
+    <!--</string-array>-->
+
+    <!--<string-array name="district_TD_town_arrays">-->
+    <!--<item>Linh Chiểu</item>-->
+    <!--<item>Linh Đông</item>-->
+    <!--<item>Linh Tây</item>-->
+    <!--<item>Bình Thọ</item>-->
+    <!--<item>Linh Trung</item>-->
+    <!--<item>Linh Xuân</item>-->
+    <!--<item>Trường Thọ</item>-->
+    <!--<item>Tam Phú</item>-->
+    <!--<item>Tam Bình</item>-->
+    <!--<item>Hiệp Bình Chánh</item>-->
+    <!--<item>Hiệp Bình Phước</item>-->
+    <!--<item>Bình Chiểu</item>-->
+    <!--</string-array>-->
+    <!--<string-array name="district_TT_town_arrays">-->
+    <!--<item>Thảo Điền</item>-->
+    <!--<item>An Phú</item>-->
+    <!--<item>Bình An</item>-->
+    <!--<item>Bình Trưng Đông</item>-->
+    <!--<item>Bình Trưng Tây</item>-->
+    <!--<item>Bình Khánh</item>-->
+    <!--<item>An Khánh</item>-->
+    <!--<item>Cát Lái</item>-->
+    <!--<item>Thạnh Mỹ Lợi</item>-->
+    <!--<item>An Lợi Đông</item>-->
+    <!--<item>Thủ Thiêm</item>-->
+    <!--<item>Khu đô thị mới Thủ Thiêm</item>-->
+    <!--</string-array>-->
+    <!--<string-array name="district_Q12_town_arrays">-->
+    <!--<item>Thạnh Xuân</item>-->
+    <!--<item>Thạnh Lộc</item>-->
+    <!--<item>Hiệp Thành</item>-->
+    <!--<item>Thới An</item>-->
+    <!--<item>Tân Chánh Hiệp</item>-->
+    <!--<item>An Phú Đông</item>-->
+    <!--<item>Tân Thới Hiệp</item>-->
+    <!--<item>Trung Mỹ Tây</item>-->
+    <!--<item>Tân Hưng Thuận</item>-->
+    <!--<item>Đông Hưng Thuận</item>-->
+    <!--<item>Tân Thới Nhất</item>-->
+    <!--</string-array>-->
+
+    <string-array name="district_coordinate_arrays">
+        <item>10.769125,106.700964</item>
+        <item>10.782077,106.694248</item>
+        <item>10.782442,106.687681</item>
+        <item>10.788607,106.711207</item>
+    </string-array>
+
+    <string-array name="district_1_coordinate_arrays">
+        <item>10.769125,106.700964</item>
+        <item>10.774238,106.694267</item>
+        <item>10.781919,106.704157</item>
+        <item>10.768276,106.692587</item>
+        <item>10.765847,106.696437</item>
+        <item>10.788926,106.697895</item>
+        <item>10.792508,106.690256</item>
+        <item>10.761726,106.693275</item>
+        <item>10.763547,106.685303</item>
+        <item>10.758226,106.688576</item>
+    </string-array>
+
+    <string-array name="district_3_coordinate_arrays">
+        <item>10.782077,106.694248</item>
+        <item>10.782442,106.687681</item>
+    </string-array>
+
+    <string-array name="district_4_coordinate_arrays">
+        <item>10.763559,106.702725</item>
+        <item>10.766543,106.705327</item>
+        <item>10.763142,106.710176</item>
+        <item>10.758917,106.716050</item>
+    </string-array>
+
+    <string-array name="district_BT_coordinate_arrays">
+        <item>10.788607,106.711207</item>
+        <item>10.790964, 106.720802</item>
+    </string-array>
+
+    <string-array name="district_TD_coordinate_arrays">
+        <item>10.8538209,106.7617984</item>
+        <item>10.846420,106.744588</item>
+        <item>10.8560516,106.7535475</item>
+        <item>10.8467644,106.7662221</item>
+        <item>10.859262,106.771147</item>
+        <item>10.881241,106.768818</item>
+        <item>10.830327,106.755381</item>
+        <item>10.853268,106.737909</item>
+        <item>10.836818,106.740227</item>
+        <item>10.859379,106.727573</item>
+        <item>10.866991,106.717367</item>
+        <item>10.834185,106.729723</item>
+    </string-array>
+
+    <!-- Alert error -->
+    <string name="no_land_error">Thửa đất chưa được cập nhật trên hệ thống, xin vui lòng sử dụng chức năng Tìm kiếm theo Tọa độ hoặc Định vị GPS.</string>
+    <string name="no_land_error2">Thửa đất chưa được cập nhật trên hệ thống.</string>
+    <string name="server_error">Chúng tôi đang bảo trì server. Mong bạn thông cảm và thử lại sau.</string>
+    <string name="no_connect_error">Ứng dụng không kết nối được Internet. Xin hãy kiểm tra lại.</string>
+    <string name="new_update">Ứng dụng đã có phiên bản mới bổ sung các tính năng m </string>
+    <string name="no_opho_error">Thông tin ô phố chưa được cập nhật trên hệ thống. Mong bạn thông cảm và thử lại sau.</string>
+    <string name="sending_email">Đang gửi thông tin đồ án về email. Vui lòng đợi trong giây lát...</string>
+    <string name="send_email_error">Hệ thống gặp lỗi khi gửi thông tin về email. Mong bạn thông cảm và thử lại sau.</string>
+    <string name="o_pho_alert">Lưu ý: Đây là chỉ tiêu quy hoạch - kiến trúc của ô chức năng, không phải chỉ tiêu của khu đất.</string>
+    <string name="image_alert">Hệ thống không nhận diện được bảng toạ độ vừa chụp. Vui lòng kiểm tra lại.</string>
+    <string name="send_suggest_success">Nội dung đánh giá và góp ý đã được gửi đi, xin chân thành cảm ơn Ông/Bà đã dành thời gian đóng góp để ứng dụng được tốt hơn!</string>
+    <string name="send_suggest_error">Gặp lỗi khi gửi góp ý của bạn. Vui lòng thử lại.</string>
+    <string name="send_email_success">Thông tin bản đồ đã được gửi. Hãy kiểm tra lại hộp thư của bạn (bao gồm mục Spam nếu có).</string>
+    <string name="coordinate_error">Vui lòng nhập đủ toạ độ X, Y hệ VN2000 và thử lại</string>
+    <string name="legend_loading_error">Gặp lỗi khi lấy thông tin chú giải. Vui lòng thử lại.</string>
+    <string name="txt_file_error">File text toạ độ vừa nhập không hợp lệ. Vui lòng kiểm tra lại.</string>
+    <string name="image_captured_error">Không lấy được ảnh vừa chụp. Vui lòng thử lại.</string>
+    <string name="land_info_alert">Lưu ý: Kết quả tra cứu chỉ có giá trị tham khảo</string>
+
+    <!-- App intro -->
+    <string name="phat_trien_boi">Phát triển bởi VLAB Co.Ltd</string>
+    <string name="beta_alert">Hiện nay, ứng dụng bản đồ quy hoạch trực tuyến đang trong quá trình thử nghiệm, vì vậy các thông tin có thể chưa đầy đủ và có thể được biên tập lại. Vì vậy, thông tin quy hoạch đô thị được cung cấp chỉ mang tính chất tham khảo.</string>
+    <string name="intro_mess_1">
+        <![CDATA[
+        Ứng dụng <b>“Thông tin quy hoạch Thành phố Hồ Chí Minh“</b> được phát triển và quản lý bởi Sở Quy hoạch-Kiến trúc nhằm cung cấp thông tin quy hoạch đô thị tại Thành phố Hồ Chí Minh đến người dân, tổ chức và doanh nghiệp một cách trực tuyến thông qua ứng dụng web và ứng dụng trên thiết bị di động thông minh (điện thoại thông minh và máy tính bảng).<br><br>Thông tin quy hoạch được cung cấp trên ứng dụng <b>“Thông tin quy hoạch Thành phố Hồ Chí Minh”</b> là Quy hoạch sử dụng đất trong hồ sơ quy hoạch phân khu tỷ lệ 1/2000 được phê duyệt trên địa bàn thành phố (24 quận huyện). Ứng dụng cung cấp các bản đồ quy hoạch sử dụng đất TL 1/2000 dạng bản giấy có đóng dấu phê duyệt được sao chụp (scan) và sắp xếp thống nhất vào hệ toạ độ VN2000. Người dùng có thể xác định vị trí của khu đất thông qua việc nhập toạ độ của khu đất (các thông số này có thể tìm thấy trong giấy chứng nhận quyền sử dụng đất hoặc bản đồ hiện trạng vị trí khu đất), hoặc xác định vị trí khu đất thông qua định vị GPS có sẵn trong thiết bị di động thông minh. Ngoài ra, người dùng còn có thể download các bản đồ quy hoạch và quyết định phê duyệt quy hoạch để có thể tham khảo một cách cụ thể hơn. Nội dung thông tin quy hoạch cung cấp thông qua các ứng dụng là các hồ sơ quy hoạch đã được cơ quan có thẩm quyền phê duyệt và có đầy đủ căn cứ pháp lý để áp dụng.<br><br>  Ngoài ra, ứng dụng <b>"Thông tin quy hoạch Thành phố Hồ Chí Minh"</b> cung cấp chức năng bản đồ số. Đây là chức năng cung cấp bản đồ quy hoạch phân khu được xây dựng trên nền tảng công nghệ Hệ thống Thông tin Địa lý (GIS), cho phép người dùng định vị thửa đất thông qua một chức năng nữa là tìm kiếm theo số tờ-số thửa bên cạnh việc tìm kiếm thông qua toạ độ khu đất hoặc định vị GPS. Các khu vực còn lại sẽ được Sở Quy hoạch-Kiến trúc tiếp tục xây dựng hoàn chỉnh dữ liệu và cập nhật trong thời gian tiếp theo.<br><br>Đây là phiên bản đầu tiên của phần mềm, do đó qua quá trình sử dụng, các cá nhân tổ chức quan tâm có thể gửi góp ý để giúp cho phần mềm được hoàn thiện và có nhiều tính năng thiết thực hơn nữa phục vụ người dân và doanh nghiệp thành phố. Các góp ý có thể gửi trực tiếp thông qua ứng dụng "Thông tin quy hoạch TP.HCM" hoặc email đến hộp thư gis.sqhkt@tphcm.gov.vn<br><br><i>Lưu ý: trong trường hợp thông tin tham khảo của bản đồ quy hoạch dạng số có khác so với bản đồ được sao chụp (scan) thì nội dung của bản đồ giấy được sao chụp (scan) có đóng dấu phê duyệt của cơ quan có thẩm quyền là căn cứ pháp lý để áp dụng.</i><br><br>Chúng tôi cũng xin chân thành cảm ơn các đối tác cũng như các đơn vị phát triển và chia sẻ các nền tảng APIs dịch vụ bản đồ mà ứng dụng của chúng tôi đang sử dụng.<br><br><em>Bản đồ quy hoạch trực tuyến <b>"Thông tin quy hoạch Thành phố Hồ Chí Minh"</b> được phát triển bởi Vlab Co,. LTD.</em>
+        ]]>
+    </string>
+
+    <!-- Showcase -->
+    <string name="search_intro">Chọn để định vị khu đất</string>
+    <string name="layers_intro">Chọn kiểu hiển thị</string>
+    <string name="gps_intro">Chọn để xác định vị trí bằng định vị GPS</string>
+    <string name="title_intro">Chọn để trở về Trang chủ</string>
+    <string name="navigation_intro">Chọn để mở menu điều hướng</string>
+    <string name="maptype_intro">Chọn loại nền bản đồ và loại bản đồ quy hoạch (bản đồ giấy hoặc số)</string>
+    <string name="maptype_close_intro">Chọn để hoàn thành việc lựa chọn</string>
+    <string name="hide_project_intro">Chọn để ẩn bản đồ</string>
+    <string name="view_full_project_intro">Chọn để xem bản đồ đầy đủ</string>
+    <string name="back_project_intro">Chọn để trở lại</string>
+    <string name="download_project_intro">Chọn để tải bản đồ về</string>
+    <string name="district_dropdown_intro">Chọn tên quận và tên phường</string>
+    <string name="ward_dropdown_intro">Chọn tên phường</string>
+    <string name="parcel_intro">Nhập số tờ, số thửa được ghi trong sổ đỏ hoặc bản đồ hiện trạng và nhấn TÌM KIẾM</string>
+    <string name="coordinate_intro">Nhập toạ độ được ghi trong sổ đỏ hoặc bản đồ hiện trạng và nhấn TÌM KIẾM</string>
+    <string name="coordinate_add_intro">Chọn để thêm một khung nhập toạ độ X, Y VN2000</string>
+    <string name="search_cooordinate_intro">Chọn để hoàn tất tìm kiếm</string>
+    <string name="download_land_intro">Tải thông tin quy hoạch về máy</string>
+    <string name="opho_intro">Chọn để xem chỉ tiêu quy hoạch kiến trúc của ô chức năng</string>
+    <string name="item_click">Bấm vào vòng tròn nhấp nháy để tiếp tục</string>
+    <string name="txt_file">Chọn để upload file text chứa toạ độ VN2000.</string>
+    <string name="legend_intro">Chọn để mở bảng chú giải chức năng sử dụng đất.</string>
+
+    <!-- Map change info -->
+    <string name="edt_coordinate_alert">Vui lòng nhập toạ độ góc ranh hệ VN2000 được ghi trong sổ đỏ hoặc bản đồ hiện trạng.</string>
+    <string name="instruction_review">Bạn có thể xem lại hướng dẫn bằng cách mở menu điều hướng và bấm Hướng dẫn sử dụng bản đồ</string>
+    <string name="coordinate_capture_alert">Vui lòng chụp rõ nét bảng toạ độ góc ranh trong bản đồ hiện trạng hoặc sổ hồng/ sổ đỏ.</string>
+
+    <!-- FAQ -->
+    <string name="question_1">1. Tại sao nhấn định vị trên ứng dụng iOS nhưng lại không thấy vị trí hiện tại của mình?</string>
+    <string name="answer_1">Ở lần đầu chạy và nhấn định vị, ứng dụng sẽ mở hộp thoại xin quyền truy cập vị trí, người dùng cần chọn cho phép để iOS cấp quyền sử dụng tính năng này. Trong trường hợp quên cho phép ở lần đầu hoặc iDevice bật chế độ Restrictions, người dùng cần chỉnh tay như sau: Vào Settings (Cài đặt) > chọn Privacy (Quyền riêng tư) > chọn Location Services (Dịch vụ định vị) > TTQH HCM > Kích hoạt chế độ Dịch vụ định vị</string>
+    <string name="question_3">2. Tại sao gõ số tờ-số thửa trong sổ đỏ mà ứng dụng không tìm ra được khu đất?</string>
+    <string name="answer_3">Dữ liệu số tờ-số thửa của ứng dụng dựa trên dữ liệu địa chính năm 2003-2005 của Sở Tài nguyên-Môi trường. Cho đến nay vẫn chưa có dữ liệu chỉnh lý cập nhật dữ liệu địa chính. Việc người dùng không tìm kiếm được khu đất ứng với số tờ-số thửa trên sổ đỏ hoặc bản đồ hiện trạng vị trí của mình có thể do một trong hai nguyên nhân: ● Thửa đất được chia tách sau khi có dữ liệu địa chính năm 2003-2005. ● Sổ đỏ hoặc bản đồ địa chính được cấp trước khi có bản đồ địa chính năm 2003-2005 và dùng bản đồ địa chính cũ.</string>
+    <string name="question_4">3. Nếu chỉ có sổ đỏ mà không có bản đồ hiện trạng vị trí, thì làm sao xác định được các khu đất chưa được cập nhật số tờ-số thửa?</string>
+    <string name="answer_4">Mỗi sổ đỏ đều được lập kèm theo bản đồ hiện trạng vị trí và cung cấp cho chủ sở hữu khu đất. Nếu bản đồ hiện trạng vị trí bị thất lạc, người dân có thể yêu cầu phòng Tài nguyên và Môi trường quận cung cấp trích lục lại.</string>
+    <string name="question_5">4. Trong ứng dụng điện thoại không có bảng chú giải chức năng sử dụng đất, làm sao để người dùng biết được chức năng sử dụng đất của từng màu là gì?</string>
+    <string name="answer_5">Trong ứng dụng điện thoại, bảng chủ giải chức năng được ẩn đi để tối ưu hoá không gian thể hiện bản đồ. Người dùng có thể bấm trực tiếp vào thửa đất hoặc tìm kiếm thông qua số tờ-số thửa hoặc toạ độ, ứng dụng sẽ tự động cung cấp thông tin quy hoạch của khu đất.</string>
+    <string name="question_6">5. Thông tin quy hoạch trên ứng dụng quy hoạch có tính pháp lý không?</string>
+    <string name="answer_6">Thông tin do ứng dụng cung cấp trên bản đồ giấy có tính pháp lý, thông tin trên bản đồ số có tính tham khảo. Nếu có sự khác biệt giữa bản đồ giấy và bản đồ số thì thông tin trên bản đồ giấy là thông tin cuối cùng.</string>
+    <string name="question_7">6. Thông tin quy hoạch trên ứng dụng có được cập nhật thường xuyên không?</string>
+    <string name="answer_7">Dữ liệu quy hoạch trên ứng dụng được cập nhật ngay khi có sự điều chỉnh theo quy định, vì vậy thông tin trên ứng dụng là thông tin được cập nhật mới nhất.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gioi_thieu">Giới thiệu phần mềm</string>
+    <string name="h_ng_d_n_s_d_ng">Hướng dẫn sử dụng</string>
+    <string name="questions">Các câu hỏi thường gặp</string>
+    <string name="feedbacks">Đánh giá và góp ý</string>
+    <string name="bds_hientrang">Bản đồ số hiện trạng</string>
+    <string name="bd_giay">Bản đồ giấy</string>
+    <string name="quy_ho_ch_cao_n_n">Quy hoạch cao độ nền</string>
+    <string name="tim_toa_do">Toạ độ</string>
+    <string name="tim_land_id">Số thửa đất</string>
+    <string name="tim_address">Đường</string>
+    <string name="luu_y">Lưu ý: sử dụng hệ tọa độ Quốc gia VN2000 để tìm kiếm.</string>
+    <string name="xuat_tap_tin">Xuất ra tập tin tọa độ</string>
+    <string name="nhap_tap_tin">Nhập vào tập tin tọa độ từ máy</string>
+    <string name="toa_do_x">Tọa độ X</string>
+    <string name="toa_do_y">Tọa độ Y</string>
+    <string name="nhap_lai">Nhập lại</string>
+    <string name="tim_kiem">Tìm kiếm</string>
+    <string name="vd_1199748_84">VD: 1199748.84</string>
+    <string name="vd_611245_93">VD: 611245.93</string>
+    <string name="_1">1</string>
+    <string name="lua_chon">Lựa chọn</string>
+    <string name="ph_ng_x">Phường/Xã</string>
+    <string name="so_thuaa">Số thửa đất</string>
+    <string name="so_too">Số tờ bản đồ</string>
+    <string name="vd_002">VD 002</string>
+    <string name="vd_001">VD 001</string>
+    <string name="ban_do_giay">Bản đồ giấy</string>
+    <string name="ban_do_so">Bản đồ số</string>
+    <string name="nhap_email">Nhập email</string>
+    <string name="searching">Đang tìm kiếm</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="des_send_email">Chúng tôi sẽ gửi tập tin về email của bạn</string>
+    <string name="quanhuyen">Quận/Huyện</string>
+    <string name="caution_search">Chức năng tìm kiếm theo số thửa, số tờ chỉ khả dụng trong bản đồ số quy hoạch sử dụng đất.</string>
+    <string name="ttqh_bo_xay_dung">Phân loại chức năng sử dụng đất dựa theo quy định trong Phụ lục của Thông tư số 12/2016/TT-BXD ngày 29/06/2016 của Bộ trưởng Bộ Xây dựng.</string>
 
-    <string name="no_connect_error">Ứng dụng không kết nối được Internet. Xin hãy kiểm tra lại.</string>
-    <string name="txt_loi_thu_lai">Lỗi, vui lòng thử lại sau</string>
-    <string name="choose_do_an">Vui lòng chọn đồ án cần xem</string>
-    <string name="title_data_updating">Dữ liệu đang được cập nhật</string>
-    <string name="txt_change">Bản đồ số đang được cập nhật dữ liệu, hãy thử sử dụng bản đồ giấy để tra cứu.\nChuyển sang bản đồ giấy ngay?</string>
-    <string name="txt_chuyen">Chuyển</string>
+    <string name="text_download">Tải về dữ  liệu</string>
+    <string name="text_introduction_download">Dữ liệu sẽ được gửi về\nđịa chỉ Email dưới đây</string>
+    <string name="text_hind_fill_email">Nhập địa chỉ email</string>
     <string name="text_cancel">Hủy</string>
+    <string name="text_send">Gửi</string>
+    <string name="text_error_emaill">Vui lòng nhập đúng định dạng email</string>
+    <string name="title_cdngiay">Thông tin đồ án q.hoạch CDN</string>
+    <string name="title_bd_giay">Thông tin đồ án QHPK SDD</string>
+    <string name="title_bd_so">Thông tin thửa đất</string>
+    <string name="title">THÔNG TIN QUY HOẠCH\nTP. HỒ CHÍ MINH</string>
+    <string name="choose_do_an">Vui lòng chọn đồ án cần xem</string>
     <string name="error_search">Thửa đất chưa được cập nhật trong Cơ sở dữ liệu.</string>
-    <string name="txt_error_no_data">Thửa đất thuộc khu vực chưa được lập Quy hoạch Phân khu.</string>
-    <string name="txt_error_search_by_id">Không tìm thấy số tờ, số thửa bạn nhập. Vui lòng thử tìm kiếm bằng tọa độ góc ranh. Xin cảm ơn.</string>
+    <string name="text_rating_info">MỨC ĐỘ HÀI LÒNG VỀ THÔNG TIN ĐƯỢC CUNG CẤP</string>
+    <string name="text_suco">NỘI DUNG SỰ CỐ</string>
+    <string name="text_hint_suco">Nhập tại đây (giới hạn 100 từ)</string>
+    <string name="text_vitri">Vị trí đính kèm:</string>
+    <string name="text_show_info_vitri">Đính kèm một vị trí</string>
+    <string name="text_dongthuan">ĐỒNG THUẬN VỀ QUY HOẠCH ĐÔ THỊ?</string>
+    <string name="text_co_dongthuan">Đồng thuận</string>
+    <string name="text_ko_dongthuan">Không đồng thuận</string>
+    <string name="text_huondan_vitri">Điều chỉnh bản đồ khớp với điểm\nđánh dấu để đặt tọa độ vị trí.</string>
+    <string name="text_camon">Thông tin người gửi giúp chúng tôi  phản hồi góp ý quý giá của Ông/Bà.</string>
+    <string name="title_phan_anh">Phản ánh</string>
+    <string name="text_thanks">Nội dung đánh giá và góp ý đã được gửi đi, xin chân thành cảm ơn Ông/Bà đã dành thời gian đóng góp để ứng dụng được tốt hơn!</string>
+    <string name="text_phan_anh">Phản ánh</string>
+    <string name="chuthich_luuy">Ứng dụng Thông tin Quy hoạch Đô thị Thành phố Hồ Chí Minh là công cụ trực tuyến để tra cứu nhanh thông tin quy hoạch đô thị và chỉ mang tính chất tham khảo, không có giá trị là cơ sở pháp lý trong các hoạt động giao dịch bất động sản cũng như các thủ tục hành chính. Để có thông tin đầy đủ và mang tính pháp lý về quy hoạch đô thị, đề nghị người dùng liên hệ Ủy ban nhân dân quận-huyện hoặc phòng Quản lý Đô thị để được cung cấp theo quy định.\n</string>
+    <string name="download_qdpd">Tải quyết định phê duyệt</string>
+    <string name="txt_chugiai">Chú giải</string>
+    <string name="txt_ttqhsdd">Thông tin quy hoạch sử dụng đất</string>
+    <string name="txt_doan">Đồ án quy hoạch phân khu</string>
+    <string name="txt_cham_o_chuc_nang">Chạm vào các ô chức năng dưới đây để xem chi tiết </string>
+    <string name="txt_doanqhpk">đồ án Quy hoạch Phân khu</string>
+    <string name="txt_chucnangsdd">Chức năng sử dụng đất</string>
+    <string name="txt_chucnangsdd_detail">chức năng sử dụng đất</string>
+    <string name="txt_ttocn">Thông tin ô chức năng</string>
+    <string name="txt_tcxd">Tầng cao XD</string>
+    <string name="txt_tcxd_detail">tầng cao xây dựng</string>
+    <string name="txt_mdxd">Mật độ XD</string>
+    <string name="txt_mdxd_detail">mật độ xây dựng</string>
+    <string name="txt_hssdd">Hệ số SDĐ</string>
+    <string name="txt_hssdd_detail">hệ số sử dụng đất</string>
     <string name="title_bangthongtin">Bảng thông tin</string>
+    <string name="txt_ttdoanqhpk">Thông tin đồ án quy hoạch phân khu</string>
+    <string name="hint_ten_duong">Nhập tên đường</string>
+    <string name="tilte_lop_chuyen_de">Quy hoạch Tổng mặt bằng Sử dụng đất</string>
+    <string name="title_cao_do_nen">Quy hoạch Cao độ nền</string>
+    <string name="txt_cnsdđ">Chức năng sử dụng đất</string>
+    <string name="txt_tinhthanh">Tỉnh/Thành</string>
+    <string name="txt_quanhuyen">Quận/Huyện</string>
+    <string name="txt_phuongxa">Phường/Xã</string>
+    <string name="txt_dientich">Diện tích</string>
+    <string name="txt_khuvuc">Khu vực</string>
+    <string name="chuthich">Phân loại chức năng sử dụng đất dựa theo quy định của Thông tư số 12/2016/TT-BXD ngày 29/06/2016 của Bộ Xây dựng.\n</string>
+    <string name="title_bdnen">Bản đồ nền</string>
+    <string name="title_qhpk">Quy hoạch phân khu</string>
+    <string name="txt_ma_lo_dat">Mã lô đất</string>
+    <string name="vd_1_2">VD: 1-2</string>
+    <string name="edt_so_to">Nhập số tờ</string>
+    <string name="edt_so_thua">Nhập số thửa</string>
+    <string name="txt_lop_chuyen_de">LỚP CHUYÊN ĐỂ</string>
+    <string name="txt_ten_do_an">Đồ án:</string>
+    <string name="txt_mdxd_1">Mật độ xây dựng (%)</string>
+    <string name="txt_mdxd_2">Mật độ xây dựng</string>
+    <string name="txt_soqd">Số quyết định</string>
+    <string name="txt_cqpd">Cơ quan phê duyệt</string>
+    <string name="txt_ngay_duyet">Ngày duyệt</string>
+    <string name="cthh">Chỉ tiêu hỗn hợp</string>
+    <string name="ctqhkt">Chỉ tiêu quy hoạch kiến trúc</string>
+    <string name="txt_tang_cao">Tầng cao</string>
+    <string name="txt_tendoan_qhpk">Đồ án quy hoạch phân khu</string>
+    <string name="txt_dccb">"Danh sách đồ án điều chỉnh cục bộ "</string>
+    <string name="txt_danso">Dân số</string>
+    <string name="txt_tphcm">Thành phố Hồ Chí Minh</string>
+    <string name="txt_ten_doan_dccb">Đồ án điều chỉnh cục bộ</string>
+    <string name="txt_hssdd_2">Hệ số sử dụng đất</string>
+    <string name="txt_chuc_nang">Chức năng</string>
+    <string name="txt_logioi">Lộ giới</string>
+    <string name="txt_ochucnang">Ô chức năng</string>
+    <string name="txt_nen_ban_do">Nền bản đồ</string>
+    <string name="txt_nen_ve_tinh">Nền vệ tinh</string>
+    <string name="txt_chuyen">Chuyển</string>
+    <string name="txt_no_data">Chưa có dữ liệu</string>
+    <string name="txt_share_link">Tạo liên kết để chia sẻ</string>
+    <string name="txt_pdf">Xuất thông tin sang PDF</string>
+    <string name="txt_txt">Tải về tập tin tọa độ TXT</string>
+    <string name="txt_download_image">Tải về bản đồ giấy sao chụp</string>
+    <string name="txt_satifaction">Mức độ hài lòng về ứng dụng</string>
+    <string name="txt_contend_feedback">NỘI DUNG GÓP Ý</string>
+    <string name="txt_info_sender">THÔNG TIN NGƯỜI GỬI</string>
+    <string name="txt_fullname">Họ và tên:</string>
+    <string name="txt_email">Địa chỉ email:</string>
+    <string name="edt_fullname">Nhập họ và tên</string>
+    <string name="txt_ttqh">THÔNG TIN QUY HOẠCH</string>
+    <string name="txt_manual_hcm">Hướng dẫn sử dụng Ứng dụng Thông tin Quy hoạch Thành phố Hồ Chí Minh</string>
+    <string name="txt_share_video">&#xf14d;  Chia sẻ</string>
+    <string name="txt_download_video">&#xf019;  Tải hướng dẫn</string>
+    <string name="txt_intro_mess_1">Ứng dụng "Thông tin quy hoạch Thành phố Hồ Chí Minh" được phát triển và quản lý bởi Sở Quy hoạch-Kiến trúc nhằm cung cấp thông tin quy hoạch đô thị tại Thành phố Hồ Chí Minh đến người dân, tổ chức và doanh nghiệp một cách trực tuyến thông qua ứng dụng web và ứng dụng trên thiết bị di động thông minh (điện thoại thông minh và máy tính bảng).\n</string>
+    <string name="txt_intro_mess_2">Ngoài ra, ứng dụng "Thông tin quy hoạch Thành phố Hồ Chí Minh" cung cấp chức năng bản đồ số. Đây là chức năng cung cấp bản đồ quy hoạch phân khu được xây dựng trên nền tảng công nghệ Hệ thống Thông tin Địa lý (GIS), cho phép người dùng định vị thửa đất thông qua một chức năng nữa là tìm kiếm theo số tờ-số thửa bên cạnh việc tìm kiếm thông qua toạ độ khu đất hoặc định vị GPS. Các khu vực còn lại sẽ được Sở Quy hoạch-Kiến trúc tiếp tục xây dựng hoàn chỉnh dữ liệu và cập nhật trong thời gian tiếp theo.\n</string>
+    <string name="txt_intro_mess_4">Lưu ý: trong trường hợp thông tin tham khảo của bản đồ quy hoạch dạng số có khác so với bản đồ được sao chụp (scan) thì nội dung của bản đồ giấy được sao chụp (scan) có đóng dấu phê duyệt của cơ quan có thẩm quyền là căn cứ pháp lý để áp dụng.\n</string>
+    <string name="txt_intro_mess_5">Chúng tôi cũng xin chân thành cảm ơn các đối tác cũng như các đơn vị phát triển và chia sẻ các nền tảng APIs dịch vụ bản đồ mà ứng dụng chúng tôi đang sử dụng.\n</string>
+    <string name="txt_intro_mess_6">Thông tin quy hoạch được cung cấp trên ứng dụng "Thông tin quy hoạch Thành phố Hồ Chí Minh" là Quy hoạch sử dụng đất trong hồ sơ quy hoạch phân khu tỷ lệ 1/2000 được phê duyệt trên địa bàn thành phố (24 quận huyện). Ứng dụng cung cấp các bản đồ quy hoạch sử dụng đất tỷ lệ 1/2000 dạng bản giấy có đóng dấu phê duyệt được sao chụp (scan) và sắp xếp thống nhất vào hệ toạ độ VN2000. Người dùng có thể xác định vị trí của khu đất thông qua việc nhập toạ độ của khu đất (các thông số này có thể tìm thấy trong giấy chứng nhận quyền sử dụng đất hoặc bản đồ hiện trạng vị trí khu đất), hoặc xác định vị trí khu đất thông qua định vị GPS có sẵn trong thiết bị di động thông minh. Ngoài ra, người dùng còn có thể tải về các bản đồ quy hoạch và quyết định phê duyệt quy hoạch để có thể tham khảo một cách cụ thể hơn. Nội dung thông tin quy hoạch cung cấp thông qua các ứng dụng là các hồ sơ quy hoạch đã được cơ quan có thẩm quyền phê duyệt và có đầy đủ căn cứ pháp lý để áp dụng.\n</string>
+    <string name="txt_commitee">UỶ BAN NHÂN DÂN THÀNH PHỐ HỒ CHÍ MINH\nGIỚI THIỆU</string>
+    <string name="txt_doan_dccb">Đồ án ĐCCB: </string>
+    <string name="txt_hcm">TP. Hồ Chí Minh</string>
+    <string name="title_info_dccb">Thông tin đồ án điều chỉnh cục bộ</string>
+    <string name="title_info_qhpk">Thông tin đồ án quy hoạch phân khu</string>
+    <string name="title_data_updating">Dữ liệu đang được cập nhật</string>
+    <string name="mesage_error_gps">Thiết bị chưa bật định vị, vui lòng thử lại sau</string>
+    <string name="title_lunchscreen">ỦY BAN NHÂN DÂN\nTHÀNH PHỐ HỒ CHÍ MINH </string>
+    <string name="title_lunchscreen_2">SỞ QUY HOẠCH - KIẾN TRÚC</string>
+    <string name="title_lunchscreen_3">Phát triển bởi Vlab J.S.C</string>
+    <string name="txt_luuy">Lưu ý</string>
+    <string name="txt_tang"> tầng</string>
+    <string name="txt_nguoi"> người</string>
     <string name="txt_search">Tìm kiếm</string>
+    <string name="txt_change">Bản đồ số đang được cập nhật dữ liệu, hãy thử sử dụng bản đồ giấy để tra cứu.\nChuyển sang bản đồ giấy ngay?</string>
+    <string name="txt_notification">Thông báo</string>
+    <string name="txt_bao_tri">Hệ thống đang bảo trì, vui lòng quay lại sau ít phút.\nThành thật xin lỗi về sự bất tiện này</string>
+    <string name="txt_new_version">Ứng dụng đã có phiên bản mới! Vui lòng cập nhật để có trải nghiệm tốt nhất.</string>
+    <string name="txt_playstore">Đến PlayStore</string>
+    <string name="txt_gui">Đang gửi...</string>
+    <string name="txt_tai">Đang tải xuống...</string>
+    <string name="txt_chitiet"> (Xem chi tiết)</string>
+    <string name="txt_loi_thu_lai">Lỗi, vui lòng thử lại sau</string>
+    <string name="txt_loi_duong">Không tìm thấy đường </string>
+    <string name="txt_get_file">Chọn file txt chứa toạ độ</string>
+    <string name="txt_toado">Vui lòng nhập ít nhất 1 cặp toạ độ</string>
+    <string name="txt_loi_luu">Lỗi xảy ra khi lưu tệp tin, vui lòng khởi động lại ứng dụng</string>
+    <string name="txt_save_at">Đã lưu tại </string>
+    <string name="txt_ma_lo">"Vui lòng nhập mã lô đất</string>
+    <string name="txt_fill_all_input">Vui lòng nhập đầy đủ các trường dữ liệu</string>
+    <string name="txt_rating">Vui lòng đánh giá mức độ hài lòng về thông tin cung cấp</string>
+    <string name="txt_agree">Vui lòng chọn đồng thuận hoặc không đồng thuận</string>
+    <string name="txt_noidung">Vui lòng nhập nội dung</string>
+    <string name="txt_vitri_phan_anh">Xin hãy chọn một vị trí trên bản đồ muốn phản ánh</string>
+    <string name="txt_diachi">Địa chỉ email không hợp lệ. VD: nva@gmail.com</string>
+    <string name="txt_hoten">Vui lòng nhập họ tên.</string>
+    <string name="txt_email_1">Vui lòng nhập email.</string>
+    <string name="txt_gpd">Đính kèm một vị trí</string>
+    <string name="txt_chieucao">Chiều cao</string>
+    <string name="txt_update">Đang cập nhật...</string>
+    <string name="txt_enjoy">Thích TTQH TP.HCM?</string>
+    <string name="txt_tap">Nhấn để đánh giá ở Play Store</string>
+    <string name="txt_notnow">Để sau</string>
     <string name="txt_noti_gps">Đang tìm vị trí của bạn</string>
-
+    <string name="txt_open_gps">Vui lòng mở định vị điện thoại của bạn</string>
+    <string name="txt_error_search_by_id">Không tìm thấy số tờ, số thửa bạn nhập. Vui lòng thử tìm kiếm bằng tọa độ góc ranh. Xin cảm ơn.</string>
+    <string name="txt_error_get_o_chuc_nang">Có lỗi xảy ra trong quá trình xử lý. Vui lòng thử lại sao.</string>
+    <string name="txt_error_no_data">Thửa đất thuộc khu vực chưa được lập Quy hoạch Phân khu.</string>
+    <string name="txt_error_street">Vui lòng nhập tên đường</string>
 </resources>

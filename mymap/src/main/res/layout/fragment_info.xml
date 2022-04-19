@@ -1,0 +1,179 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:clickable="true"
+    android:animateLayoutChanges="true"
+    android:visibility="visible"
+    android:id="@+id/include_layout_land_info"
+    >
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="#F5F5F5">
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="10"
+                android:padding="18dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:text="@string/land_info_alert"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="15sp"
+                    android:layout_gravity="center" />
+                <ImageView
+                    android:id="@+id/iv_legend"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/chuthich"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5">
+            </LinearLayout>
+            <include layout="@layout/layout_land_info" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5">
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="10"
+                android:padding="18dp">
+                <TextView
+                    android:id="@+id/tvThongTinThuaDat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:text="@string/txt_ttqhsdd"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginBottom="12dp"
+                    />
+            </LinearLayout>
+
+            <TableRow
+                android:id="@+id/trQHPK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/txt_doan"
+                    android:textColor="@color/new_text_color"
+                    android:textSize="15sp"
+                    android:paddingLeft="50dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvQHPK"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="Không có QH phân khu"
+                    android:textColor="@color/new_text_color"
+                    android:textSize="15sp"
+                    android:visibility="visible" />
+            </TableRow>
+            <TextView
+                android:id="@+id/txt_touch_to_see_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_cham_o_chuc_nang"
+                android:textSize="14dp"
+                android:textColor="#FF4530"
+                android:gravity="center"
+                android:layout_marginBottom="13dp"
+                android:layout_marginTop="8dp"/>
+            <com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView
+                android:id="@+id/lv_QHPK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:divider="@null"
+                android:dividerHeight="0dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thông tin lộ giới"
+                android:textSize="16sp"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="2dp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                android:textColor="@android:color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/new_bg_lo_gioi"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp">
+                <TableLayout
+                    android:id="@+id/tv_lo_gioi"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:paddingLeft="6dp"
+                    android:paddingStart="6dp"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*"
+                    >
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:text="@string/txt_logioi"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:textColor="#000000"/>
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView
+                android:id="@+id/lv_lo_gioi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

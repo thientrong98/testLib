@@ -1,9 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="light_blue_400">#FF29B6F6</color>
-    <color name="light_blue_600">#FF039BE5</color>
-    <color name="gray_400">#FFBDBDBD</color>
-    <color name="gray_600">#FF757575</color>
-    <color name="btn_quyhoach_item_border">#c2c3c8</color>
     <color name="colorPrimary">#1666A8</color>
+    <color name="colorPrimaryDark">#911666a8</color>
+    <color name="alert_color">#F44336</color>
+    <color name="text_color">#333333</color>
+    <color name="grey_text_color">#757575</color>
+    <color name="tab_color">#dae2ef</color>
+    <color name="background_color">#fafafa</color>
+    <color name="btn_download_color">#CC7918</color>
+    <color name="colorAccent">#303F9F</color>
+    <color name="fab_color">#FFFFFF</color>
+    <color name="fab_color1">#808080</color>
+    <color name="stroke_color">#BB00FFFF</color>
+    <color name="btn_quyhoach_item_border">#c2c3c8</color>
+    <color name="btn_quyhoach_item_bg">#ffffff</color>
+    <color name="btn_quyhoach_item_bg_selected">#6FB76F</color>
+    <color name="btn_quyhoach_item_bg_selected1">#589258</color>
+    <color name="search_bg">#E5E5E5</color>
+    <color name="edit_border">#6666FF</color>
+    <color name="btn_color">#6575ca</color>
+    <color name="header_main_instruction_color">#009900</color>
+    <color name="header_qhct">#00B200</color>
+    <color name="title_color">#49506e</color>
+    <color name="grey">#F2F2F2</color>
+    <color name="success">#00cc66</color>
+    <color name="spinner_bg">#EDEDED</color>
+    <color name="selector_color">#BDBDBD</color>
+    <color name="activity_background">#E1E1E1</color>
+    <color name="background_view_color">#99000000</color>
+    <color name="color_tab_deseclect">#c4cbd7</color>
+
+    <!-- Light UI colors -->
+    <color name="lt_yellow">#fce18a</color>
+    <color name="lt_orange">#ff726d</color>
+    <color name="lt_purple">#b48def</color>
+    <color name="lt_pink">#f4306d</color>
+    <color name="black">#000000</color>
+    <!--new color for new ui-->
+    <color name="new_text_color">#313336</color>
+
+    <!--test color picker-->
+    <color name="tesst">#4E4E4E</color>
 
 </resources>

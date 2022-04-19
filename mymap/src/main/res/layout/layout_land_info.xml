@@ -1,0 +1,213 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutItemQH"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="31dp"
+        android:layout_marginBottom="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/title_bd_so"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:layout_marginLeft="18dp"
+            android:textStyle="bold"/>
+
+        <TableRow
+            android:id="@+id/trTinh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/edit_padding"
+                android:text="@string/txt_tinhthanh"
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp"
+                android:paddingLeft="50dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvTinh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/edit_padding"
+                android:text=""
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/trQuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/edit_padding"
+                android:text="@string/txt_quanhuyen"
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp"
+                android:paddingLeft="50dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvQuan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingTop="@dimen/edit_padding"
+                android:text=""
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp" />
+        </TableRow>
+
+
+        <TableRow
+            android:id="@+id/trPhuong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/txt_phuongxa"
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp"
+                android:paddingLeft="50dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvPhuong"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/trSoThua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/so_thuaa"
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp"
+                android:paddingLeft="50dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvSoThua"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/trSoTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/so_too"
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp"
+                android:paddingLeft="50dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvSoTo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/trDienTich"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/txt_dientich"
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp"
+                android:paddingLeft="50dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvDienTich"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/trQHN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="&#xf00a;  Quy hoạch ngành"
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvQHN"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:lineSpacingMultiplier="1.5"
+                android:text="Không có QHN"
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp"
+                android:visibility="visible" />
+        </TableRow>
+    </LinearLayout>
+</LinearLayout>

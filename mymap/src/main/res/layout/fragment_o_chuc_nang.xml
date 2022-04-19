@@ -1,0 +1,522 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:clickable="true"
+    android:id="@+id/include_layout_OCN_info"
+    android:orientation="vertical"
+    >
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_viewOCN"
+        android:focusableInTouchMode="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="#F5F5F5">
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:background="#ffffff"
+                android:weightSum="10">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:layout_gravity="center"
+                    android:text="@string/o_pho_alert"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="18dp"/>
+
+                <ImageView
+                    android:id="@+id/iv_legend_cn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:src="@drawable/chuthich" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5">
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="10"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="31dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="8"
+                        android:text="@string/txt_ttocn"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/txt_ochucnang"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:layout_marginLeft="50dp"
+                            android:visibility="visible"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/tv_ma_o"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:visibility="visible"/>
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:background="@color/grey_text_color" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp" >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/txt_cnsdđ"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:layout_marginLeft="50dp"
+                            android:visibility="visible"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/tv_chuc_nang"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:visibility="visible"/>
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp">
+
+                        <TextView
+                            android:id="@+id/tr_dien_tichOCN"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/txt_dientich"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:layout_marginLeft="50dp"
+                            android:visibility="visible"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/tv_dien_tichOCN"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:visibility="visible"/>
+                    </TableRow>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:background="@color/grey_text_color" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp" >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/txt_danso"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:layout_marginLeft="50dp"
+                            android:id="@+id/tr_dan_so"
+                            android:visibility="visible"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/tv_dan_so"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:visibility="visible"/>
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:background="@color/grey_text_color" />
+
+                    <TableRow
+                        android:id="@+id/tr_tang_cao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/txt_tang_cao"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:layout_marginLeft="50dp"
+                            android:visibility="visible"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/tv_tang_cao"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:visibility="visible"/>
+                    </TableRow>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:background="@color/grey_text_color" />
+                    <TableRow
+                        android:id="@+id/tr_chieu_cao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/txt_chieucao"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:layout_marginLeft="50dp"
+                            android:visibility="visible"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/tv_chieu_cao"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:visibility="visible"/>
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:background="@color/grey_text_color" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp" >
+
+                        <TextView
+                            android:id="@+id/tr_mat_do"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/txt_mdxd_2"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:layout_marginLeft="50dp"
+                            android:visibility="visible"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/tv_mat_do"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:visibility="visible" />
+                    </TableRow>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:background="@color/grey_text_color" />
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp" >
+
+                        <TextView
+                            android:id="@+id/tr_he_so_sdd"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/txt_hssdd_2"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:layout_marginLeft="50dp"
+                            android:visibility="visible"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:id="@+id/tv_he_so_sdd"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="-"
+                            android:textColor="@color/new_text_color"
+                            android:textSize="15sp"
+                            android:visibility="visible"/>
+                    </TableRow>
+                </TableLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_chitieu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:background="#ffffff">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="#F5F5F5">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="10">
+                    <TextView
+                        android:id="@+id/txt_type_chitieu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Chỉ tiêu quy hoạch kiến trúc"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:textColor="#303030"
+                        android:paddingLeft="18dp"
+                        android:layout_weight="9"/>
+
+                    <ImageView
+                        android:id="@+id/iv_legend_chitieu"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/chuthich"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layoutItemQH"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:shrinkColumns="*"
+                        android:stretchColumns="*">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="#FFE6DE">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="32dp"
+                                android:weightSum="7"
+                                android:orientation="horizontal">
+
+                                <FrameLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    tools:ignore="Suspicious0dp"
+                                    android:layout_weight="2"
+                                    android:background="@drawable/boder_cell_color">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@string/txt_chuc_nang"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="15sp"
+                                        android:layout_gravity="center"/>
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    tools:ignore="Suspicious0dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/boder_cell_color">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_weight="1"
+                                        android:src="@drawable/dientich"
+                                        android:layout_gravity="center"/>
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    tools:ignore="Suspicious0dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/boder_cell_color">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_weight="1"
+                                        android:src="@drawable/danso"
+                                        android:layout_gravity="center"/>
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    tools:ignore="Suspicious0dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/boder_cell_color">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_weight="1"
+                                        android:src="@drawable/tangcao"
+                                        android:layout_gravity="center"/>
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    tools:ignore="Suspicious0dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/boder_cell_color">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_weight="1"
+                                        android:src="@drawable/matdo"
+                                        android:layout_gravity="center"/>
+                                </FrameLayout>
+
+                                <FrameLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    tools:ignore="Suspicious0dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/boder_cell_color">
+                                    <ImageView
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:layout_weight="1"
+                                        android:src="@drawable/heso"
+                                        android:layout_gravity="center"/>
+                                </FrameLayout>
+                            </LinearLayout>
+
+                        </TableRow>
+
+                    </TableLayout>
+
+                    <TableLayout
+                        android:id="@+id/tl_chitieu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:shrinkColumns="*"
+                        android:stretchColumns="*">
+                    </TableLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>
