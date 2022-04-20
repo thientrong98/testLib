@@ -1,18 +1,18 @@
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import com.blankj.utilcode.util.ToastUtils
 import com.example.mymap.R
+import com.example.mymap.listener.LandInfoBDSListener
+import com.example.mymap.listener.MapPresenterListener
 import com.example.mymap.utils.Constants
 import com.example.mymap.utils.GlobalVariables
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.mapbox.mapboxsdk.annotations.MarkerOptions
 import com.mapbox.mapboxsdk.camera.CameraPosition
-import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
@@ -21,7 +21,7 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.rasterOpacity
 
 
-class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
+class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener, LandInfoFragment.OnDraggerView, LandInfoBDSListener {
 
     private lateinit var btnSo: Button
     private lateinit var btnGiay: Button
@@ -38,6 +38,9 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
 
     private lateinit var llSeekbar: LinearLayout
     private lateinit var seekBarLayerOpacity: SeekBar
+
+    private var landInfoBDSListener: LandInfoBDSListener? = null
+    private var mapPresenter: MapPresenter? = null
 
 
     var mapView: MapView? = null
@@ -71,14 +74,16 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
             data.putString("bgMapFirst", bgMapFirst)
             data.putString("tileBaseMap", tileBaseMap)
             data.putString("tileSatellite", tileSatellite)
-            data.putParcelable("location", location)
+//            data.putParcelable("location", location)
 
             return DemoFragment().apply {
                 arguments = data
             }
         }
+    }
 
-
+    fun setActivityListener(activityListener: LandInfoBDSListener?) {
+        landInfoBDSListener = activityListener
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,7 +105,7 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
                     "tileSatellite"
                 )
 
-            location = it.getParcelable("location")!!
+//            location = it.getParcelable("location")!!
         }
     }
 
@@ -121,7 +126,7 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
         btnTransparent = view.findViewById(R.id.btn_transparent)
         llSeekbar = view.findViewById(R.id.ll_seekbar)
         seekBarLayerOpacity = view.findViewById(R.id.seek_bar_layer_opacity)
-        btnLocation =view.findViewById(R.id.btn_location)
+//        btnLocation =view.findViewById(R.id.btn_location)
 
         btnSearch.setOnClickListener {
             AddLayer().removeBDSLayers()
@@ -146,22 +151,22 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
 
         }
 
-        btnLocation.setOnClickListener {
-            if (isClickLocation){
-                btnLocation.setImageResource(R.drawable.gps)
-                GlobalVariables.mMap.removeAnnotations()
-            }else{
-                btnLocation.setImageResource(R.drawable.new_bg_location_color)
-                ToastUtils.showLong(getText(R.string.txt_noti_gps))
-                    GlobalVariables.mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location,18.0),300);
-                GlobalVariables. mMap.addMarker(
-                    MarkerOptions()
-//                        .icon(icon)
-                        .position(location)
-                )
-            }
-            isClickLocation = !isClickLocation
-        }
+//        btnLocation.setOnClickListener {
+//            if (isClickLocation){
+//                btnLocation.setImageResource(R.drawable.gps)
+//                GlobalVariables.mMap.removeAnnotations()
+//            }else{
+//                btnLocation.setImageResource(R.drawable.new_bg_location_color)
+//                ToastUtils.showLong(getText(R.string.txt_noti_gps))
+//                    GlobalVariables.mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location,18.0),300);
+//                GlobalVariables. mMap.addMarker(
+//                    MarkerOptions()
+////                        .icon(icon)
+//                        .position(location)
+//                )
+//            }
+//            isClickLocation = !isClickLocation
+//        }
 
         seekBarLayerOpacity.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
@@ -210,7 +215,7 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
             .zoom(zoomMap)
             .build()
         ChangeLayer().changeMapBackground(styleBGMapFirst, null)
-        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
+//        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
 
         mapboxMap.addOnMapClickListener { point ->
             onMapClick(point, activity)
@@ -224,9 +229,9 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
         llFrameInfo.visibility = View.VISIBLE
         llFrameSearch.visibility = View.GONE
         if (GlobalVariables.bottom_sheet_height < 130) {
-            GlobalVariables.bottom_sheet_height = containerBottomSheet.height
+            GlobalVariables.bottom_sheet_height =containerBottomSheet.height
         }
-        Thread { MapPresenter().getDigitalLandMapinfo(point, activity) }.start()
+        Thread { MapPresenter().getDigitalLandMapinfo(point, activity,landInfoBDSListener) }.start()
         return false;
     }
 
@@ -283,6 +288,27 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
             })
         }
     }
+
+    override fun onDraggerViewClick() {
+        if (mBottomSheetBehavior!!.state === BottomSheetBehavior.STATE_COLLAPSED) {
+            mBottomSheetBehavior!!.setState(BottomSheetBehavior.STATE_EXPANDED)
+        } else if (mBottomSheetBehavior!!.state === BottomSheetBehavior.STATE_EXPANDED) {
+            mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+    }
+
+    override fun onLoadLandInfoSuccess(body: PlanningInfo?) {
+        TODO("Not yet implemented")
+        Log.d("haha123","123")
+//        landInfoBDSListener?.onLoadLandInfoSuccess(body)
+    }
+
+   fun getInfo(body: PlanningInfo?){
+//       onLoadLandInfoSuccess(body)
+       landInfoBDSListener?.onLoadLandInfoSuccess(body)
+   }
 }
+
+
 
 

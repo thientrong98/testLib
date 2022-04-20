@@ -3,7 +3,7 @@ import android.graphics.Color
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
-import android.util.Log
+import android.widget.FrameLayout
 import androidx.fragment.app.FragmentActivity
 import com.example.mymap.Helper.MapAddLayerBDSHelper
 import com.example.mymap.Helper.MapAddLayerHelper
@@ -246,4 +246,6 @@ class AddLayer {
         GlobalVariables.mMap.removeAnnotations()
         resetVariable()
     }
+
+
 }

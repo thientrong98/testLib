@@ -13,22 +13,12 @@
         <entry key="..\:/testLib/mymap/src/main/res/layout/activity_land_search.xml" value="0.3625" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/custom_marker.xml" value="0.32518115942028986" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_blank.xml" value="0.24010416666666667" />
-        <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_demo.xml" value="0.2" />
-        <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_land_info.xml" value="0.3625" />
+        <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_demo.xml" value="0.1" />
+        <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_land_info.xml" value="0.1" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_land_info2.xml" value="0.18" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_land_search.xml" value="0.2546875" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_plan_info.xml" value="0.3625" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/popup_window.xml" value="0.3625" />
-        <entry key="..\:/vlab/testLib/mymap/src/main/res/drawable/new_bg_land_info.xml" value="0.1715" />
-        <entry key="..\:/vlab/testLib/mymap/src/main/res/drawable/new_bg_lo_gioi.xml" value="0.2875" />
-        <entry key="..\:/vlab/testLib/mymap/src/main/res/layout/bg_land_info.xml" value="0.19010416666666666" />
-        <entry key="..\:/vlab/testLib/mymap/src/main/res/layout/fragment_demo.xml" value="0.13451086956521738" />
-        <entry key="..\:/vlab/testLib/mymap/src/main/res/layout/fragment_info.xml" value="0.20416666666666666" />
-        <entry key="..\:/vlab/testLib/mymap/src/main/res/layout/fragment_land_info.xml" value="0.20416666666666666" />
-        <entry key="..\:/vlab/testLib/mymap/src/main/res/layout/fragment_o_chuc_nang.xml" value="0.19010416666666666" />
-        <entry key="..\:/vlab/testLib/mymap/src/main/res/layout/fragment_o_qhpk.xml" value="0.20416666666666666" />
-        <entry key="..\:/vlab/testLib/mymap/src/main/res/layout/layout_land_info.xml" value="0.36666666666666664" />
-        <entry key="..\:/vlab/testLib/mymap/src/main/res/layout/layout_quy_hoach_nganh.xml" value="0.19010416666666666" />
       </map>
     </option>
   </component>

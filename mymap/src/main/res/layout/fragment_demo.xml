@@ -97,7 +97,7 @@
 
                     <fragment
                         android:id="@+id/fragmentInfo"
-                        android:name="com.example.mymap.PlanInfo.view.LandInfoFragment"
+                        android:name="LandInfoFragment"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         tools:layout="@layout/fragment_land_info" />
@@ -115,7 +115,7 @@
                         android:id="@+id/fragmentSearch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:name="com.example.mymap.search.view.LandSearchFragment"
+                        android:name="LandSearchFragment"
                         tools:layout="@layout/fragment_land_search"/>
                 </LinearLayout>
             </LinearLayout>
