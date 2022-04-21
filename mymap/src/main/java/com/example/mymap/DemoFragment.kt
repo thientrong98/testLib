@@ -21,7 +21,7 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.rasterOpacity
 
 
-class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener, LandInfoFragment.OnDraggerView, LandInfoBDSListener {
+class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener{
 
     private lateinit var btnSo: Button
     private lateinit var btnGiay: Button
@@ -40,8 +40,6 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener, LandI
     private lateinit var seekBarLayerOpacity: SeekBar
 
     private var landInfoBDSListener: LandInfoBDSListener? = null
-    private var mapPresenter: MapPresenter? = null
-
 
     var mapView: MapView? = null
     private var centerPoint: LatLng = LatLng(10.7994064, 106.7116703)
@@ -55,6 +53,7 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener, LandI
     private var isTransparent: Boolean = false
     private var isClickLocation:Boolean =false
     private var mBottomSheetBehavior: BottomSheetBehavior<FrameLayout>? = null
+    private var mapPresenter :MapPresenter? =null
 
     companion object {
         fun newInstance(
@@ -83,7 +82,7 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener, LandI
     }
 
     fun setActivityListener(activityListener: LandInfoBDSListener?) {
-        landInfoBDSListener = activityListener
+        GlobalVariables.landInfoBDSListener = activityListener
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -206,7 +205,6 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener, LandI
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mMap = mapboxMap
         GlobalVariables.mMap = mapboxMap
-
         mapboxMap.uiSettings.isRotateGesturesEnabled = false
         mapboxMap.uiSettings.isAttributionEnabled = false;
         mapboxMap.uiSettings.isLogoEnabled = false;
@@ -231,7 +229,9 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener, LandI
         if (GlobalVariables.bottom_sheet_height < 130) {
             GlobalVariables.bottom_sheet_height =containerBottomSheet.height
         }
-        Thread { MapPresenter().getDigitalLandMapinfo(point, activity,landInfoBDSListener) }.start()
+
+
+        Thread { MapPresenter().getDigitalLandMapinfo(point, activity, ) }.start()
         return false;
     }
 
@@ -289,24 +289,13 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener, LandI
         }
     }
 
-    override fun onDraggerViewClick() {
-        if (mBottomSheetBehavior!!.state === BottomSheetBehavior.STATE_COLLAPSED) {
-            mBottomSheetBehavior!!.setState(BottomSheetBehavior.STATE_EXPANDED)
-        } else if (mBottomSheetBehavior!!.state === BottomSheetBehavior.STATE_EXPANDED) {
-            mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_COLLAPSED
-        }
-    }
-
-    override fun onLoadLandInfoSuccess(body: PlanningInfo?) {
-        TODO("Not yet implemented")
-        Log.d("haha123","123")
-//        landInfoBDSListener?.onLoadLandInfoSuccess(body)
-    }
-
-   fun getInfo(body: PlanningInfo?){
-//       onLoadLandInfoSuccess(body)
-       landInfoBDSListener?.onLoadLandInfoSuccess(body)
-   }
+//    override fun onDraggerViewClick() {
+//        if (mBottomSheetBehavior!!.state === BottomSheetBehavior.STATE_COLLAPSED) {
+//            mBottomSheetBehavior!!.setState(BottomSheetBehavior.STATE_EXPANDED)
+//        } else if (mBottomSheetBehavior!!.state === BottomSheetBehavior.STATE_EXPANDED) {
+//            mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_COLLAPSED
+//        }
+//    }
 }
 
 

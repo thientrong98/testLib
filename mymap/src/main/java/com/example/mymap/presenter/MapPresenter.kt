@@ -1,6 +1,6 @@
 import android.util.Log
 import androidx.annotation.NonNull
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.mymap.LayerMap.ChangeMap
 import com.example.mymap.listener.LandInfoBDSListener
@@ -11,23 +11,20 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MapPresenter : MapPresenterListener{
-//    private  var activity: FragmentActivity? = fragmentActivity
+class MapPresenter()  {
+
 
     fun getDigitalLandMapinfo(
         point: LatLng,
         activity: FragmentActivity?,
-        landInfoBDSListener: LandInfoBDSListener?
     ) {
-//        MapPresenter.listenerForActivity.onClickMap()
-        getDigitalLandMapinfoByLink(point, activity,landInfoBDSListener )
+        getDigitalLandMapinfoByLink(point, activity)
     }
 
 
     private fun getDigitalLandMapinfoByLink(
         point: LatLng,
         activity: FragmentActivity?,
-        landInfoBDSListener: LandInfoBDSListener?
     ) {
         val searchPlanningInfo: Call<PlanningInfo?>? =
             if (GlobalVariables.getCurrentLanguage.equals("vi")) {
@@ -45,9 +42,10 @@ class MapPresenter : MapPresenterListener{
                 if (response.code() == 200 && response.body() != null) {
                     val landInfo = response.body()
                     if (!landInfo?.thongTinChung.equals("{}")) {
-                        AddLayer().onLoadLandInfoSuccess(response.body()!!, activity )
-                        onLoadLandInfoPresenterSuccess(response.body()!!)
-//                        MapPresenterListener.onLoadLandInfoSuccess()
+                        AddLayer().onLoadLandInfoSuccess(response.body()!!, activity)
+                        if (GlobalVariables.landInfoBDSListener != null){
+                            GlobalVariables.landInfoBDSListener?.onLoadLandInfoSuccess(landInfo)
+                        }
                     } else {
                         ChangeMap().showInfoNoData(activity!!)
                     }
@@ -58,8 +56,6 @@ class MapPresenter : MapPresenterListener{
 
             override fun onFailure(@NonNull call: Call<PlanningInfo?>, @NonNull t: Throwable) {
                 ChangeMap().showInfoNoData(activity!!)
-
-
             }
         })
     }
@@ -69,11 +65,11 @@ class MapPresenter : MapPresenterListener{
 //    }
 
 
+//    override fun onLoadLandInfoPresenterSuccess(planningInfo: PlanningInfo) {
+//        Log.d("haha345", "4456")
+//        DemoFragment().getInfo(planningInfo)
+//    }
 
-    override fun onLoadLandInfoPresenterSuccess(planningInfo: PlanningInfo) {
-        Log.d("haha345","4456")
-        DemoFragment().getInfo(planningInfo)
-    }
 
 }
 
