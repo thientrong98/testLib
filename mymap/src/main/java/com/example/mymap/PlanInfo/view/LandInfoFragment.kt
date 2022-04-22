@@ -1,26 +1,41 @@
+import android.app.AlertDialog
 import android.graphics.Color
+import android.graphics.Rect
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.*
 import androidx.fragment.app.Fragment
+import com.example.mymap.Helper.MapAddLayerHelper
 import com.example.mymap.R
 import com.example.mymap.listener.LandInfoBDSListener
+import com.example.mymap.utils.GlobalVariables
 import com.github.paolorotolo.expandableheightlistview.ExpandableHeightListView
 import com.google.gson.GsonBuilder
+import kotlinx.android.synthetic.main.fragment_info.*
+import org.json.JSONException
+import org.json.JSONObject
+import tech.vlab.ttqhhcm.new_ui.land_info.model.QHNganh
 import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
 import java.util.*
 
 class LandInfoFragment : Fragment(), LandInfoBDSListener {
-    var gson = GsonBuilder().create()!!
+    private var gson = GsonBuilder().create()!!
+    private var landRanh = ""
+
     private var loGioiAdapter: LoGioiAdapter? = null
     private var loGiois = ArrayList<LoGioi>()
+    private var QHPKAdapter: QHPKAdapter? = null
+    private var QHPKs = ArrayList<QHPK>()
+    private var QHNs = ArrayList<QHNganh>()
 
     private lateinit var tvTinh: TextView
     private lateinit var tvQuan: TextView
@@ -31,13 +46,23 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener {
     private lateinit var tvSoTo: TextView
     private lateinit var tvSoThua: TextView
     private lateinit var tvLoGioi: TableLayout
-    private lateinit var lvLoGioi: ExpandableHeightListView
-    private lateinit var  trQHPK:TableRow
-    private lateinit var tvQHPK:TextView
-    private lateinit var  indicator:ProgressBar
+    private lateinit var trQHPK: TableRow
+    private lateinit var tvQHPK: TextView
+    private lateinit var indicator: ProgressBar
     private lateinit var btnBackToLandInfo: ImageButton
-    private lateinit var btnDownloadPDF:ImageButton
-
+    private lateinit var btnDownloadPDF: ImageButton
+    private lateinit var iv_legend: ImageView
+    private lateinit var includeLayoutLandInfo: FrameLayout
+    private lateinit var includeLayoutQHPKInfo: FrameLayout
+    private lateinit var includeLayoutOCNInfo : FrameLayout
+    private lateinit var tv_ten_do_an:TextView
+    private lateinit var tv_quan_huyen:TextView
+    private lateinit var tv_so_quyet_dinh:TextView
+    private lateinit var tv_cqpd:TextView
+    private lateinit var tv_ngay_duyet:TextView
+    private lateinit var lvQHPK: ExpandableHeightListView
+    private lateinit var lvLoGioi: ExpandableHeightListView
+    private lateinit var txtTouchToSeeDetail: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,14 +89,50 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener {
         tvDienTich = view.findViewById(R.id.tvDienTich)
         tvLoGioi = view.findViewById(R.id.tv_lo_gioi)
         lvLoGioi = view.findViewById(R.id.lv_lo_gioi)
-        trQHPK =view.findViewById(R.id.trQHPK)
-        tvQHPK= view.findViewById(R.id.tvQHPK)
+        trQHPK = view.findViewById(R.id.trQHPK)
+        tvQHPK = view.findViewById(R.id.tvQHPK)
         indicator = view.findViewById(R.id.indicator)
         btnBackToLandInfo = view.findViewById(R.id.btnBackToLandInfo)
         btnDownloadPDF = view.findViewById(R.id.btnDownloadPDF)
+        iv_legend = view.findViewById(R.id.iv_legend)
+        includeLayoutLandInfo = view.findViewById(R.id.include_layout_land_info)
+        includeLayoutQHPKInfo = view.findViewById(R.id.include_layout_OQHPK_info)
+        includeLayoutOCNInfo = view.findViewById(R.id.include_layout_OCN_info)
+        tv_ten_do_an= view.findViewById(R.id.tv_ten_do_an)
+        tv_quan_huyen= view.findViewById(R.id.tv_quan_huyen)
+        tv_cqpd= view.findViewById(R.id.tv_cqpd)
+        tv_so_quyet_dinh= view.findViewById(R.id.tv_so_quyet_dinh)
+        tv_ngay_duyet= view.findViewById(R.id.tv_ngay_duyet)
+        lvQHPK =view.findViewById(R.id.lv_QHPK)
+        txtTouchToSeeDetail = view.findViewById(R.id.txt_touch_to_see_detail)
+
+        iv_legend.setOnClickListener {
+            showCustomeDialog(
+                this.layoutInflater.inflate(R.layout.fragment_legend_note, null),
+                0.7f
+            )
+        }
+
+        btnBackToLandInfo.setOnClickListener {
+            includeLayoutLandInfo.visibility = View.VISIBLE
+            includeLayoutQHPKInfo.visibility = View.GONE
+            includeLayoutOCNInfo.visibility = View.GONE
+//            includeLayoutQHNInfo.setVisibility(View.GONE)
+            btnBackToLandInfo.visibility = View.GONE
+            btnDownloadPDF.visibility = View.VISIBLE
+//            checkInfo = 0
+            onClickBackLandInfo(landRanh)
+        }
+
         setUpListView()
         return view
     }
+
+    private fun onClickBackLandInfo(ranh: String?) {
+        MapAddLayerHelper().zoomToRaster(ranh, GlobalVariables.mMap)
+        MapRemoveLayerHelper().removeOChucNangLayer()
+    }
+
 
     interface OnDraggerView {
         fun onDraggerViewClick()
@@ -83,20 +144,31 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener {
     override fun onLoadLandInfoSuccess(body: PlanningInfo?) {
         indicator.visibility = View.GONE
         btnBackToLandInfo.visibility = View.GONE
-        btnDownloadPDF.visibility =View.VISIBLE
+        btnDownloadPDF.visibility = View.VISIBLE
         fillPlanningInfo(body)
     }
 
     override fun onClickMap() {
         indicator.visibility = View.VISIBLE
-        btnDownloadPDF.visibility =View.GONE
+        btnDownloadPDF.visibility = View.GONE
+        btnBackToLandInfo.visibility = View.GONE
+        includeLayoutLandInfo.visibility = View.VISIBLE
+        includeLayoutQHPKInfo.visibility = View.GONE
+        includeLayoutOCNInfo.visibility =View.GONE
+    }
+
+    override fun onLoadOChucNangInfoSucces(maQHPK: String?) {
+        maQHPK?.let { showOChucNangInfo(it) }
     }
 
     private fun fillPlanningInfo(planningInfo: PlanningInfo?) {
 //        LandInfoFragment.landID = ttc.getMathuadat()
-//        LandInfoFragment.landRanh = ttc.getRanh()
         var ttc =
             gson.fromJson(planningInfo!!.thongTinChung, ThongTinChung::class.java)
+        landRanh = ttc.ranh
+        if (planningInfo.qHPK != "[]") {
+            fillQHPK(gson.fromJson(planningInfo.qHPK, Array<QHPK>::class.java).toList())
+        }
         fillLandInfo(
             gson.fromJson(planningInfo!!.thongTinChung, ThongTinChung::class.java),
             gson.fromJson(
@@ -170,7 +242,6 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener {
                     val clickableSpan: ClickableSpan = object : ClickableSpan() {
                         override fun onClick(view: View) {
                             showOQHPKInfo(ttc, i)
-                            btnDownloadPDF.visibility = View.GONE
                         }
 
                         override fun updateDrawState(ds: TextPaint) {
@@ -201,12 +272,14 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener {
     private fun setUpListView() {
         indicator.visibility = View.VISIBLE
         btnBackToLandInfo.visibility = View.GONE
-
-//        QHPKs = ArrayList<QHPK>()
-//        QHNs = ArrayList<QHNganh>()
-//        QHPKAdapter = QHPKAdapter(this.activity, QHPKs, QHNs)
-//        lvQHPK.setAdapter(QHPKAdapter)
-//        lvQHPK.setExpanded(true)
+        includeLayoutLandInfo.visibility = View.VISIBLE
+        includeLayoutQHPKInfo.visibility = View.GONE
+        includeLayoutOCNInfo.visibility =View.GONE
+        QHPKs = ArrayList<QHPK>()
+        QHNs = ArrayList<QHNganh>()
+        QHPKAdapter = QHPKAdapter(this.activity, QHPKs, QHNs)
+        lvQHPK.adapter = QHPKAdapter
+        lvQHPK.isExpanded = true
         loGiois = ArrayList<LoGioi>()
         loGioiAdapter = LoGioiAdapter(this.requireActivity(), loGiois)
         lvLoGioi.adapter = loGioiAdapter
@@ -225,16 +298,118 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener {
     }
 
     private fun showOQHPKInfo(ttc: ThongTinChung, i: Int) {
-//        includeLayoutLandInfo.setVisibility(View.GONE)
+        includeLayoutLandInfo.visibility = View.GONE
 //        includeLayoutQHNInfo.setVisibility(View.GONE)
-//        includeLayoutOCNInfo.setVisibility(View.GONE)
-//        includeLayoutQHPKInfo.setVisibility(View.VISIBLE)
-//        btnBackToLandInfo.setVisibility(View.VISIBLE)
+        includeLayoutOCNInfo.visibility = View.GONE
+        includeLayoutQHPKInfo.visibility = View.VISIBLE
+        btnBackToLandInfo.visibility = View.VISIBLE
         btnDownloadPDF.visibility = View.VISIBLE
-//        resetOQHPK()
+        resetOQHPK()
 //        checkInfo = 1
-//        listener.onClickOChucNang(ttc.getDsttdoan().get(i).getQhpkranh_geom())
-//        fillOQHPKInfo(ttc, i)
+        onClickOChucNang(ttc.dsttdoan[i].qhpkranh_geom)
+        fillOQHPKInfo(ttc, i)
     }
 
+    private fun resetLandInfo() {
+        tvTinh.text = "-"
+        tvQuan.text = "-"
+        tvPhuong.text = "-"
+        tvSoThua.text = "-"
+        tvSoTo.text = "-"
+        tvDienTich.text = "-"
+        tvQHPK.text = "-"
+//        tvQHN.setText("-")
+//        QHNs.clear()
+//        QHPKs.clear()
+        loGiois.clear()
+//        QHPKAdapter.notifyDataSetChanged()
+        loGioiAdapter!!.notifyDataSetChanged()
+    }
+
+    private fun resetOQHPK() {
+        tv_ten_do_an.text = "-"
+        tv_quan_huyen.text = "-"
+        tv_so_quyet_dinh.text = "-"
+        tv_cqpd.text = "-"
+        tv_ngay_duyet.text = "-"
+    }
+
+    private fun showCustomeDialog(v: View, f: Float) { //TODO: TRONG
+        val displayRectangle = Rect()
+        val builder: AlertDialog.Builder =
+            AlertDialog.Builder(context, R.style.CustomAlertDialog)
+        builder.setView(v)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+        val displayMetrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+        val displayWidth = displayMetrics.widthPixels
+        val displayHeight = LinearLayout.LayoutParams.WRAP_CONTENT
+        val layoutParams = WindowManager.LayoutParams()
+        layoutParams.copyFrom(dialog.window?.attributes)
+        val dialogWindowWidth = (displayWidth * f).toInt()
+        layoutParams.width = dialogWindowWidth
+        layoutParams.height = displayHeight
+        dialog.window?.attributes = layoutParams
+    }
+
+  private  fun onClickOChucNang(ranh: String?) {
+        MapAddLayerHelper().addOChucNangLayer(
+           GlobalVariables.mMap,
+            ranh
+        )
+        try {
+            MapAddLayerHelper().zoomToRaster(
+                JSONObject(ranh).getString("coordinates"),
+                GlobalVariables.mMap
+            )
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+    }
+
+   private fun fillOQHPKInfo(ttc: ThongTinChung, i: Int) {
+        tv_ten_do_an.text = ttc.dsttdoan[i].tendoan
+        tv_quan_huyen.text = java.lang.String.valueOf(ttc.tenquanhuyen)
+        tv_so_quyet_dinh.text = ttc.dsttdoan[i].soqd
+        tv_cqpd.text = ttc.dsttdoan[i].coquanpd
+        tv_ngay_duyet.text = ttc.dsttdoan[i].ngayduyet
+    }
+
+
+    private fun fillQHPK(QHPKs: List<QHPK>) {
+        if (QHPKs.isNotEmpty()) {
+            tvThongTinThuaDat.visibility = View.VISIBLE
+            txtTouchToSeeDetail.visibility = View.VISIBLE
+            this.QHPKs.addAll(QHPKs)
+            QHPKAdapter!!.notifyDataSetInvalidated()
+        } else {
+            tvThongTinThuaDat.visibility = View.GONE
+            txtTouchToSeeDetail.visibility = View.GONE
+        }
+    }
+
+    private fun showOChucNangInfo(maQHPKSDD: String) {
+        includeLayoutLandInfo.visibility = View.GONE
+//        includeLayoutQHNInfo.setVisibility(View.GONE)
+        includeLayoutQHPKInfo.visibility = View.GONE
+        includeLayoutOCNInfo.visibility = View.VISIBLE
+        btnBackToLandInfo.visibility = View.VISIBLE
+        btnDownloadPDF.visibility = View.GONE
+        resetOCNInfo()
+//        checkInfo = 0
+//        OChucNangPresenter(this@LandInfoFragment).getOChucNang930(maQHPKSDD)
+//        OChucNangPresenter(this@LandInfoFragment).getChiTieuHonHop(maQHPKSDD)
+    }
+
+    private fun resetOCNInfo() {
+//        tvMaOChucNang.setText("-")
+//        tvChucNang.setText("-")
+//        tvDanSo.setText("-")
+//        tvDienTichOCN.setText("-")
+//        tvHeSoSdd.setText("-")
+//        tvMatDo.setText("-")
+//        tvTangCao.setText("-")
+//        tvChieuCao.setText("-")
+    }
 }

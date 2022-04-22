@@ -21,7 +21,7 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.rasterOpacity
 
 
-class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener{
+class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
 
     private lateinit var btnSo: Button
     private lateinit var btnGiay: Button
@@ -51,9 +51,9 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener{
     private lateinit var mMap: MapboxMap
     private var isSearch: Boolean = false
     private var isTransparent: Boolean = false
-    private var isClickLocation:Boolean =false
+    private var isClickLocation: Boolean = false
     private var mBottomSheetBehavior: BottomSheetBehavior<FrameLayout>? = null
-    private var mapPresenter :MapPresenter? =null
+    private var mapPresenter: MapPresenter? = null
 
     companion object {
         fun newInstance(
@@ -181,7 +181,7 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener{
                             for (i in 0 until GlobalVariables.savedQHPK.length() + GlobalVariables.savedQHN.length()) {
                                 if (it.getLayer("qhpksdd-layer-" + (i + 1)) != null) {
                                     it.getLayer("qhpksdd-layer-" + (i + 1))!!
-                                    rasterOpacity(progress.toFloat()/ 100)
+                                    rasterOpacity(progress.toFloat() / 100)
                                 }
                             }
                         }
@@ -213,7 +213,7 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener{
             .zoom(zoomMap)
             .build()
         ChangeLayer().changeMapBackground(styleBGMapFirst, null)
-//        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
+        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
 
         mapboxMap.addOnMapClickListener { point ->
             onMapClick(point, activity)
@@ -227,11 +227,11 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener{
         llFrameInfo.visibility = View.VISIBLE
         llFrameSearch.visibility = View.GONE
         if (GlobalVariables.bottom_sheet_height < 130) {
-            GlobalVariables.bottom_sheet_height =containerBottomSheet.height
+            GlobalVariables.bottom_sheet_height = containerBottomSheet.height
         }
 
-GlobalVariables.landInfoBDSListener.onClickMap()
-        Thread { MapPresenter().getDigitalLandMapinfo(point, activity, ) }.start()
+        GlobalVariables.landInfoBDSListener.onClickMap()
+        Thread { MapPresenter().getDigitalLandMapinfo(point, activity) }.start()
         return false;
     }
 

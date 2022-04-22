@@ -1,10 +1,6 @@
-import android.util.Log
 import androidx.annotation.NonNull
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.mymap.LayerMap.ChangeMap
-import com.example.mymap.listener.LandInfoBDSListener
-import com.example.mymap.listener.MapPresenterListener
 import com.example.mymap.utils.GlobalVariables
 import com.mapbox.mapboxsdk.geometry.LatLng
 import retrofit2.Call
@@ -58,6 +54,10 @@ class MapPresenter()  {
                 ChangeMap().showInfoNoData(activity!!)
             }
         })
+    }
+
+    fun showInfoOChucNang(maQHPK: String?) {
+        GlobalVariables.landInfoBDSListener?.onLoadOChucNangInfoSucces(maQHPK)
     }
 
 //    override fun onLoadLandInfoSuccess(planningInfo: PlanningInfo) {

@@ -3,7 +3,6 @@ package com.example.mymap.Helper
 import DCCucBo
 import LocationHelper
 import android.graphics.Color
-import android.util.Log
 import com.example.mymap.utils.Constants
 import com.example.mymap.utils.Constants.qhpk_crop_url
 import com.example.mymap.utils.GlobalVariables
@@ -217,6 +216,46 @@ class MapAddLayerHelper {
                 e.printStackTrace()
             }
         } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+    }
+
+    fun addOChucNangLayer(mMap: MapboxMap, ranh: String?) {
+        try {
+            val source: Source = GeoJsonSource("ochucnang-source", ranh)
+            try {
+                mMap.getStyle {
+                    it.addSource(source)
+                }
+            } catch (e: CannotAddSourceException) {
+                e.printStackTrace()
+            }
+            val stroke: Layer = LineLayer("ochucnang-stroke", "ochucnang-source")
+            stroke.setProperties(
+                PropertyFactory.lineWidth(2f),
+                PropertyFactory.lineColor(Color.rgb(255, 0, 0))
+            )
+            val layer: Layer = FillLayer("ochucnang-layer", "ochucnang-source")
+            layer.setProperties(
+                PropertyFactory.fillColor(Color.RED),
+                PropertyFactory.fillOpacity("0.2".toFloat())
+            )
+            try {
+                mMap.getStyle {
+                    it.addLayer(stroke)
+                }
+
+            } catch (e: CannotAddLayerException) {
+                e.printStackTrace()
+            }
+            try {
+                mMap.getStyle {
+                    it.addLayer(layer)
+                }
+            } catch (e: CannotAddLayerException) {
+                e.printStackTrace()
+            }
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }

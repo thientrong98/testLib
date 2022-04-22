@@ -1,6 +1,8 @@
 package tech.vlab.ttqhhcm.new_ui.map.models
 
 import DCCucBo
+import Geometry
+import QHPKProperties
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -49,4 +51,27 @@ class QHPK : Serializable {
             var TenQH = TenQH
             TenQH = TenQH
         }
+
+    @SerializedName("geometry")
+    private var geometry: Geometry? = null
+
+    @SerializedName("properties")
+    private var properties: QHPKProperties? = null
+
+    fun getProperties(): QHPKProperties? {
+        return properties
+    }
+
+    fun setProperties(properties: QHPKProperties?) {
+        this.properties = properties
+    }
+
+    fun getGeometry(): Geometry? {
+        return geometry
+    }
+
+    fun setGeometry(geometry: Geometry?) {
+        this.geometry = geometry
+    }
+
 }
