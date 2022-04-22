@@ -1,0 +1,64 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="34dp"
+    android:orientation="vertical"
+    android:background="@color/btn_quyhoach_item_bg">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:shrinkColumns="*"
+        android:stretchColumns="*">
+
+        <LinearLayout
+            android:id="@+id/ll_logioi"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/view_left"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#CCCCCC"
+                android:visibility="visible" />
+            <TextView
+                android:id="@+id/tvTenDuong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Tên đường"
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#CCCCCC"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvLoGioi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="200"
+                android:textColor="@color/new_text_color"
+                android:textSize="15sp"
+                android:gravity="center"/>
+            <View
+                android:id="@+id/view_right"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#CCCCCC"
+                android:visibility="visible" />
+        </LinearLayout>
+        <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="1dp"-->
+        <!--android:background="#CCCCCC"-->
+        <!--android:visibility="visible" />-->
+    </TableLayout>
+</LinearLayout>

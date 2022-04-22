@@ -230,7 +230,7 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener{
             GlobalVariables.bottom_sheet_height =containerBottomSheet.height
         }
 
-
+GlobalVariables.landInfoBDSListener.onClickMap()
         Thread { MapPresenter().getDigitalLandMapinfo(point, activity, ) }.start()
         return false;
     }

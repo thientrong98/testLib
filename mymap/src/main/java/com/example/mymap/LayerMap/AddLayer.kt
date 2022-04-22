@@ -118,15 +118,15 @@ class AddLayer {
             removeBDSLayers()
                 GlobalVariables.savedQHPK = JSONArray(body.qHPK)
             GlobalVariables.savedQHN = JSONArray(body.qHNganh)
-            MapAddLayerBDSHelper().addQHPKLayers(
-                activity ,
-                GlobalVariables.mMap,
-                JSONArray(body.qHNganh),
-                JSONArray(body.qHPK)
-            )
+//            MapAddLayerBDSHelper().addQHPKLayers(
+//                activity ,
+//                GlobalVariables.mMap,
+//                JSONArray(body.qHNganh),
+//                JSONArray(body.qHPK)
+//            )
             val ttc: ThongTinChung =
                 gson.fromJson(body.thongTinChung, ThongTinChung::class.java)
-            onLandZoomed(ttc.ranh)
+//            onLandZoomed(ttc.ranh)
 //            MyApplication.getInstance().trackEvent(
 //                "VIEW_LAND", MyApplication.CLIENT_ID,
 //                MyApplication.CURRENT_LOCATION.toString() + "::" + ttc.getMathuadat()

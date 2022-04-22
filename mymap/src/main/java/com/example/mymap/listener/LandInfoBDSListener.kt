@@ -4,5 +4,6 @@ import PlanningInfo
 
 interface LandInfoBDSListener {
     fun onLoadLandInfoSuccess(body: PlanningInfo?)
+    fun onClickMap()
 
 }
