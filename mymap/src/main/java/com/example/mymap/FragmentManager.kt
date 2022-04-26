@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mapbox.geojson.BoundingBox
 import com.mapbox.mapboxsdk.geometry.LatLng
 
-class FragmentManager {
+class FragmentManager1{
     companion object {
 //        fun newInstance(
 ////            center: LatLng?,

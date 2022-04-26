@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E5EFEFF4">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/toa_do_x"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/toa_do_y"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@android:color/black" />
+
+            </LinearLayout>
+
+            <view class="androidx.appcompat.app.AlertController$RecycleListView"
+                android:id="@+id/recycler_view_coordinate"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                tools:listitem="@layout/item_coordinate" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#E5EFEFF4">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/luu_y"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/txtRewrite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="49dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/nhap_lai"
+                        android:background="#FFFFFF"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="#007AFF"
+                        android:layout_marginLeft="17dp"
+                        android:textSize="19dp"/>
+
+                    <TextView
+                        android:id="@+id/txtSearch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="49dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/tim_kiem"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="#FFFFFF"
+                        android:background="#007AFF"
+                        android:layout_marginLeft="17dp"
+                        android:layout_marginRight="17dp"
+                        android:textSize="19dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:id="@+id/formImportFile"
+                        android:layout_width="0dp"
+                        android:layout_height="54dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:background="#14747480"
+                        android:orientation="horizontal"
+                        tools:ignore="UseCompoundDrawables"
+                        android:layout_margin="10dp"
+                        android:weightSum="10">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="54dp"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/nhap_tap_tin"
+                            android:layout_weight="9"
+                            android:textColor="#007AFF"
+                            android:textSize="17dp"
+                            android:gravity="left|center"/>
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/ic_input_file"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
