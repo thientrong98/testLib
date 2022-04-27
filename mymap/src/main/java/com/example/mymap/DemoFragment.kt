@@ -1,5 +1,4 @@
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.mymap.R
 import com.example.mymap.listener.LandInfoBDSListener
-import com.example.mymap.listener.MapPresenterListener
 import com.example.mymap.utils.Constants
 import com.example.mymap.utils.GlobalVariables
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -16,12 +14,11 @@ import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.maps.MapboxMap.OnMapClickListener
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.rasterOpacity
 
 
-class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
+class DemoFragment() : Fragment(), OnMapReadyCallback {
 
     private lateinit var btnSo: Button
     private lateinit var btnGiay: Button
@@ -106,6 +103,23 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
 
 //            location = it.getParcelable("location")!!
         }
+        DistrictWard().getProvince()
+
+
+
+//        mapPresenter?.setCustomObjectListener(object : MapPresenter.MapPresenterListener {
+//            override fun onSearchSuccess() {
+//                AddLayer().removeBDSLayers()
+////        mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_EXPANDED
+//                llFrameInfo.visibility = View.VISIBLE
+//                llFrameSearch.visibility = View.GONE
+//                if (GlobalVariables.bottom_sheet_height < 130) {
+//                    GlobalVariables.bottom_sheet_height = containerBottomSheet.height
+//                }
+//
+////        GlobalVariables.landInfoBDSListener.onClickMap()
+//            }
+//        })
     }
 
     override fun onCreateView(
@@ -203,6 +217,7 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
 
 
     override fun onMapReady(mapboxMap: MapboxMap) {
+        mapPresenter = MapPresenter(this)
         this.mMap = mapboxMap
         GlobalVariables.mMap = mapboxMap
         mapboxMap.uiSettings.isRotateGesturesEnabled = false
@@ -213,7 +228,7 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
             .zoom(zoomMap)
             .build()
         ChangeLayer().changeMapBackground(styleBGMapFirst, null)
-        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
+//        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
 
         mapboxMap.addOnMapClickListener { point ->
             onMapClick(point, activity)
@@ -255,11 +270,6 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
         mapView?.onDestroy()
     }
 
-
-    override fun onMapClick(point: LatLng): Boolean {
-        TODO("Not yet implemented")
-    }
-
     private fun configView(view: View) {
         val v: FrameLayout = view.findViewById(R.id.containerBottomSheet)
         mBottomSheetBehavior = BottomSheetBehavior.from(v)
@@ -287,6 +297,19 @@ class DemoFragment() : Fragment(), OnMapReadyCallback, OnMapClickListener {
                 }
             })
         }
+    }
+
+
+     fun onSearchS() {
+        AddLayer().removeBDSLayers()
+//        mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_EXPANDED
+        llFrameInfo.visibility = View.VISIBLE
+        llFrameSearch.visibility = View.GONE
+        if (GlobalVariables.bottom_sheet_height < 130) {
+            GlobalVariables.bottom_sheet_height = containerBottomSheet.height
+        }
+
+//        GlobalVariables.landInfoBDSListener.onClickMap()
     }
 
 //    override fun onDraggerViewClick() {

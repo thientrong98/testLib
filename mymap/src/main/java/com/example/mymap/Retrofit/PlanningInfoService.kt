@@ -1,9 +1,7 @@
-import PlanningInfo
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
-import java.util.ArrayList
 
 interface PlanningInfoService {
     @FormUrlEncoded
@@ -64,11 +62,15 @@ interface PlanningInfoService {
     @GET("/api/thua-dat/{id}")
     fun getLandID(@Path("id") id: String?): Call<ResponseBody?>?
 
-    @get:GET("/api/quanhuyen-phuongxa")
-    val districtWardId: Call<Any?>?
 
-    @get:GET("/api/quanhuyen-phuongxa/en")
-    val districtWardIdEnglish: Call<Any?>?
+    @GET("/api/quanhuyen-phuongxa")
+    fun getDistrictWardId(): Call<DistrictWardID>
+
+    @GET("/tinhthanh")
+    fun getProvince(): Call<List<Province>>
+
+    @GET("/tinhthanh/{id}")
+    fun getDistrict(@Path("id") id: String?): Call<Province>
 
     @FormUrlEncoded
     @POST("https://sqhkt-qlqh.tphcm.gov.vn/api/coordinates/tovn2000")

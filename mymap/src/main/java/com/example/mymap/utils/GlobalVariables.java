@@ -30,5 +30,12 @@ public class GlobalVariables {
     public static int temp = 0;
     public static String id;
     public static LandInfoBDSListener landInfoBDSListener = null;
+    public static String[][] wardName;
+    public static String[][] wardId;
+    public static String[] districtName;
+    public static String[] districtId;
+    public static String[] provinceName;
+    public static String[] provinceID;
+
 
 }

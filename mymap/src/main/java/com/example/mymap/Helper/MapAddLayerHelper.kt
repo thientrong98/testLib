@@ -94,6 +94,49 @@ class MapAddLayerHelper {
         }
     }
 
+    fun addQHPKLayers1(arrayQHN: JSONArray, jsonArray: JSONArray): String? {
+        var lat = 0.0
+        var lon = 0.0
+        try {
+            // Custom markers with numbers
+            var index = 1
+            var count = 0.0
+            for (i in 0 until jsonArray.length()) {
+                var jsonObj: JSONObject = if (i < jsonArray.length()) {
+                    jsonArray.getJSONObject(i)
+                } else {
+                    arrayQHN.getJSONObject(i - jsonArray.length())
+                }
+                if (jsonObj.isNull("geometry")) {
+                    continue
+                }
+                val feature = JSONObject()
+                feature.put("type", "Feature")
+                feature.put("geometry", jsonObj.getJSONObject("geometry"))
+                feature.put("properties", JSONObject())
+                val geometry = jsonObj.getJSONObject("geometry")
+                var coordinates = geometry.getJSONArray("coordinates")
+                coordinates = coordinates.getJSONArray(0).getJSONArray(0)
+                for (j in 0 until coordinates.length()) {
+                    lon += coordinates[j].toString().split(",").toTypedArray()[0].replace("[", "")
+                        .toDouble()
+                    lat += coordinates[j].toString().split(",").toTypedArray()[1].replace("]", "")
+                        .toDouble()
+                }
+                count += coordinates.length().toDouble()
+                index++
+            }
+            lon /= count
+            lat /= count
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+        val la = lat.toString()
+        val lo = lon.toString()
+        return "$la,$lo"
+    }
+
+
     fun addRasterDCCBLayer(mMap: MapboxMap, maDCCB: String) {
         GlobalVariables.id = maDCCB
 //        MyApplication.getInstance().trackEvent(

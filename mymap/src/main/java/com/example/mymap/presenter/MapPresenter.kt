@@ -1,4 +1,6 @@
+import android.util.Log
 import androidx.annotation.NonNull
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.mymap.LayerMap.ChangeMap
 import com.example.mymap.utils.GlobalVariables
@@ -8,13 +10,21 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MapPresenter()  {
-
-
+    private var listener: MapPresenterListener? = null
     fun getDigitalLandMapinfo(
         point: LatLng,
         activity: FragmentActivity?,
     ) {
         getDigitalLandMapinfoByLink(point, activity)
+    }
+
+    fun MapPresenter(fragment: Fragment) {
+        // set null or default listener or accept as argument to constructor
+        listener = fragment as MapPresenterListener
+    }
+
+    fun setCustomObjectListener(listener: MapPresenterListener?) {
+        this.listener = listener
     }
 
 
@@ -70,6 +80,22 @@ class MapPresenter()  {
 //        DemoFragment().getInfo(planningInfo)
 //    }
 
+    fun searchIDSuccess(body: PlanningInfo?) {
+//        MapPresenter.listenerForActivity.onClickMap()
+        Log.d("huhu","123")
+        GlobalVariables.landInfoBDSListener.onClickMap()
+        GlobalVariables.landInfoBDSListener.onLoadLandInfoSuccess(body)
+        listener?.onSearchSuccess()
+//        MapPresenter.listener.onLoadLandInfoSuccess(body)
+//        MapPresenter.collapse()
+    }
 
+    fun searchIDFail(s: String, activity: FragmentActivity?) {
+        ChangeMap().showInfoNoData(activity!!)
+    }
+
+    interface MapPresenterListener {
+        fun onSearchSuccess()
+    }
 }
 

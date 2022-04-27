@@ -41,7 +41,7 @@ class LandSearchFragment : Fragment() {
         tabLayout!!.getTabAt(0)!!.text = getString(R.string.tim_toa_do)
         tabLayout!!.getTabAt(1)!!.text = getString(R.string.tim_land_id)
 
-        tabLayout!!.tabGravity = TabLayout.GRAVITY_FILL
+        tabLayout!!.tabGravity = TabLayout.GRAVITY_CENTER
 
         val adapter = PagerAdapter(requireActivity().supportFragmentManager)
         viewPager!!.adapter = adapter

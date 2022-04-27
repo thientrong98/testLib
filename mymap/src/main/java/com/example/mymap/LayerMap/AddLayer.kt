@@ -5,6 +5,7 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentActivity
+import com.blankj.utilcode.util.ToastUtils
 import com.example.mymap.Helper.MapAddLayerBDSHelper
 import com.example.mymap.Helper.MapAddLayerHelper
 import com.example.mymap.R
@@ -109,7 +110,7 @@ class AddLayer {
 
     fun onLoadLandInfoSuccess(body: PlanningInfo,activity: FragmentActivity?) {
         if (GlobalVariables.mMap == null) {
-//            ToastUtils.showLong(R.string.txt_loi_thu_lai)
+            ToastUtils.showLong(R.string.txt_loi_thu_lai)
             return
         }
         try {
