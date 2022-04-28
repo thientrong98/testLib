@@ -16,6 +16,7 @@ import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.example.mymap.R
 import com.example.mymap.utils.GlobalVariables
+import kotlinx.coroutines.*
 import java.util.*
 
 
@@ -62,11 +63,16 @@ class LandIDSearchFragment : Fragment() {
             onClick(view, "txtChooseProvince")
         }
         txtChooseDistrict.setOnClickListener {
-            onClick(view, "txtChooseDistrict")
+            if (txtChooseProvince.text.equals("")){
+                ToastUtils.showShort("Vui lòng chọn tỉnh trước")
+            }else{
+                onClick(view, "txtChooseDistrict")
+            }
         }
 
         txtChooseWard.setOnClickListener {
-            onClick(view, "txtChooseWard")
+            if (!txtChooseProvince.text.equals("") && !txtChooseDistrict.text.equals(""))
+            onClick(view, "txtChooseWard") else  ToastUtils.showShort("Vui lòng chọn tỉnh/thành và quận/huyện trước")
         }
 
         txtSearch.setOnClickListener {
@@ -82,7 +88,6 @@ class LandIDSearchFragment : Fragment() {
             }
 
             "txtChooseDistrict" -> {
-                Log.d("haha", "1233")
                 showPopUp(view, false, false)
             }
 
@@ -154,8 +159,25 @@ class LandIDSearchFragment : Fragment() {
 
             var index: Int = GlobalVariables.provinceName!!.indexOf(menuItem.title)
             if (index != null) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    suspend {
+                        val resultGetDistrict: Deferred<List<Province.Quanhuyen>?> = async {  DistrictWard().getDistrictWardById(GlobalVariables.provinceID[index])}
+                        var list   = resultGetDistrict.await()
+                        delay(1000)
+                        Log.d("haha", list?.size.toString())
+                        if(GlobalVariables.districtName != null){
+                            txtChooseDistrict.text = GlobalVariables.districtName[0]
+                        }
 
-                DistrictWard().getDistrictWardById(GlobalVariables.provinceID[index])
+                        if (GlobalVariables.wardName != null) {
+                            txtChooseWard.text = GlobalVariables.wardName.first().first()
+                        }
+                    }.invoke()
+
+//                    Log.d("haha", (GlobalVariables.districtName != null).toString())
+                }
+
+
 
 //                if(GlobalVariables.districtName.isNotEmpty()){
 //                    txtChooseDistrict.text = GlobalVariables.districtName[0].toString()

@@ -43,7 +43,8 @@ class DistrictWard {
         })
     }
 
-     fun getDistrictWardById(id:String){
+    suspend  fun getDistrictWardById(id:String) : List<Province.Quanhuyen>?{
+         var list: List<Province.Quanhuyen>? = null
         val search: Call<Province> =
             ApiHelper().getInfoProvinceService()!!.getDistrict(id)
 
@@ -52,12 +53,9 @@ class DistrictWard {
                 call: Call<Province>,
                 response: Response<Province?>
             ) {
-                Log.d("haah",search.request().toString())
-
-                Log.d("haah",response.code().toString())
-
                 if(response.code() == 200  ){
                     val resource: List<Province.Quanhuyen> = response.body()!!.quanhuyen
+                    list = resource
 
 //                    GlobalVariables.provinceID =
 //                        arrayOfNulls<String>(resource!!.size)
@@ -94,6 +92,7 @@ class DistrictWard {
                             GlobalVariables.wardId[i][j] = DatumWardList.ma
                         }
                     }
+
                 }
             }
 
@@ -101,7 +100,11 @@ class DistrictWard {
                 ToastUtils.showLong("Lỗi lấy thông tin Tỉnh/Thành, vui lòng thử lại sau!");
             }
         })
-    }
+
+        Log.d("haha1",list?.size.toString())
+         return list
+
+     }
 
 
     fun getDistrictWardId() {

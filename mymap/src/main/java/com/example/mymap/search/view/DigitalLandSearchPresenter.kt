@@ -17,13 +17,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DigitalLandSearchPresenter {
-//    private var listener: LoadPlanningInfoListener? = null
-//    private var service: PlanningInfoService? = null
-//    fun DigitalLandSearchPresenter(listener: LoadPlanningInfoListener?) {
-//        this.listener = listener
-//        service = ApiHelper().getPlanningInfoService()
-//    }
-
     fun searchPlanningInfoByID(ID: String, activity: FragmentActivity?) {
 
         val searchPlanningInfo: Call<PlanningInfo?>? = ApiHelper().getPlanningInfoService()?.getPlanningInfoByLandId(ID)
