@@ -2,6 +2,7 @@ package com.example.mymap.utils;
 
 
 import com.example.mymap.listener.LandInfoBDSListener;
+import com.example.mymap.listener.SearchListener;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 
 import org.json.JSONArray;
@@ -30,6 +31,7 @@ public class GlobalVariables {
     public static int temp = 0;
     public static String id;
     public static LandInfoBDSListener landInfoBDSListener = null;
+    public static SearchListener listener;
     public static String[][] wardName;
     public static String[][] wardId;
     public static String[] districtName;

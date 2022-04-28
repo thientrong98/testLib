@@ -3,6 +3,7 @@ import android.graphics.Color
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.ToastUtils
@@ -139,6 +140,8 @@ class AddLayer {
 
    private fun onLandZoomed(coordinate: String?) {
         try {
+
+
             val landCoordinate = JSONArray(coordinate).getJSONArray(0).getJSONArray(0)
             GlobalVariables.mMap.animateCamera(
                 CameraUpdateFactory.newLatLngBounds(

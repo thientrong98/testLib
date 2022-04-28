@@ -106,7 +106,7 @@ class QHPKAdapter(context: Context?, quyHoachList: List<QHPK>, QHNs: List<QHNgan
             viewHolder.fl_stt!!.setBackgroundColor(getColorWithAlpha(Color.WHITE, 0.5f))
             changeTextColor(viewHolder, Color.WHITE)
             convertView!!.setOnClickListener {
-                MapPresenter().showInfoOChucNang(
+                MapPresenter(null).showInfoOChucNang(
                     QHPK.getProperties()!!.gid
                 )
             }

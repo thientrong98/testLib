@@ -25,29 +25,24 @@ class DigitalLandSearchPresenter {
 //    }
 
     fun searchPlanningInfoByID(ID: String, activity: FragmentActivity?) {
-//        MyApplication.getInstance().trackEvent(
-//            "FIND_LAND", MyApplication.CLIENT_ID,
-//            MyApplication.CURRENT_LOCATION.toString() + "::" + ID
-//        )
+
         val searchPlanningInfo: Call<PlanningInfo?>? = ApiHelper().getPlanningInfoService()?.getPlanningInfoByLandId(ID)
         searchPlanningInfo?.enqueue(object : Callback<PlanningInfo?> {
             override fun onResponse(
                 @NonNull call: Call<PlanningInfo?>,
                 @NonNull response: Response<PlanningInfo?>
             ) {
-                Log.d("haha", searchPlanningInfo.request().toString())
-                Log.d("haha",response.code().toString())
                 if (response.code() == 200 && response.body() != null && response.body()?.thongTinChung !=("{}")
                 ) {
+                    MapPresenter(null).searchIDSuccess(response.body())
                     AddLayer().onLoadLandInfoSuccess(response.body()!!, activity)
-                    MapPresenter().searchIDSuccess(response.body())
                 } else {
-                    MapPresenter().searchIDFail("",activity)
+                    MapPresenter(null).searchIDFail("",activity)
                 }
             }
 
             override fun onFailure(@NonNull call: Call<PlanningInfo?>, @NonNull t: Throwable) {
-                MapPresenter().searchIDFail("",activity)
+                MapPresenter(null).searchIDFail("",activity)
             }
         })
     }

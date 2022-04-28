@@ -72,8 +72,6 @@ class LandIDSearchFragment : Fragment() {
         txtSearch.setOnClickListener {
             onClick(view, "search")
         }
-
-
         return view
     }
 

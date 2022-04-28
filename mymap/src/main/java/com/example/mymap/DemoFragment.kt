@@ -1,4 +1,6 @@
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.mymap.R
 import com.example.mymap.listener.LandInfoBDSListener
+import com.example.mymap.listener.SearchListener
 import com.example.mymap.utils.Constants
 import com.example.mymap.utils.GlobalVariables
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -18,7 +21,7 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.rasterOpacity
 
 
-class DemoFragment() : Fragment(), OnMapReadyCallback {
+class DemoFragment() : Fragment(), OnMapReadyCallback,SearchListener {
 
     private lateinit var btnSo: Button
     private lateinit var btnGiay: Button
@@ -106,16 +109,17 @@ class DemoFragment() : Fragment(), OnMapReadyCallback {
         DistrictWard().getProvince()
 
 
-
+//        mapPresenter = MapPresenter(null)
 //        mapPresenter?.setCustomObjectListener(object : MapPresenter.MapPresenterListener {
 //            override fun onSearchSuccess() {
-//                AddLayer().removeBDSLayers()
+//                Log.d("huhu", "345")
+////                AddLayer().removeBDSLayers()
 ////        mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_EXPANDED
-//                llFrameInfo.visibility = View.VISIBLE
-//                llFrameSearch.visibility = View.GONE
-//                if (GlobalVariables.bottom_sheet_height < 130) {
-//                    GlobalVariables.bottom_sheet_height = containerBottomSheet.height
-//                }
+////                llFrameInfo.visibility = View.VISIBLE
+////                llFrameSearch.visibility = View.GONE
+////                if (GlobalVariables.bottom_sheet_height < 130) {
+////                    GlobalVariables.bottom_sheet_height = containerBottomSheet.height
+////                }
 //
 ////        GlobalVariables.landInfoBDSListener.onClickMap()
 //            }
@@ -144,12 +148,12 @@ class DemoFragment() : Fragment(), OnMapReadyCallback {
         btnSearch.setOnClickListener {
             AddLayer().removeBDSLayers()
             GlobalVariables.mMap.removeAnnotations()
-            isSearch = !isSearch
-            if (!isSearch) {
+//            if (!isSearch) {
+//                isSearch = !isSearch
                 mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_EXPANDED
                 llFrameInfo.visibility = View.GONE
                 llFrameSearch.visibility = View.VISIBLE
-            }
+//            }
         }
 
         btnTransparent.setOnClickListener {
@@ -246,7 +250,7 @@ class DemoFragment() : Fragment(), OnMapReadyCallback {
         }
 
         GlobalVariables.landInfoBDSListener.onClickMap()
-        Thread { MapPresenter().getDigitalLandMapinfo(point, activity) }.start()
+        Thread { MapPresenter(null).getDigitalLandMapinfo(point, activity) }.start()
         return false;
     }
 
@@ -300,17 +304,21 @@ class DemoFragment() : Fragment(), OnMapReadyCallback {
     }
 
 
-     fun onSearchS() {
+    override fun onSearchSuccess() {
         AddLayer().removeBDSLayers()
-//        mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_EXPANDED
+        mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_EXPANDED
         llFrameInfo.visibility = View.VISIBLE
         llFrameSearch.visibility = View.GONE
         if (GlobalVariables.bottom_sheet_height < 130) {
             GlobalVariables.bottom_sheet_height = containerBottomSheet.height
         }
 
+        Log.d("hihi",GlobalVariables.bottom_sheet_height.toString())
+
 //        GlobalVariables.landInfoBDSListener.onClickMap()
     }
+
+
 
 //    override fun onDraggerViewClick() {
 //        if (mBottomSheetBehavior!!.state === BottomSheetBehavior.STATE_COLLAPSED) {
