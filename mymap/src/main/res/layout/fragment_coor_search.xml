@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#E5EFEFF4">
+    android:background="#E5EFEFF4"
+    android:isScrollContainer="true">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -40,7 +41,7 @@
 
             </LinearLayout>
 
-            <view class="androidx.appcompat.app.AlertController$RecycleListView"
+            <view class="androidx.recyclerview.widget.RecyclerView"
                 android:id="@+id/recycler_view_coordinate"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -91,43 +92,42 @@
                         android:layout_marginRight="17dp"
                         android:textSize="19dp"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:baselineAligned="false">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:baselineAligned="false">-->
 
-                    <LinearLayout
-                        android:id="@+id/formImportFile"
-                        android:layout_width="0dp"
-                        android:layout_height="54dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_gravity="center"
-                        android:background="#14747480"
-                        android:orientation="horizontal"
-                        tools:ignore="UseCompoundDrawables"
-                        android:layout_margin="10dp"
-                        android:weightSum="10">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="54dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@string/nhap_tap_tin"
-                            android:layout_weight="9"
-                            android:textColor="#007AFF"
-                            android:textSize="17dp"
-                            android:gravity="left|center"/>
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/formImportFile"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="54dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:background="#14747480"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        tools:ignore="UseCompoundDrawables"-->
+<!--                        android:layout_margin="10dp"-->
+<!--                        android:weightSum="10">-->
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="54dp"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:text="@string/nhap_tap_tin"-->
+<!--                            android:layout_weight="9"-->
+<!--                            android:textColor="#007AFF"-->
+<!--                            android:textSize="17dp"-->
+<!--                            android:gravity="left|center"/>-->
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:src="@drawable/ic_input_file"
-                            tools:ignore="ContentDescription" />
+<!--                        <ImageView-->
+<!--                            android:layout_width="30dp"-->
+<!--                            android:layout_height="30dp"-->
+<!--                            android:src="@drawable/ic_input_file"-->
+<!--                            tools:ignore="ContentDescription" />-->
 
-                    </LinearLayout>
-                </LinearLayout>
+<!--                    </LinearLayout>-->
+<!--                </LinearLayout>-->
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

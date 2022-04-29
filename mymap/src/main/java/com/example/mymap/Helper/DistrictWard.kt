@@ -92,7 +92,6 @@ class DistrictWard {
                             GlobalVariables.wardId[i][j] = DatumWardList.ma
                         }
                     }
-
                 }
             }
 
@@ -103,7 +102,6 @@ class DistrictWard {
 
         Log.d("haha1",list?.size.toString())
          return list
-
      }
 
 

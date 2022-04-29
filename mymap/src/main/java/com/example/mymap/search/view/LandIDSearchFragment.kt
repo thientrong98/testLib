@@ -171,6 +171,7 @@ class LandIDSearchFragment : Fragment() {
 
                         if (GlobalVariables.wardName != null) {
                             txtChooseWard.text = GlobalVariables.wardName.first().first()
+                            wardID = GlobalVariables.wardId.first().first()
                         }
                     }.invoke()
 

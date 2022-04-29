@@ -14,6 +14,7 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.res.TypedArrayUtils.getText
+import androidx.core.view.marginLeft
 import androidx.fragment.app.FragmentActivity
 import com.example.mymap.R
 import com.example.mymap.utils.GlobalVariables
@@ -35,22 +36,17 @@ class ChangeMap {
         val popupView: View = inflater.inflate(R.layout.popup_window, null)
         val width = LinearLayout.LayoutParams.MATCH_PARENT
         val height = LinearLayout.LayoutParams.WRAP_CONTENT
-        val focusable = true // lets taps outside the popup also dismiss it
+        val focusable = true
         val popupWindow = PopupWindow(popupView, width, height, focusable)
         popupWindow.showAtLocation(activity.window.decorView.rootView, Gravity.TOP, 0, 0)
         val tvError = popupView.findViewById<View>(R.id.tv_error_popup) as TextView
         val ivClose = popupView.findViewById<View>(R.id.im_close_popup) as ImageView
-        val ivFeedback = popupView.findViewById<View>(R.id.iv_feedback) as ImageView
         if (str == 0) {
             tvError.text = "Thửa đất thuộc khu vực chưa được lập Quy hoạch Phân khu."
         } else if (str == 1) {
             tvError.text = "Không tìm thấy số tờ, số thửa bạn nhập. Vui lòng thử tìm kiếm bằng tọa độ góc ranh. Xin cảm ơn."
         }
         ivClose.setOnClickListener { popupWindow.dismiss() }
-        ivFeedback.setOnClickListener {
-            popupWindow.dismiss()
-//            onLoadFormFeedBack()
-        }
     }
 
 
