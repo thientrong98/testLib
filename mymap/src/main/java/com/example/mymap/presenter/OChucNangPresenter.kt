@@ -1,5 +1,6 @@
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.annotation.NonNull
 import com.example.mymap.Retrofit.OChucNangInfoService
 import retrofit2.Call
@@ -40,6 +41,7 @@ class OChucNangPresenter(landInfoFragment: LandInfoFragment) {
                 @NonNull call: Call<List<ChiTieuHonHop>>,
                 @NonNull response: Response<List<ChiTieuHonHop>>
             ) {
+//                Log.d("huuhuh", ocn.request().toString())
                 val chiTieuHonHops: List<ChiTieuHonHop?>? = response.body()
                 if (response.body() != null && response.code() == 200) {
                     listener.onLoadChiTieuHonHopSucess(chiTieuHonHops)

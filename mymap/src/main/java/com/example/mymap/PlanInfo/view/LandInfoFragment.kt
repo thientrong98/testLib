@@ -623,7 +623,7 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         onClickOChucNang(oChucNang.ranh)
     }
 
-    override fun onLoadOChucNangFailure(string: String?) {
+    override fun onLoadOChucNangFailure(message: String?) {
 //        if (!LocationHelper.isNetworkConnected(LandInfoFragment.context)) {
 //            Toast.makeText(this.activity, getString(R.string.no_connect_error), Toast.LENGTH_SHORT)
 //                .show()
@@ -637,7 +637,14 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         fillTableChiTieuHonHon(chiTieuHonHops!!)
     }
 
-    override fun onLoadChiTieuHonHopFailure(string: String?) {
+    override fun onLoadChiTieuHonHopFailure(message: String?) {
+//        if (!LocationHelper.isNetworkConnected(LandInfoFragment.context)) {
+//            Toast.makeText(this.activity, getString(R.string.no_connect_error), Toast.LENGTH_SHORT)
+//                .show()
+//        } else {
+//            Toast.makeText(this.activity, message, Toast.LENGTH_SHORT).show()
+//        }
+        indicator.visibility = View.GONE
     }
 
     override fun onPopup() {
