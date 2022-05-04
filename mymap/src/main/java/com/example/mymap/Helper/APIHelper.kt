@@ -1,3 +1,4 @@
+import com.example.mymap.Retrofit.OChucNangInfoService
 
 class ApiHelper {
     private val API_HCM_URL_NEW: String = "https://thongtinquyhoach.hochiminhcity.gov.vn/"
@@ -26,6 +27,13 @@ private val API_PROVINCE: String ="https://gis.rteknetwork.com"
         return RetrofitClient.getClient(API_PROVINCE)
             .create(
                 PlanningInfoService::class.java
+            )
+    }
+
+    fun getOChucNang930Service(): OChucNangInfoService {
+        return RetrofitClient.getClient(API_930_URL)
+            .create(
+                OChucNangInfoService::class.java
             )
     }
 
