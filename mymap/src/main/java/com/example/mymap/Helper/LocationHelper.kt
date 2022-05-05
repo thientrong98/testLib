@@ -77,4 +77,22 @@ class LocationHelper {
         return position
     }
 
+    fun isLatArrayValid(latArr: DoubleArray): Boolean {
+        for (i in latArr.indices) {
+            if (latArr[i] < 0) {
+                return false
+            }
+        }
+        return true
+    }
+
+    fun isLngArrayValid(lngArr: DoubleArray): Boolean {
+        for (i in lngArr.indices) {
+            if (lngArr[i] < 0) {
+                return false
+            }
+        }
+        return true
+    }
+
 }

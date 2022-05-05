@@ -19,7 +19,8 @@ class MainActivity : AppCompatActivity() {
             "FG_TTQH_SO",
             "BG_NEN_BAN_DO",
             null,
-            null
+            null,
+            "vi"
         )
         supportFragmentManager
             .beginTransaction()

@@ -1,7 +1,7 @@
 package com.example.mymap.search.view
 
-import AddLayer
 import DistrictWard
+import Province
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -30,6 +30,7 @@ class LandIDSearchFragment : Fragment() {
     private lateinit var formMaOPho: LinearLayout
     private var wardID = ""
     private lateinit var txtSearch: TextView
+    private lateinit var txtRewrite: TextView
     private lateinit var edtMaLoDat: EditText
     private lateinit var edtSoTo: EditText
     private lateinit var edtSoThua: EditText
@@ -54,6 +55,7 @@ class LandIDSearchFragment : Fragment() {
         formSoThua = view.findViewById(R.id.formSoThua)
         formSoTo = view.findViewById(R.id.formSoTo)
         txtSearch = view.findViewById(R.id.txtSearch)
+        txtRewrite = view.findViewById(R.id.txtRewrite)
         edtMaLoDat = view.findViewById(R.id.edtMaLoDat)
         edtSoTo = view.findViewById(R.id.edtSoTo)
         edtSoThua = view.findViewById(R.id.edtSoThua)
@@ -78,7 +80,20 @@ class LandIDSearchFragment : Fragment() {
         txtSearch.setOnClickListener {
             onClick(view, "search")
         }
+
+        txtRewrite.setOnClickListener{
+            onRewrite()
+        }
         return view
+    }
+
+    private fun onRewrite() {
+        wardID = ""
+        edtSoTo.setText("")
+        edtSoThua.setText("")
+        txtChooseDistrict.text = ""
+        txtChooseWard.text = ""
+        txtChooseProvince.text = ""
     }
 
     private fun onClick(view: View, type: String) {

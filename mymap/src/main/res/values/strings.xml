@@ -1243,7 +1243,7 @@
     <string name="txt_loi_thu_lai">Lỗi, vui lòng thử lại sau</string>
     <string name="txt_loi_duong">Không tìm thấy đường </string>
     <string name="txt_get_file">Chọn file txt chứa toạ độ</string>
-    <string name="txt_toado">Vui lòng nhập ít nhất 1 cặp toạ độ</string>
+    <string name="txt_toado">Vui lòng nhập ít nhất 4 cặp toạ độ</string>
     <string name="txt_loi_luu">Lỗi xảy ra khi lưu tệp tin, vui lòng khởi động lại ứng dụng</string>
     <string name="txt_save_at">Đã lưu tại </string>
     <string name="txt_ma_lo">"Vui lòng nhập mã lô đất</string>

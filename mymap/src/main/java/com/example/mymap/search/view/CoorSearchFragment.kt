@@ -2,12 +2,15 @@ package com.example.mymap.search.view
 
 import CoordinateAdapter
 import CoordinateItem
+import CoordinateSeachPresenter
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,10 +19,11 @@ import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.example.mymap.Helper.Extension
 import com.example.mymap.R
 import org.json.JSONArray
 
-class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener {
+class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener, CoordinateSeachPresenter.Callback {
     private var coordinateItems: ArrayList<CoordinateItem>? = null
     private var adapter: CoordinateAdapter? = null
     var unbinder: Unbinder? = null
@@ -60,7 +64,7 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
         return view
     }
 
-    private fun searchLandCoordinate(edtXs: List<String>, edtYs: List<String>) {
+    private fun searchLandCoordinate(edtXs: List<String?>, edtYs: List<String?>) {
         var isEmpty = false
         for (i in edtXs.indices) {
             if (edtXs[i] == "" || edtYs[i] == "") {
@@ -73,18 +77,21 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
         } else {
             val presenter = CoordinateSeachPresenter(this)
             if (edtXs.size > 3) {
-                val coors: JSONArray = presenter.toJSONArray(edtXs, edtYs)
+                val coors: JSONArray = presenter.toJSONArray(edtXs, edtYs)!!
                 if (coors != null) {
+                    Extension().hideKeyboard(view)
+
 //                    MyApplication.getInstance().trackEvent(
 //                        "FIND_COORDS", MyApplication.CLIENT_ID,
 //                        MyApplication.CURRENT_LOCATION.toString() + "::" + coors.toString()
 //                    )
-                    val digitalLandSearchPresenter = DigitalLandSearchPresenter(this)
+                    val digitalLandSearchPresenter = DigitalLandSearchPresenter()
                     digitalLandSearchPresenter.searchPlanningInfoByCoordinate(coors.toString())
                 }
-            } else {
-                presenter.searchCoordinate(activity, edtXs, edtYs)
             }
+            //            else {
+//                presenter.searchCoordinate(activity, edtXs, edtYs)
+//            }
         }
     }
 
@@ -93,15 +100,15 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
             ToastUtils.showLong(getString(R.string.no_connect_error))
             return
         }
-        val x: MutableList<String?> = java.util.ArrayList()
-        val y: MutableList<String?> = java.util.ArrayList()
+        val x: ArrayList<String?> = java.util.ArrayList()
+        val y: ArrayList<String?> = java.util.ArrayList()
         for (a in adapter!!.getCoordinateItems()) {
             if (a.getCoordinateX()!!.isNotEmpty() && a.getCoordinateY()!!.isNotEmpty()) {
                 x.add(a.getCoordinateX())
                 y.add(a.getCoordinateY())
             }
         }
-        if (x.size < 1 || y.size < 1) {
+        if (x.size < 4 || y.size < 4) {
             ToastUtils.showLong(R.string.txt_toado)
             return
         }
@@ -115,6 +122,8 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
         }
         adapter = CoordinateAdapter(coordinateItems!!, this)
         recyclerViewCoordinate.adapter = adapter
+
+        Extension().hideKeyboard(view)
     }
 
     override fun onAddedRowCoor() {
@@ -127,6 +136,9 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
     override fun onRemoveRowAt(index: Int) {
         adapter!!.notifyItemRemoved(index)
         adapter!!.notifyItemRangeChanged(index, adapter!!.getCoordinateItems().size)
+    }
+
+    override fun needDrawSketchLayer(B: DoubleArray?, L: DoubleArray?) {
     }
 
 }

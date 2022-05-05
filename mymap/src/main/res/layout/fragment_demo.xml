@@ -48,30 +48,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/transparent" />
 
-        <LinearLayout
-            android:id="@+id/ll_seekbar"
-            android:layout_gravity="top|end"
-            android:layout_width="45dp"
-            android:layout_height="220dp"
-            android:layout_marginTop="175dp"
-            android:background="@drawable/new_bg_land_info"
-            android:layout_marginRight="18dp"
-            android:visibility="gone">
 
-            <SeekBar
-                android:id="@+id/seek_bar_layer_opacity"
-                android:layout_width="200dp"
-                android:layout_height="218dp"
-                android:layout_gravity="bottom|center"
-                android:max="100"
-                android:progress="100"
-                android:rotation="270"
-                android:visibility="visible"
-                android:layout_marginLeft="-78dp"
-                android:outlineSpotShadowColor="#007AFF"
-                android:progressTint="#007AFF"
-                android:thumbTint="#007AFF"/>
-        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/containerBottomSheet"
@@ -120,5 +97,30 @@
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_seekbar"
+            android:layout_gravity="top|end"
+            android:layout_width="45dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="175dp"
+            android:background="@drawable/new_bg_land_info"
+            android:layout_marginRight="18dp"
+            android:visibility="gone">
+
+            <SeekBar
+                android:id="@+id/seek_bar_layer_opacity"
+                android:layout_width="200dp"
+                android:layout_height="218dp"
+                android:layout_gravity="bottom|center"
+                android:max="100"
+                android:progress="100"
+                android:rotation="270"
+                android:visibility="visible"
+                android:layout_marginLeft="-78dp"
+                android:outlineSpotShadowColor="#007AFF"
+                android:progressTint="#007AFF"
+                android:thumbTint="#007AFF"/>
+        </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </FrameLayout>

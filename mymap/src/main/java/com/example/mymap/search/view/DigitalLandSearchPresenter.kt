@@ -5,13 +5,9 @@ import ApiHelper
 import MapPresenter
 import PlanningInfo
 import PlanningInfoService
-import android.util.Log
 import androidx.annotation.NonNull
 import androidx.fragment.app.FragmentActivity
-import com.example.mymap.Helper.MapAddLayerHelper
 import com.example.mymap.utils.GlobalVariables
-import org.json.JSONArray
-import org.json.JSONException
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -36,6 +32,32 @@ class DigitalLandSearchPresenter {
 
             override fun onFailure(@NonNull call: Call<PlanningInfo?>, @NonNull t: Throwable) {
                 MapPresenter(null).searchIDFail("",activity)
+            }
+        })
+    }
+
+    fun searchPlanningInfoByCoordinate(coordinate: String?) {
+        val searchPlanninginfo: Call<PlanningInfo?>? =
+            if (GlobalVariables.getCurrentLanguage.equals("vi")) {
+                ApiHelper().getPlanningInfoService()!!.getPlanningInfoByCoordinate(coordinate)
+            } else {
+                ApiHelper().getPlanningInfoService()!!.getPlanningInfoByCoordinateEnglish(coordinate)
+            }
+        searchPlanninginfo?.enqueue(object : Callback<PlanningInfo?> {
+            override fun onResponse(
+                @NonNull call: Call<PlanningInfo?>,
+                @NonNull response: Response<PlanningInfo?>
+            ) {
+                if (response.code() == 200 && response.body() != null && response.body()!!.thongTinChung != "{}"
+                ) {
+                    MapPresenter(null).searchIDSuccess(response.body())
+                } else {
+                    MapPresenter(null).searchIDFail("",null)
+                }
+            }
+
+            override fun onFailure(@NonNull call: Call<PlanningInfo?>, @NonNull t: Throwable) {
+                MapPresenter(null).searchIDFail("",null)
             }
         })
     }
