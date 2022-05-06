@@ -11,12 +11,10 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
-import com.example.mymap.Helper.BottomSheetHelper
 import com.example.mymap.Helper.MapAddLayerHelper
 import com.example.mymap.R
 import com.example.mymap.listener.LandInfoBDSListener
@@ -91,6 +89,8 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
     private lateinit var txtTypeChitieu:TextView
     private lateinit var llChitieu:LinearLayout
 
+    private var listener: OnDraggerView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DemoFragment().setActivityListener(this)
@@ -100,11 +100,16 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         }
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+//        this.listener = context as OnDraggerView
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_land_info, container, false)
+
 
         tvTinh = view.findViewById(R.id.tvTinh)
         tvQuan = view.findViewById(R.id.tvQuan)
@@ -189,7 +194,6 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         }
 
         btnDownloadPDF.setOnClickListener{
-            Log.d("huhu","123")
             var  bottomSheetHelper: BottomSheetHelper = BottomSheetHelper()
             activity?.let { it1 -> bottomSheetHelper.show(it1.supportFragmentManager, "createpost") }
         }
@@ -236,6 +240,9 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
 //        LandInfoFragment.landID = ttc.getMathuadat()
         var ttc =
             gson.fromJson(planningInfo!!.thongTinChung, ThongTinChung::class.java)
+        var jsonString = """{"soto":${ttc.soto},"sothua":${ttc.sothua}}""";
+        GlobalVariables.planningInfo =jsonString
+
         landRanh = ttc.ranh
         if (planningInfo.qHPK != "[]") {
             fillQHPK(gson.fromJson(planningInfo.qHPK, Array<QHPK>::class.java).toList())
@@ -671,4 +678,6 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         ivClose.setOnClickListener { popupWindow.dismiss() }
 
     }
+
+
 }

@@ -1,7 +1,6 @@
 import android.app.Activity
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.ToastUtils
-import com.example.mymap.Helper.BottomSheetHelper
 import com.example.mymap.R
 import com.example.mymap.listener.LandInfoBDSListener
 import com.example.mymap.listener.SearchListener
@@ -25,8 +23,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.rasterOpacity
 
-
-class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
+class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener{
 
     private lateinit var btnSo: Button
     private lateinit var btnGiay: Button
@@ -59,6 +56,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
     private var isClickLocation: Boolean = false
     private var mBottomSheetBehavior: BottomSheetBehavior<FrameLayout>? = null
     private var mapPresenter: MapPresenter? = null
+    private var createPostListener: CreatePostListener? = null
 
     companion object {
         fun newInstance(
@@ -82,15 +80,15 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             data.putString("tileSatellite", tileSatellite)
             data.putParcelable("location", location)
             data.putString("language", language)
-            GlobalVariables.bottomSheetlistener = activity as BottomSheetHelper.CreatePostListener
 
             return DemoFragment().apply {
+                GlobalVariables.activity = activity
                 arguments = data
             }
         }
     }
 
-    fun setActivityListener(activityListener: LandInfoBDSListener?) {
+    fun setActivityListener(activityListener: LandInfoFragment?) {
         GlobalVariables.landInfoBDSListener = activityListener
     }
 
@@ -116,6 +114,8 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             location = it.getParcelable("location")!!
             GlobalVariables.getCurrentLanguage =
                 if (it.getString("language").isNullOrEmpty()) it.getString("language") else "vi"
+
+
         }
         DistrictWard().getProvince()
 
@@ -188,7 +188,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
                 btnLocation.setImageResource(R.drawable.new_bg_location_color)
                 ToastUtils.showLong(getText(R.string.txt_noti_gps))
                 if (!location.latitude.equals(null) && !location.longitude.equals(null)) {
-                    if ( mBottomSheetBehavior?.state == BottomSheetBehavior.STATE_EXPANDED){
+                    if (mBottomSheetBehavior?.state == BottomSheetBehavior.STATE_EXPANDED) {
                         mBottomSheetBehavior?.state = BottomSheetBehavior.STATE_COLLAPSED
                     }
                     GlobalVariables.mMap.animateCamera(
@@ -257,7 +257,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             .zoom(zoomMap)
             .build()
         ChangeLayer().changeMapBackground(styleBGMapFirst, null)
-//        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
+        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
 
         mapboxMap.addOnMapClickListener { point ->
             onMapClick(point, activity)
@@ -342,8 +342,6 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             GlobalVariables.bottom_sheet_height = containerBottomSheet.height
         }
 
-        Log.d("hihi", GlobalVariables.bottom_sheet_height.toString())
-
 //        GlobalVariables.landInfoBDSListener.onClickMap()
     }
 
@@ -355,6 +353,12 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
 //            mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_COLLAPSED
 //        }
 //    }
+
+    interface CreatePostListener {
+        fun sendDataSuccess(info: String?)
+    }
+
+
 }
 
 

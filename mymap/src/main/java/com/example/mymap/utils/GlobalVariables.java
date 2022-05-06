@@ -1,17 +1,14 @@
 package com.example.mymap.utils;
-
+import android.app.Activity;
+import android.location.GnssAntennaInfo;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.mymap.Helper.BottomSheetHelper;
 import com.example.mymap.listener.LandInfoBDSListener;
 import com.example.mymap.listener.SearchListener;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
-
 import org.json.JSONArray;
-
 import java.util.ArrayList;
-
 
 public class GlobalVariables {
     public static Constants.Style currentBackgroud = Constants.Style.BG_NEN_BAN_DO;
@@ -41,6 +38,6 @@ public class GlobalVariables {
     public static String[] districtId;
     public static String[] provinceName;
     public static String[] provinceID;
-    public static BottomSheetHelper.CreatePostListener bottomSheetlistener;
-
+    public static Activity activity= null;
+    public static String planningInfo;
 }
