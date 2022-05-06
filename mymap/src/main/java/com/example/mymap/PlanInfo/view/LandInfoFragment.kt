@@ -11,10 +11,12 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import com.example.mymap.Helper.BottomSheetHelper
 import com.example.mymap.Helper.MapAddLayerHelper
 import com.example.mymap.R
 import com.example.mymap.listener.LandInfoBDSListener
@@ -184,6 +186,12 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
             btnDownloadPDF.visibility = View.VISIBLE
 //            checkInfo = 0
             onClickBackLandInfo(landRanh)
+        }
+
+        btnDownloadPDF.setOnClickListener{
+            Log.d("huhu","123")
+            var  bottomSheetHelper: BottomSheetHelper = BottomSheetHelper()
+            activity?.let { it1 -> bottomSheetHelper.show(it1.supportFragmentManager, "createpost") }
         }
 
         setUpListView()

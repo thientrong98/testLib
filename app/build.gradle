@@ -75,7 +75,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation project(':mymap')
-//    implementation 'com.github.thientrong98:testLib:1.0.9'
+//    implementation 'com.github.thientrong98:testLib:1.0.11'
 
     implementation 'com.google.android.gms:play-services-location:19.0.1'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.5'

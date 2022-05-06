@@ -1,6 +1,9 @@
 package com.example.mymap.utils;
 
 
+import androidx.fragment.app.Fragment;
+
+import com.example.mymap.Helper.BottomSheetHelper;
 import com.example.mymap.listener.LandInfoBDSListener;
 import com.example.mymap.listener.SearchListener;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
@@ -38,6 +41,6 @@ public class GlobalVariables {
     public static String[] districtId;
     public static String[] provinceName;
     public static String[] provinceID;
-
+    public static BottomSheetHelper.CreatePostListener bottomSheetlistener;
 
 }

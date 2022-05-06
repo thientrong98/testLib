@@ -1,3 +1,4 @@
+import android.app.Activity
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
@@ -8,6 +9,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.ToastUtils
+import com.example.mymap.Helper.BottomSheetHelper
 import com.example.mymap.R
 import com.example.mymap.listener.LandInfoBDSListener
 import com.example.mymap.listener.SearchListener
@@ -70,7 +72,8 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             bgMapFirst: String,
             tileBaseMap: String?,
             tileSatellite: String?,
-            language: String?
+            language: String?,
+            activity: Activity
         ): DemoFragment {
             val data = Bundle()
             data.putString("fgMapFirst", fgMapFirst)
@@ -79,6 +82,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             data.putString("tileSatellite", tileSatellite)
             data.putParcelable("location", location)
             data.putString("language", language)
+            GlobalVariables.bottomSheetlistener = activity as BottomSheetHelper.CreatePostListener
 
             return DemoFragment().apply {
                 arguments = data

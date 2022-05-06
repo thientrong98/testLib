@@ -1267,4 +1267,5 @@
     <string name="txt_error_get_o_chuc_nang">Có lỗi xảy ra trong quá trình xử lý. Vui lòng thử lại sao.</string>
     <string name="txt_error_no_data">Thửa đất thuộc khu vực chưa được lập Quy hoạch Phân khu.</string>
     <string name="txt_error_street">Vui lòng nhập tên đường</string>
+    <string name="txt_createPost">Tạo bài đăng</string>
 </resources>
