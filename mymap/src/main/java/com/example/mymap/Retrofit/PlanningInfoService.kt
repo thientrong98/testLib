@@ -1,4 +1,6 @@
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.*
 import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
@@ -28,29 +30,18 @@ interface PlanningInfoService {
     @POST("/api/doan/ranhqhpk/en")
     fun getQHPKEnglish(@FieldMap params: Map<String, Double>): Call<ArrayList<QHPK?>?>?
 
-//    @FormUrlEncoded
-//    @POST("/api/doan/caodonen")
-//    fun getCaoDoNenInfo(
-//        @Field("Lat") lat: Double?,
-//        @Field("Lon") lng: Double?
-//    ): Call<ArrayList<MaDoAnCDN?>?>?
-//
-//    @FormUrlEncoded
-//    @POST("/api/doan/caodonen/en")
-//    fun getCaoDoNenInfoEnglish(
-//        @Field("Lat") lat: Double?,
-//        @Field("Lon") lng: Double?
-//    ): Call<ArrayList<MaDoAnCDN?>?>?
-//
-//    @GET
-//    fun getCaoDoNenSoInfo(@Url url: String?): Call<CaoDoNenSo?>?
-
     @FormUrlEncoded
     @POST("/computing/930/api/v3.1/a-z/all")
     fun getPlanningInfoByLatLng(
         @Field("Lat") lat: Double?,
         @Field("Lon") lng: Double?
     ): Call<PlanningInfo?>?
+
+//    @Headers("Content-Type: application/json")
+//    @POST("https://gis.rteknetwork.com/computing/toado")
+//    fun getPlanningInfoByLatLng(
+//        @Body request: HashMap<String, Double>
+//    ): Call<PlanningInfo?>?
 
     @FormUrlEncoded
     @POST("/computing/930/api/v3.1/a-z/all/en")

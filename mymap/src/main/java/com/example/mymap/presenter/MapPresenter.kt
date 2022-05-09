@@ -6,9 +6,13 @@ import com.example.mymap.LayerMap.ChangeMap
 import com.example.mymap.listener.SearchListener
 import com.example.mymap.utils.GlobalVariables
 import com.mapbox.mapboxsdk.geometry.LatLng
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class MapPresenter(fragment: Fragment?) {
     fun getDigitalLandMapinfo(
@@ -35,10 +39,16 @@ class MapPresenter(fragment: Fragment?) {
         point: LatLng,
         activity: FragmentActivity?,
     ) {
+        val map = HashMap<String, Double>()
+        map["lat"] = point.latitude
+        map["lng"] = point.longitude
+
         val searchPlanningInfo: Call<PlanningInfo?>? =
             if (GlobalVariables.getCurrentLanguage.equals("vi")) {
+//                ApiHelper().getPlanningInfoService()
+//                    ?.getPlanningInfoByLatLng(map)
                 ApiHelper().getPlanningInfoService()
-                    ?.getPlanningInfoByLatLng(point.latitude, point.longitude)
+                ?.getPlanningInfoByLatLng(point.latitude, point.longitude)
             } else {
                 ApiHelper().getPlanningInfoService()
                     ?.getPlanningInfoByLatLngEnglish(point.latitude, point.longitude)

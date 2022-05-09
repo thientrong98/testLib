@@ -237,10 +237,10 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
     }
 
     private fun fillPlanningInfo(planningInfo: PlanningInfo?) {
-//        LandInfoFragment.landID = ttc.getMathuadat()
         var ttc =
             gson.fromJson(planningInfo!!.thongTinChung, ThongTinChung::class.java)
-        var jsonString = """{"soto":${ttc.soto},"sothua":${ttc.sothua}}""";
+//        var jsonString = """{"soto":${ttc.soto},"sothua":${ttc.sothua}}""";
+        var jsonString = planningInfo!!.thongTinChung
         GlobalVariables.planningInfo =jsonString
 
         landRanh = ttc.ranh
