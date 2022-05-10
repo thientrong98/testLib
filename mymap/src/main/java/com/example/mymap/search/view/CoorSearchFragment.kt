@@ -1,16 +1,15 @@
 package com.example.mymap.search.view
 
+import AddLayer
 import CoordinateAdapter
 import CoordinateItem
 import CoordinateSeachPresenter
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,10 +19,13 @@ import butterknife.Unbinder
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.example.mymap.Helper.Extension
+import com.example.mymap.Helper.MapAddLayerHelper
 import com.example.mymap.R
+import com.example.mymap.utils.GlobalVariables
 import org.json.JSONArray
 
-class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener, CoordinateSeachPresenter.Callback {
+class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener,
+    CoordinateSeachPresenter.Callback {
     private var coordinateItems: ArrayList<CoordinateItem>? = null
     private var adapter: CoordinateAdapter? = null
     var unbinder: Unbinder? = null
@@ -46,16 +48,26 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
         txtRewrite = view.findViewById(R.id.txtRewrite)
         txtSearch = view.findViewById(R.id.txtSearch)
 
-        unbinder = ButterKnife.bind(this, view)
         val layoutManager = LinearLayoutManager(context)
         recyclerViewCoordinate.layoutManager = layoutManager
         recyclerViewCoordinate.setHasFixedSize(true)
         coordinateItems = java.util.ArrayList()
-        for (i in 0..3) {
-            coordinateItems!!.add(CoordinateItem(i, "", ""))
-        }
+//        for (i in 0..30) {
+//            coordinateItems!!.add(CoordinateItem(i, "", ""))
+//        }
+
+        coordinateItems!!.add(CoordinateItem(0, "1192173.70035635", "603274.689512241"))
+        coordinateItems!!.add(CoordinateItem(1, "1192151.96035533", "603254.799512424"))
+        coordinateItems!!.add(CoordinateItem(2, "1192190.70035625", "603256.379511523"))
+        coordinateItems!!.add(CoordinateItem(3, "1192173.70035635", "603274.689512241"))
+        coordinateItems!!.add(CoordinateItem(4, "", ""))
+        coordinateItems!!.add(CoordinateItem(5, "", ""))
+        coordinateItems!!.add(CoordinateItem(6, "", ""))
+        coordinateItems!!.add(CoordinateItem(7, "", ""))
+        coordinateItems!!.add(CoordinateItem(8, "", ""))
         adapter = CoordinateAdapter(coordinateItems!!, this)
         recyclerViewCoordinate.adapter = adapter
+        recyclerViewCoordinate.isNestedScrollingEnabled = false
         txtRewrite.setOnClickListener { onClickRewrite() }
         txtSearch.setOnClickListener {
             onClickSearch()
@@ -86,7 +98,7 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
 //                        MyApplication.CURRENT_LOCATION.toString() + "::" + coors.toString()
 //                    )
                     val digitalLandSearchPresenter = DigitalLandSearchPresenter()
-                    digitalLandSearchPresenter.searchPlanningInfoByCoordinate(coors.toString())
+                    digitalLandSearchPresenter.searchPlanningInfoByCoordinate(coors.toString(), activity)
                 }
             }
             //            else {
@@ -127,8 +139,6 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
     }
 
     override fun onAddedRowCoor() {
-        Log.d("huhuhu", "dang vao")
-        Log.d("huhuhu", adapter!!.itemCount.toString())
         recyclerViewCoordinate.smoothScrollToPosition(adapter!!.getCoordinateItems().size)
     }
 
@@ -139,6 +149,15 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
     }
 
     override fun needDrawSketchLayer(B: DoubleArray?, L: DoubleArray?) {
+        Log.d("huhu","vao ne")
+        if (GlobalVariables.mMap == null) {
+            ToastUtils.showLong(R.string.txt_loi_thu_lai)
+            return
+        }
+        AddLayer().removeBDGQHPK(GlobalVariables.mMap)
+        MapAddLayerHelper().drawSketchLayer(
+            GlobalVariables.mMap, B, L
+        )
     }
 
 }

@@ -18,7 +18,6 @@ class CoordinateAdapter(
 ) :
     RecyclerView.Adapter<CoordinateVH?>() {
     private val coordinateItems: ArrayList<CoordinateItem> = coordinateItems
-//    private val activity: Fragment = activity
     private val listener: AddRowCoodinateListener = activity as AddRowCoodinateListener
 
     @NonNull

@@ -4,48 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="false"
     android:orientation="vertical">
+
     <LinearLayout
         android:id="@+id/draggerView"
         android:layout_width="match_parent"
-        android:layout_gravity="center|top"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginBottom="4dp">
+        android:layout_gravity="center|top"
+        android:layout_marginBottom="4dp"
+        android:gravity="center">
+
         <LinearLayout
             android:layout_width="74dp"
             android:layout_height="5dp"
-            android:background="@drawable/new_bg_land_info"/>
+            android:background="@drawable/new_bg_land_info" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/new_bg_land_info">
+        android:background="@drawable/new_bg_land_info"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="@string/txt_search"
                 android:layout_marginLeft="18dp"
-                android:textStyle="bold"
-                android:textColor="#000000"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="22dp"/>
+                android:layout_marginBottom="22dp"
+                android:text="@string/txt_search"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="8dp"
-            android:background="#F5F5F5">
-        </LinearLayout>
+            android:background="#F5F5F5"></LinearLayout>
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
@@ -70,12 +73,11 @@
 
         </com.google.android.material.tabs.TabLayout>
 
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
     </LinearLayout>
-
-
 </LinearLayout>

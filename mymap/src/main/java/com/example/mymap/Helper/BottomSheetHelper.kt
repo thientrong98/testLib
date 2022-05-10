@@ -1,23 +1,43 @@
-import DemoFragment
-import android.content.Intent
+import android.app.Dialog
+import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.example.mymap.R
 import com.example.mymap.utils.GlobalVariables
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class BottomSheetHelper() : BottomSheetDialogFragment() {
+
+class BottomSheetHelper : BottomSheetDialogFragment() {
     private var unbinder: Unbinder? = null
     private lateinit var btnCreatePost: Button
     private lateinit var btnCancelDownload: Button
 
+    companion object {
+        fun newInstance(): BottomSheetHelper {
+            return BottomSheetHelper()
+        }
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
+        dialog.setOnShowListener { setupBottomSheet(it) }
+        return dialog
+    }
+
+    private fun setupBottomSheet(dialogInterface: DialogInterface) {
+        val bottomSheetDialog = dialogInterface as BottomSheetDialog
+        val bottomSheet = bottomSheetDialog.findViewById<View>(
+            com.google.android.material.R.id.design_bottom_sheet)
+            ?: return
+        bottomSheet.setBackgroundColor(Color.TRANSPARENT)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +59,7 @@ class BottomSheetHelper() : BottomSheetDialogFragment() {
 
         return view
     }
+
 
     private fun clickCreatePost() {
         try {

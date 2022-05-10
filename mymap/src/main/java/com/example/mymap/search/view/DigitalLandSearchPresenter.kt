@@ -5,6 +5,7 @@ import ApiHelper
 import MapPresenter
 import PlanningInfo
 import PlanningInfoService
+import android.util.Log
 import androidx.annotation.NonNull
 import androidx.fragment.app.FragmentActivity
 import com.example.mymap.utils.GlobalVariables
@@ -36,7 +37,7 @@ class DigitalLandSearchPresenter {
         })
     }
 
-    fun searchPlanningInfoByCoordinate(coordinate: String?) {
+    fun searchPlanningInfoByCoordinate(coordinate: String?,activity: FragmentActivity?) {
         val searchPlanninginfo: Call<PlanningInfo?>? =
             if (GlobalVariables.getCurrentLanguage.equals("vi")) {
                 ApiHelper().getPlanningInfoService()!!.getPlanningInfoByCoordinate(coordinate)
@@ -51,6 +52,7 @@ class DigitalLandSearchPresenter {
                 if (response.code() == 200 && response.body() != null && response.body()!!.thongTinChung != "{}"
                 ) {
                     MapPresenter(null).searchIDSuccess(response.body())
+                    AddLayer().onLoadLandInfoSuccess(response.body()!!, activity)
                 } else {
                     MapPresenter(null).searchIDFail("",null)
                 }

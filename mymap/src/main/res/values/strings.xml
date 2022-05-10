@@ -1120,7 +1120,7 @@
     <string name="text_download">Tải về dữ  liệu</string>
     <string name="text_introduction_download">Dữ liệu sẽ được gửi về\nđịa chỉ Email dưới đây</string>
     <string name="text_hind_fill_email">Nhập địa chỉ email</string>
-    <string name="text_cancel">Hủy</string>
+    <string name="text_cancel">Đóng</string>
     <string name="text_send">Gửi</string>
     <string name="text_error_emaill">Vui lòng nhập đúng định dạng email</string>
     <string name="title_cdngiay">Thông tin đồ án q.hoạch CDN</string>

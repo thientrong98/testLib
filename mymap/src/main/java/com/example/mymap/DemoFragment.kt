@@ -2,9 +2,11 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.MotionEventCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.ToastUtils
@@ -18,12 +20,14 @@ import com.mapbox.mapboxsdk.annotations.MarkerOptions
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.rasterOpacity
 
-class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener{
+
+class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
 
     private lateinit var btnSo: Button
     private lateinit var btnGiay: Button
@@ -157,7 +161,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener{
         btnLocation = view.findViewById(R.id.btn_location)
 
         btnSearch.setOnClickListener {
-            AddLayer().removeBDSLayers()
+//            AddLayer().removeBDSLayers()
 //            GlobalVariables.mMap.removeAnnotations()
 //            if (!isSearch) {
 //                isSearch = !isSearch
@@ -189,12 +193,26 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener{
                 ToastUtils.showLong(getText(R.string.txt_noti_gps))
                 if (!location.latitude.equals(null) && !location.longitude.equals(null)) {
                     if (mBottomSheetBehavior?.state == BottomSheetBehavior.STATE_EXPANDED) {
-                        mBottomSheetBehavior?.state = BottomSheetBehavior.STATE_COLLAPSED
+                        GlobalVariables.bottom_sheet_height = GlobalVariables.height / 3 * 2
+//                        mBottomSheetBehavior?.state = BottomSheetBehavior.STATE_COLLAPSED
+                    } else if (mBottomSheetBehavior?.state == BottomSheetBehavior.STATE_COLLAPSED) {
+                        GlobalVariables.bottom_sheet_height = GlobalVariables.height / 3
+                    } else {
+                        GlobalVariables.bottom_sheet_height = 0
                     }
+
                     GlobalVariables.mMap.animateCamera(
-                        CameraUpdateFactory.newLatLngZoom(
-                            location,
-                            18.0
+                        CameraUpdateFactory.newLatLngBounds(
+                            LatLngBounds.from(
+                                location.latitude + 0.001f,
+                                location.longitude + 0.001f,
+                                location.latitude - 0.001f,
+                                location.longitude - 0.001f
+                            ),
+                            110,
+                            110,
+                            110,
+                            GlobalVariables.bottom_sheet_height
                         ), 300
                     )
 
@@ -257,7 +275,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener{
             .zoom(zoomMap)
             .build()
         ChangeLayer().changeMapBackground(styleBGMapFirst, null)
-        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
+//        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
 
         mapboxMap.addOnMapClickListener { point ->
             onMapClick(point, activity)
@@ -267,6 +285,8 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener{
 
     private fun onMapClick(point: LatLng, activity: FragmentActivity?): Boolean {
         AddLayer().removeBDSLayers()
+        GlobalVariables.mMap.removeAnnotations()
+        btnSearch.setImageResource(R.drawable.ic_search_new)
         mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_EXPANDED
         llFrameInfo.visibility = View.VISIBLE
         llFrameSearch.visibility = View.GONE
@@ -307,6 +327,9 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener{
         mBottomSheetBehavior = BottomSheetBehavior.from(v)
         if (mBottomSheetBehavior != null) {
             mBottomSheetBehavior?.state = BottomSheetBehavior.STATE_HIDDEN
+
+//            mBottomSheetBehavior?.onInterceptTouchEvent(view,
+//            )
             mBottomSheetBehavior?.addBottomSheetCallback(object :
                 BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -325,10 +348,20 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener{
                 }
 
                 override fun onSlide(bottomSheet: View, slideOffset: Float) {
-//                    if (slideOffset == 0f && mBottomSheetBehavior.getState() === BottomSheetBehavior.STATE_DRAGGING) {
-//                        mBottomSheetBehavior.setPeekHeight(0)
-//                    }
+                    if (slideOffset == 0f && mBottomSheetBehavior!!.state === BottomSheetBehavior.STATE_DRAGGING) {
+                        mBottomSheetBehavior!!.peekHeight = 0
+                    }
+
+                    bottomSheet.setOnTouchListener { v, event ->
+                        val action = MotionEventCompat.getActionMasked(event)
+                        when (action) {
+                            MotionEvent.ACTION_DOWN -> false
+                            else -> true
+                        }
+                    }
                 }
+
+
             })
         }
     }
@@ -357,9 +390,10 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener{
     interface CreatePostListener {
         fun sendDataSuccess(info: String?)
     }
-
-
 }
+
+
+
 
 
 

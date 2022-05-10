@@ -1,3 +1,4 @@
+import DemoFragment.Companion.newInstance
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
@@ -54,7 +55,7 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
     private lateinit var btnDownloadPDF: ImageButton
     private lateinit var iv_legend: ImageView
     private lateinit var iv_legend_cn: ImageView
-    private lateinit var iv_legend_chitieu:ImageView
+    private lateinit var iv_legend_chitieu: ImageView
     private lateinit var includeLayoutLandInfo: FrameLayout
     private lateinit var includeLayoutQHPKInfo: FrameLayout
     private lateinit var includeLayoutOCNInfo: FrameLayout
@@ -85,9 +86,9 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
     private lateinit var trMatDo: TextView
 
     //chi tieu quy hoach
-    private lateinit var tlChitieu:LinearLayout
-    private lateinit var txtTypeChitieu:TextView
-    private lateinit var llChitieu:LinearLayout
+    private lateinit var tlChitieu: LinearLayout
+    private lateinit var txtTypeChitieu: TextView
+    private lateinit var llChitieu: LinearLayout
 
     private var listener: OnDraggerView? = null
 
@@ -104,6 +105,7 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         super.onAttach(context)
 //        this.listener = context as OnDraggerView
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -156,9 +158,9 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         trTangCao = view.findViewById(R.id.tr_tang_cao)
         trChieuCao = view.findViewById(R.id.tr_chieu_cao)
 
-        tlChitieu= view.findViewById(R.id.tl_chitieu)
-        txtTypeChitieu= view.findViewById(R.id.txt_type_chitieu)
-        llChitieu= view.findViewById(R.id.ll_chitieu)
+        tlChitieu = view.findViewById(R.id.tl_chitieu)
+        txtTypeChitieu = view.findViewById(R.id.txt_type_chitieu)
+        llChitieu = view.findViewById(R.id.ll_chitieu)
 
 
         iv_legend.setOnClickListener {
@@ -193,9 +195,16 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
             onClickBackLandInfo(landRanh)
         }
 
-        btnDownloadPDF.setOnClickListener{
-            var  bottomSheetHelper: BottomSheetHelper = BottomSheetHelper()
-            activity?.let { it1 -> bottomSheetHelper.show(it1.supportFragmentManager, "createpost") }
+        btnDownloadPDF.setOnClickListener {
+            var bottomSheetHelper: BottomSheetHelper = BottomSheetHelper()
+            activity?.let { it1 ->
+//                bottomSheetHelper.show(
+//                    it1.supportFragmentManager,
+//                    "createpost"
+//                )
+                val bottomSheetDialog: BottomSheetHelper = BottomSheetHelper.newInstance()!!
+                bottomSheetDialog.show(it1.supportFragmentManager, "Bottom Sheet Dialog Fragment")
+            }
         }
 
         setUpListView()
@@ -239,11 +248,19 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
     private fun fillPlanningInfo(planningInfo: PlanningInfo?) {
         var ttc =
             gson.fromJson(planningInfo!!.thongTinChung, ThongTinChung::class.java)
-//        var jsonString = """{"soto":${ttc.soto},"sothua":${ttc.sothua}}""";
-        var jsonString = planningInfo!!.thongTinChung
-        GlobalVariables.planningInfo =jsonString
 
         landRanh = ttc.ranh
+
+//        var jsonString = """{"soto":${ttc.soto},"sothua":${ttc.sothua}}""";
+        var getData = gson.fromJson(planningInfo!!.thongTinChung, ThongTinChung::class.java)
+
+        getData.dsttdoan.clear()
+        getData.dsdoan.clear()
+        getData.ranh = ""
+
+        var jsonString = gson.toJson(getData)
+        GlobalVariables.planningInfo = jsonString
+
         if (planningInfo.qHPK != "[]") {
             fillQHPK(gson.fromJson(planningInfo.qHPK, Array<QHPK>::class.java).toList())
         }
@@ -254,10 +271,6 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
                 Array<QHPK>::class.java
             ).toList()
         )
-
-        //        if(!planningInfo.getQHNganh().equals("[]")){
-//            fillQHN(Arrays.asList(gson.fromJson(planningInfo.getQHNganh(), QHNganh[].class)));
-//        }
 
         fillLoGioi(
             gson.fromJson(
@@ -490,6 +503,7 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         tvTangCao.text = "-"
         tvChieuCao.text = "-"
     }
+
     private fun setVisbilityoChucNang() {
         tvDanSo.visibility = View.VISIBLE
         trDanSo.visibility = View.VISIBLE
@@ -565,7 +579,7 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         }, 200)
     }
 
-    private  fun addEachCellTableChiTieu(
+    private fun addEachCellTableChiTieu(
         value: String?,
         linearLayout: LinearLayout,
         i: Int,
@@ -579,7 +593,7 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         paramsFrame.setMargins(0, 0, 0, 0)
         frameLayout.layoutParams = paramsFrame
         if (i % 2 == 0) {
-            frameLayout.background =  resources.getDrawable(R.drawable.boder_cell)
+            frameLayout.background = resources.getDrawable(R.drawable.boder_cell)
         } else {
             frameLayout.background = resources.getDrawable(R.drawable.boder_cell_color)
         }
@@ -597,7 +611,7 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         linearLayout.addView(frameLayout)
     }
 
-   private fun addEachRowTableChiTieu(chiTieuHonHops: List<ChiTieuHonHop?>, i: Int) { // TODO TRONG
+    private fun addEachRowTableChiTieu(chiTieuHonHops: List<ChiTieuHonHop?>, i: Int) { // TODO TRONG
         val linearLayout = LinearLayout(context)
         val paramsFrame = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 6.0f)
         linearLayout.layoutParams = paramsFrame
@@ -617,9 +631,9 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         tlChitieu.addView(linearLayout)
     }
 
-   private fun fillTableChiTieuHonHon(chiTieuHonHops: List<ChiTieuHonHop?>) {
+    private fun fillTableChiTieuHonHon(chiTieuHonHops: List<ChiTieuHonHop?>) {
         llChitieu.visibility = View.GONE
-       tlChitieu.removeAllViews()
+        tlChitieu.removeAllViews()
         if (chiTieuHonHops.size == 1) {
             llChitieu.visibility = View.VISIBLE
             txtTypeChitieu.setText(R.string.ctqhkt)
@@ -663,7 +677,8 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
     }
 
     override fun onPopup() {
-        val inflater = requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val inflater =
+            requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val popupView = inflater.inflate(R.layout.popup_window, null)
 
         val width = LinearLayout.LayoutParams.MATCH_PARENT

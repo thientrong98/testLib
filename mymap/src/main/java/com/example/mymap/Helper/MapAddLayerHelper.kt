@@ -2,13 +2,17 @@ package com.example.mymap.Helper
 
 import DCCucBo
 import LocationHelper
+import MapRemoveLayerHelper
+import android.app.Activity
 import android.graphics.Color
+import android.util.Log
 import com.example.mymap.utils.Constants
 import com.example.mymap.utils.Constants.qhpk_crop_url
 import com.example.mymap.utils.GlobalVariables
 import com.example.mymap.utils.GlobalVariables.count_id_layer
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.exceptions.InvalidLatLngBoundsException
+import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.style.layers.*
 import com.mapbox.mapboxsdk.style.sources.*
@@ -16,6 +20,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
+
 
 class MapAddLayerHelper {
     val id: String = ""
@@ -232,6 +237,8 @@ class MapAddLayerHelper {
     fun zoomToRaster(ranh: String?, mMap: MapboxMap) {
         try {
             //height = DeviceSizeHelper.getHeightScreen(this);
+                Log.d("ranh","123")
+                Log.d("ranh", ranh.toString())
             val coordinates = JSONArray(ranh)
             try {
                 if (coordinates.getJSONArray(0).length() > 1) {
@@ -303,5 +310,62 @@ class MapAddLayerHelper {
         }
     }
 
+    fun drawSketchLayer( map: MapboxMap, B: DoubleArray?, L: DoubleArray?) {
+        MapRemoveLayerHelper().removeSketchLayers(GlobalVariables.mMap)
+        if (B!!.isNotEmpty()) {
+            if (B.size == 1) {
+//                MapAddLayerHelper.addSymbolLayer(activity, map, B, L)
+            }
+            if (B.size == 2) {
+//                MapAddLayerHelper.addLineLayer(map, B, L)
+            }
+            if (B.size > 2) {
+                addFillLayer(map, B, L!!)
+            }
+//            MapPresenter.collapse()
+        }
+    }
 
+    private fun addFillLayer(map: MapboxMap, B: DoubleArray, L: DoubleArray) {
+        Log.d("huuh","vao ne nha")
+        try {
+            val polygonArray = JSONArray()
+            for (i in B.indices) {
+                val coord = JSONArray()
+                coord.put(L[i])
+                coord.put(B[i])
+                polygonArray.put(coord)
+            }
+            val feature = JSONObject()
+            feature.put("type", "Feature")
+            val geometry = JSONObject()
+            geometry.put("type", "MultiPolygon")
+            geometry.put("coordinates", JSONArray().put(JSONArray().put(polygonArray)))
+            feature.put("geometry", geometry)
+            feature.put("properties", JSONObject())
+            val source: Source = GeoJsonSource("sketch-source", feature.toString())
+            val layer = FillLayer("sketch-layer", "sketch-source")
+            layer.setProperties(
+                PropertyFactory.fillColor(Color.parseColor("#1666A8"))
+            )
+            map.getStyle {
+                try {
+                    it.addSource(source)
+                } catch (e: CannotAddSourceException) {
+                    e.printStackTrace()
+                }
+                if (it.getLayer("base-layer-so") != null) {
+                    it.addLayerBelow(layer, "base-layer-so")
+                }
+            }
+
+            map.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    LatLng(B[B.size - 1], L[L.size - 1]), 19.0
+                )
+            )
+        } catch (e: JSONException) {
+            e.printStackTrace()
+        }
+    }
 }

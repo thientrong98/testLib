@@ -165,11 +165,11 @@ class AddLayer {
         }
     }
 
-    private fun removeBDGQHPK(mMap: MapboxMap) {
-//        if (it == null) {
-//            ToastUtils.showLong(R.string.txt_loi_thu_lai)
-//            return
-//        }
+     fun removeBDGQHPK(mMap: MapboxMap) {
+        if (mMap == null) {
+            ToastUtils.showLong(R.string.txt_loi_thu_lai)
+            return
+        }
         val qhpkIDCurrent = GlobalVariables.qhpkIDCurrent
         val dccbCurrent = GlobalVariables.dccbCurrent
         //xoa het cac layer ban do giay
