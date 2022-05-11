@@ -1,239 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5EFEFF4"
+    android:background="@android:color/white"
     android:orientation="vertical">
-    <ScrollView
+
+    <!--    <ScrollView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content">-->
+
+    <!--        <LinearLayout-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="0dp"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:orientation="vertical">-->
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="3">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:gravity="start|center"
+            android:text="@string/txt_tinhthanh"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="#000000" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3"
-                android:background="#ffffff"
-                android:paddingTop="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+        <TextView
+            android:id="@+id/txtChooseProvince"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="2"
+            android:background="@drawable/background_spinner"
+            android:gravity="center"
+            android:hint="@string/lua_chon"
+            android:textSize="18sp" />
+    </LinearLayout>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="start|center"
-                    android:text="@string/txt_tinhthanh"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColor="#000000" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="3">
 
-                <TextView
-                    android:id="@+id/txtChooseProvince"
-                    style="@style/Widget.AppCompat.Spinner.Underlined"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:hint="@string/lua_chon"
-                    android:textSize="18sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3"
-                android:background="#ffffff"
-                android:paddingTop="10dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="start|center"
+            android:text="@string/txt_khuvuc"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="#000000" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="start|center"
-                    android:text="@string/txt_khuvuc"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColor="#000000" />
+        <TextView
+            android:id="@+id/txtChooseDistrict"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="2"
+            android:background="@drawable/background_spinner"
+            android:gravity="center"
+            android:hint="@string/lua_chon"
+            android:textSize="18sp" />
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/txtChooseDistrict"
-                    style="@style/Widget.AppCompat.Spinner.Underlined"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:hint="@string/lua_chon"
-                    android:textSize="18sp" />
-            </LinearLayout>
+    <LinearLayout
+        android:id="@+id/formPhuongXa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="3">
 
-            <LinearLayout
-                android:id="@+id/formPhuongXa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3"
-                android:background="#ffffff"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="start|center"
+            android:text="@string/ph_ng_x"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="#000000" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="start|center"
-                    android:text="@string/ph_ng_x"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColor="#000000" />
-                <TextView
-                    android:id="@+id/txtChooseWard"
-                    style="@style/Widget.AppCompat.Spinner.Underlined"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:hint="@string/lua_chon"
-                    android:textSize="18sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/formSoThua"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:orientation="horizontal"
-                android:weightSum="3"
-                android:background="#ffffff"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+        <TextView
+            android:id="@+id/txtChooseWard"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="2"
+            android:background="@drawable/background_spinner"
+            android:gravity="center"
+            android:hint="@string/lua_chon"
+            android:textSize="18sp" />
+    </LinearLayout>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="start|center"
-                    android:text="@string/so_thuaa"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColor="#000000" />
-                <EditText
-                    android:id="@+id/edtSoThua"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="2"
-                    android:gravity="center|bottom"
-                    android:hint="@string/edt_so_thua"
-                    android:inputType="number"
-                    android:paddingEnd="40dp"
-                    android:paddingRight="40dp"
-                    android:textSize="18sp" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/formSoTo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:orientation="horizontal"
-                android:weightSum="3"
-                android:background="#ffffff"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+    <LinearLayout
+        android:id="@+id/formSoThua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="3">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="start|center"
-                    android:text="@string/so_too"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColor="#000000" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="start|center"
+            android:text="@string/so_thuaa"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="#000000" />
 
-                <EditText
-                    android:id="@+id/edtSoTo"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="2"
-                    android:gravity="center|bottom"
-                    android:hint="@string/edt_so_to"
-                    android:inputType="number"
-                    android:paddingEnd="40dp"
-                    android:paddingRight="40dp"
-                    android:textSize="18sp" />
-            </LinearLayout>
+        <EditText
+            android:id="@+id/edtSoThua"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="2"
+            android:autofillHints="@string/edt_so_thua"
+            android:background="@drawable/background_spinner"
+            android:gravity="center"
+            android:hint="@string/edt_so_thua"
+            android:inputType="number"
+            android:textSize="18sp" />
+    </LinearLayout>
 
-            <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/formMaOPho"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:orientation="horizontal"
-                android:weightSum="3">
+    <LinearLayout
+        android:id="@+id/formSoTo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="3">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="left|center"
-                    android:text="@string/txt_ma_lo_dat"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColor="#000000" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="start|center"
+            android:text="@string/so_too"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="#000000" />
 
-                <EditText
-                    android:id="@+id/edtMaLoDat"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="2"
-                    android:gravity="center|bottom"
-                    android:hint="@string/vd_1_2"
-                    android:paddingEnd="40dp"
-                    android:paddingRight="40dp"
-                    android:textSize="18sp" />
+        <EditText
+            android:id="@+id/edtSoTo"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_weight="2"
+            android:autofillHints="@string/edt_so_to"
+            android:background="@drawable/background_spinner"
+            android:gravity="center"
+            android:hint="@string/edt_so_to"
+            android:inputType="number"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/formMaOPho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:visibility="gone"
+        android:weightSum="3">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center"
+            android:text="@string/txt_ma_lo_dat"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/edtMaLoDat"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:autofillHints="@string/vd_1_2"
+            android:gravity="center|bottom"
+            android:hint="@string/vd_1_2"
+            android:inputType="text"
+            android:paddingEnd="40dp"
+            android:paddingRight="40dp"
+            android:textSize="18sp" />
 
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp">
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/txtRewrite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="49dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/nhap_lai"
-                    android:background="#FFFFFF"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColor="#007AFF"
-                    android:layout_marginLeft="17dp"
-                    android:textSize="19dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+       >
 
-                <TextView
-                    android:id="@+id/txtSearch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="49dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/tim_kiem"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColor="#FFFFFF"
-                    android:background="#007AFF"
-                    android:layout_marginLeft="17dp"
-                    android:layout_marginRight="17dp"
-                    android:textSize="19dp"/>
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        <TextView
+            android:id="@+id/txtRewrite"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_marginLeft="17dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_clear_button"
+            android:gravity="center"
+            android:text="@string/nhap_lai"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/blue"
+            android:textSize="19sp"
+            />
+
+        <TextView
+            android:id="@+id/txtSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:layout_marginLeft="17dp"
+            android:layout_marginRight="17dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_search_button"
+            android:gravity="center"
+            android:text="@string/tim_kiem"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="#FFFFFF"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+    <!--        </LinearLayout>-->
+    <!--    </ScrollView>-->
 
 </LinearLayout>

@@ -14,7 +14,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.ToastUtils
@@ -23,6 +22,7 @@ import com.example.mymap.Helper.MapAddLayerHelper
 import com.example.mymap.R
 import com.example.mymap.utils.GlobalVariables
 import org.json.JSONArray
+
 
 class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener,
     CoordinateSeachPresenter.Callback {
@@ -58,16 +58,16 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
 
         coordinateItems!!.add(CoordinateItem(0, "1192173.70035635", "603274.689512241"))
         coordinateItems!!.add(CoordinateItem(1, "1192151.96035533", "603254.799512424"))
-        coordinateItems!!.add(CoordinateItem(2, "1192190.70035625", "603256.379511523"))
-        coordinateItems!!.add(CoordinateItem(3, "1192173.70035635", "603274.689512241"))
-        coordinateItems!!.add(CoordinateItem(4, "", ""))
-        coordinateItems!!.add(CoordinateItem(5, "", ""))
-        coordinateItems!!.add(CoordinateItem(6, "", ""))
-        coordinateItems!!.add(CoordinateItem(7, "", ""))
-        coordinateItems!!.add(CoordinateItem(8, "", ""))
+//        coordinateItems!!.add(CoordinateItem(2, "1192190.70035625", "603256.379511523"))
+//        coordinateItems!!.add(CoordinateItem(3, "1192173.70035635", "603274.689512241"))
+//        coordinateItems!!.add(CoordinateItem(4, "", ""))
+//        coordinateItems!!.add(CoordinateItem(5, "", ""))
+//        coordinateItems!!.add(CoordinateItem(6, "", ""))
+//        coordinateItems!!.add(CoordinateItem(7, "", ""))
+//        coordinateItems!!.add(CoordinateItem(8, "", ""))
         adapter = CoordinateAdapter(coordinateItems!!, this)
         recyclerViewCoordinate.adapter = adapter
-        recyclerViewCoordinate.isNestedScrollingEnabled = false
+//        recyclerViewCoordinate.isNestedScrollingEnabled = true
         txtRewrite.setOnClickListener { onClickRewrite() }
         txtSearch.setOnClickListener {
             onClickSearch()
@@ -98,7 +98,10 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
 //                        MyApplication.CURRENT_LOCATION.toString() + "::" + coors.toString()
 //                    )
                     val digitalLandSearchPresenter = DigitalLandSearchPresenter()
-                    digitalLandSearchPresenter.searchPlanningInfoByCoordinate(coors.toString(), activity)
+                    digitalLandSearchPresenter.searchPlanningInfoByCoordinate(
+                        coors.toString(),
+                        activity
+                    )
                 }
             }
             //            else {
@@ -138,8 +141,33 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
         Extension().hideKeyboard(view)
     }
 
-    override fun onAddedRowCoor() {
-        recyclerViewCoordinate.smoothScrollToPosition(adapter!!.getCoordinateItems().size)
+    override fun onAddedRowCoor(index: Int) {
+//        recyclerViewCoordinate.smoothScrollToPosition(adapter!!.getCoordinateItems().size)
+//        adapter!!.notifyDataSetChanged()
+    }
+
+    override fun onAddedRowCoorUnder(index: Int) {
+        val oldListItemscount: Int = coordinateItems!!.size
+        val insertIndex = index + 1
+        coordinateItems!!.add(insertIndex, CoordinateItem(insertIndex, "", ""))
+        adapter!!.notifyItemInserted(insertIndex);
+
+//        for (i in (insertIndex+1 ) until coordinateItems!!.size) {
+//            coordinateItems!![i].setIndex(i + 1)
+//            coordinateItems!![i].setCoordinateX(coordinateItems!![i-1].getCoordinateX())
+//            coordinateItems!![i].setCoordinateY(coordinateItems!![i-1].getCoordinateX())
+////            adapter!!.notifyItemChanged(i)
+//        }
+        adapter!!.notifyItemChanged(oldListItemscount + 1, coordinateItems)
+
+//        for (i in coordinateItems!!.size - 1 downTo insertIndex + 1) {
+//            coordinateItems!![i].setCoordinateX(coordinateItems!![i - 1].getCoordinateX())
+//            coordinateItems!![i].setCoordinateY(coordinateItems!![i - 1].getCoordinateY())
+//        }
+//        adapter!!.notifyItemRangeChanged(index, coordinateItems!!.size);
+
+//        adapter!!.notifyItemRangeChanged(index,  coordinateItems!!.size)
+//        recyclerViewCoordinate.smoothScrollToPosition(adapter!!.getCoordinateItems().size)
     }
 
     @SuppressLint("LogNotTimber")
@@ -149,7 +177,7 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
     }
 
     override fun needDrawSketchLayer(B: DoubleArray?, L: DoubleArray?) {
-        Log.d("huhu","vao ne")
+        Log.d("huhu", "vao ne")
         if (GlobalVariables.mMap == null) {
             ToastUtils.showLong(R.string.txt_loi_thu_lai)
             return

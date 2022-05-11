@@ -3,26 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    android:background="#E5EFEFF4"
-    android:clickable="true"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:descendantFocusability="beforeDescendants"
-        android:focusableInTouchMode="true"
-        android:fitsSystemWindows="false"
-       >
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:focusable="true"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,16 +51,15 @@
                 android:id="@+id/recycler_view_coordinate"
                 class="androidx.recyclerview.widget.RecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_weight="1"
-                app:layout_behavior="com.example.mymap.Helper.LockableBottomSheetBehavior"
                 tools:listitem="@layout/item_coordinate" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#E5EFEFF4"
                 android:orientation="vertical">
+
 
                 <TextView
                     android:layout_width="match_parent"
@@ -77,7 +72,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -86,12 +81,12 @@
                         android:layout_height="49dp"
                         android:layout_marginLeft="17dp"
                         android:layout_weight="1"
-                        android:background="#FFFFFF"
+                        android:background="@drawable/bg_clear_button"
                         android:gravity="center"
                         android:text="@string/nhap_lai"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="#007AFF"
-                        android:textSize="19dp" />
+                        android:textSize="19sp" />
 
                     <TextView
                         android:id="@+id/txtSearch"
@@ -100,13 +95,17 @@
                         android:layout_marginLeft="17dp"
                         android:layout_marginRight="17dp"
                         android:layout_weight="1"
-                        android:background="#007AFF"
+                        android:background="@drawable/bg_search_button"
                         android:gravity="center"
                         android:text="@string/tim_kiem"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="#FFFFFF"
-                        android:textSize="19dp" />
+                        android:textSize="19sp" />
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

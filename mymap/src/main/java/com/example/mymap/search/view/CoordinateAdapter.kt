@@ -57,7 +57,7 @@ class CoordinateAdapter(
                         notifyItemInserted(position +1)
                         //                        Log.d("CoordinateAdapter", "onTextChanged = " + coordinateItems.size());
                         //holder.edtYCoordinate.removeTextChangedListener(this);
-                        listener.onAddedRowCoor()
+                        listener.onAddedRowCoor(position)
 //                        for (i in position + 1 until coordinateItems.size) {
 //                            notifyItemChanged(i + 1)
 //                        }
@@ -96,32 +96,34 @@ class CoordinateAdapter(
                 }
             }
         })
-        holder.icInsertUnder.setOnClickListener {    //TODO: TRONG: hơi khó hiểu một chút, có thể debug để xem cách chạy nhé
-            coordinateItems.add(position + 1, CoordinateItem(position + 1, "", ""))
-//            coordinateItems.add(CoordinateItem(position + 1, "", ""))
-            notifyItemInserted(position + 1)
-            listener.onAddedRowCoor()
-            for (i in position + 1 until coordinateItems.size) {
-                notifyItemChanged(i + 1)
-            }
+        holder.icInsertUnder.setOnClickListener {
+            Log.d("huhu", position.toString())
+//            coordinateItems.add(position + 1, CoordinateItem(position + 1, "", ""))
+//            notifyItemInserted(position + 1)
+            listener.onAddedRowCoorUnder(position)
+//
+//            for (i in position + 1 until coordinateItems.size) {
+//                notifyItemChanged(i + 1)
+//            }
+
 //            for (i in coordinateItems.size - 1 downTo position + 1) {
 //                coordinateItems[i].setCoordinateX(coordinateItems[i - 1].getCoordinateX())
 //                coordinateItems[i].setCoordinateY(coordinateItems[i - 1].getCoordinateY())
 //            }
-            coordinateItems[position ].setCoordinateX("")
-            coordinateItems[position ].setCoordinateY("")
+//            coordinateItems[position].setCoordinateX("")
+//            coordinateItems[position].setCoordinateY("")
         }
-        holder.icInsertAbove.setOnClickListener {    //TODO: TRONG: hơi khó hiểu một chút, có thể debug để xem cách chạy nhé
+        holder.icInsertAbove.setOnClickListener {
             if (position == 0) {
 
                 coordinateItems.add(CoordinateItem(0, "", ""))
                 notifyItemInserted(0)
-                listener.onAddedRowCoor()
+                listener.onAddedRowCoor(position)
             } else {
                 coordinateItems.add(position-1 ,CoordinateItem(position - 1, "", ""))
 //                coordinateItems.add(CoordinateItem(position - 1, "", ""))
                 notifyItemInserted(position-1)
-                listener.onAddedRowCoor()
+                listener.onAddedRowCoor(position)
                 for (i in 0 until coordinateItems.size) {
                     notifyItemChanged(i)
                 }
@@ -137,28 +139,17 @@ class CoordinateAdapter(
         }
     }
 
-//    val itemCount: Int
-//        get() = coordinateItems.size
-
     fun getCoordinateItems(): ArrayList<CoordinateItem> {
         return coordinateItems
     }
 
     interface AddRowCoodinateListener {
-        fun onAddedRowCoor() // listener de scroll down to bottom of list in CoorSearchFragment
+        fun onAddedRowCoor(index: Int)
+        fun onAddedRowCoorUnder(index: Int)
         fun onRemoveRowAt(index: Int)
     }
 
     override fun getItemCount() : Int {
         return coordinateItems.size
     }
-
-//    companion object {
-//        private var listener: AddRowCoodinateListener
-//    }
-
-    init {
-    }
-
-
 }

@@ -1,78 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/draggerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="74dp"
+        android:layout_height="5dp"
         android:layout_gravity="center|top"
         android:layout_marginBottom="4dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="@drawable/new_bg_land_info"
+        android:orientation="vertical" />
 
-        <LinearLayout
-            android:layout_width="74dp"
-            android:layout_height="5dp"
-            android:background="@drawable/new_bg_land_info" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/new_bg_land_info"
-        android:orientation="vertical">
+        android:background="@drawable/bg_search"
+        android:orientation="vertical"
+        >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:clickable="true"-->
+<!--            android:focusable="true">-->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="22dp"
+                android:layout_marginBottom="8dp"
                 android:text="@string/txt_search"
                 android:textColor="#000000"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="#007aff"
+            android:layout_gravity="center"
+            app:cardCornerRadius="20dp">
+
+            <com.google.android.material.tabs.TabLayout
+                app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                android:id="@+id/tabs"
+                app:tabIndicatorGravity="stretch"
+                app:tabMaxWidth="0dp"
+                app:tabGravity="fill"
+                app:tabMode="fixed"
+                app:tabIndicatorColor="#007aff"
+                app:tabSelectedTextColor="@android:color/white"
+                app:tabTextColor="#007aff"
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tab2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.tabs.TabLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <View
             android:layout_width="match_parent"
             android:layout_height="8dp"
-            android:background="#F5F5F5"></LinearLayout>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabGravity="fill"
-            app:tabIndicatorColor="#1666A8"
-            app:tabIndicatorHeight="4dp"
-            app:tabMaxWidth="0dp"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="#1666A8"
-            app:tabTextColor="@android:color/black">
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tab1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tab2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.tabs.TabLayout>
-
+            android:background="#F5F5F5"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"

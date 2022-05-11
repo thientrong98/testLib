@@ -5,6 +5,10 @@
       <map>
         <entry key="..\:/testLib/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/testLib/app/src/main/res/layout/fragment_map.xml" value="0.1" />
+        <entry key="..\:/testLib/mymap/src/main/res/drawable/background_spinner.xml" value="0.217" />
+        <entry key="..\:/testLib/mymap/src/main/res/drawable/bg_clear_button.xml" value="0.1945" />
+        <entry key="..\:/testLib/mymap/src/main/res/drawable/bg_search.xml" value="0.1385" />
+        <entry key="..\:/testLib/mymap/src/main/res/drawable/bg_search_button.xml" value="0.1945" />
         <entry key="..\:/testLib/mymap/src/main/res/drawable/boder_cell.xml" value="0.1" />
         <entry key="..\:/testLib/mymap/src/main/res/drawable/new_bg_gps.xml" value="0.2275" />
         <entry key="..\:/testLib/mymap/src/main/res/drawable/new_bg_land_info.xml" value="0.303" />
@@ -21,10 +25,10 @@
         <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_coor_search.xml" value="0.1" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_demo.xml" value="0.25" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_info.xml" value="0.16145833333333334" />
-        <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_land_id_search.xml" value="0.18541666666666667" />
+        <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_land_id_search.xml" value="0.1" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_land_info.xml" value="0.1" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_land_info2.xml" value="0.18" />
-        <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_land_search.xml" value="0.12658227848101267" />
+        <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_land_search.xml" value="0.1" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_legend_note.xml" value="0.1358695652173913" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_legent_chitieu.xml" value="0.1" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/fragment_o_chuc_nang.xml" value="0.25" />

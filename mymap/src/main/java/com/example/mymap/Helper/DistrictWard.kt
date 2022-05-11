@@ -5,11 +5,34 @@ import android.util.Log
 import androidx.annotation.NonNull
 import com.blankj.utilcode.util.ToastUtils
 import com.example.mymap.utils.GlobalVariables
+import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
 
 class DistrictWard {
+    fun getProvinceOffline() {
+        val data =
+            "[{\"ma\": \"46\",\"ten\": \"Tỉnh Thừa Thiên Huế\",\"cap\": \"tỉnh\"},{\"ma\": \"79\",\"ten\": \"Thành phố Hồ Chí Minh\",\"cap\": \"thành phố trung ương\"}]"
+        val gson = GsonBuilder().create()!!
+        val resource: List<Province> =
+            gson.fromJson(
+                data,
+                Array<Province>::class.java
+            ).toList()
+        GlobalVariables.provinceID =
+            arrayOfNulls<String>(resource.size)
+
+        GlobalVariables.provinceName =
+            arrayOfNulls<String>(resource.size)
+
+        for ((i, item) in resource.withIndex()) {
+            GlobalVariables.provinceID[i] = item.ma
+            GlobalVariables.provinceName[i] = item.ten
+        }
+    }
+
     fun getProvince() {
         val search: Call<List<Province>> =
             ApiHelper().getInfoProvinceService()!!.getProvince()
@@ -20,7 +43,7 @@ class DistrictWard {
                 response: Response<List<Province>?>
             ) {
 
-                if(response.code() == 200 && response.body()!!.isNotEmpty() ){
+                if (response.code() == 200 && response.body()!!.isNotEmpty()) {
                     val resource: List<Province>? = response.body()
 
                     GlobalVariables.provinceID =
@@ -29,11 +52,10 @@ class DistrictWard {
                     GlobalVariables.provinceName =
                         arrayOfNulls<String>(resource!!.size)
 
-                    for ((i, item )in resource!!.withIndex()){
+                    for ((i, item) in resource!!.withIndex()) {
                         GlobalVariables.provinceID[i] = item.ma
                         GlobalVariables.provinceName[i] = item.ten
                     }
-                    Log.d("haha", GlobalVariables.provinceID[2])
                 }
             }
 
@@ -43,8 +65,8 @@ class DistrictWard {
         })
     }
 
-    suspend  fun getDistrictWardById(id:String) : List<Province.Quanhuyen>?{
-         var list: List<Province.Quanhuyen>? = null
+    suspend fun getDistrictWardById(id: String): List<Province.Quanhuyen>? {
+        var list: List<Province.Quanhuyen>? = null
         val search: Call<Province> =
             ApiHelper().getInfoProvinceService()!!.getDistrict(id)
 
@@ -53,7 +75,7 @@ class DistrictWard {
                 call: Call<Province>,
                 response: Response<Province?>
             ) {
-                if(response.code() == 200  ){
+                if (response.code() == 200) {
                     val resource: List<Province.Quanhuyen> = response.body()!!.quanhuyen
                     list = resource
 
@@ -100,9 +122,9 @@ class DistrictWard {
             }
         })
 
-        Log.d("haha1",list?.size.toString())
-         return list
-     }
+        Log.d("haha1", list?.size.toString())
+        return list
+    }
 
 
     fun getDistrictWardId() {

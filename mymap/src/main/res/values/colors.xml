@@ -29,6 +29,7 @@
     <color name="activity_background">#E1E1E1</color>
     <color name="background_view_color">#99000000</color>
     <color name="color_tab_deseclect">#c4cbd7</color>
+    <color name="blue">#007aff</color>
 
     <!-- Light UI colors -->
     <color name="lt_yellow">#fce18a</color>

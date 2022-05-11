@@ -115,14 +115,14 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
                     "tileSatellite"
                 )
 
-            location = it.getParcelable("location")!!
+            location = it.getParcelable("" + "location")!!
             GlobalVariables.getCurrentLanguage =
-                if (it.getString("language").isNullOrEmpty()) it.getString("language") else "vi"
-
-
+                if (it.getString("language").isNullOrEmpty()) it.getString("language")
+                else "vi"
         }
-        DistrictWard().getProvince()
 
+//        DistrictWard().getProvince()
+        DistrictWard().getProvinceOffline()
 
 //        mapPresenter = MapPresenter(null)
 //        mapPresenter?.setCustomObjectListener(object : MapPresenter.MapPresenterListener {
