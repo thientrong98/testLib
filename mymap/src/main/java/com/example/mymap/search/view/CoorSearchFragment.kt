@@ -50,7 +50,8 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
 
         val layoutManager = LinearLayoutManager(context)
         recyclerViewCoordinate.layoutManager = layoutManager
-        recyclerViewCoordinate.setHasFixedSize(true)
+        (recyclerViewCoordinate.layoutManager as LinearLayoutManager).isAutoMeasureEnabled
+        recyclerViewCoordinate.setHasFixedSize(false)
         coordinateItems = java.util.ArrayList()
         for (i in 0..3) {
             coordinateItems!!.add(CoordinateItem(i, "", ""))
@@ -62,7 +63,7 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
 //        coordinateItems!!.add(CoordinateItem(3, "1192173.70035635", "603274.689512241"))
         adapter = CoordinateAdapter(coordinateItems!!, this)
         recyclerViewCoordinate.adapter = adapter
-//        recyclerViewCoordinate.isNestedScrollingEnabled = true
+        recyclerViewCoordinate.isNestedScrollingEnabled = true
         txtRewrite.setOnClickListener { onClickRewrite() }
         txtSearch.setOnClickListener {
             onClickSearch()
