@@ -14,7 +14,6 @@ class CoordinateItem {
         this.coordinateX = coordinateX
         this.coordinateY = coordinateY
     }
-
     constructor() {}
 
     fun getCoordinateX(): String? {
@@ -37,7 +36,8 @@ class CoordinateItem {
         this.index = index
     }
 
-    companion object {
-        const val index = 0
+    fun getIndex(): Int{
+        return index
     }
+
 }

@@ -52,19 +52,14 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
         recyclerViewCoordinate.layoutManager = layoutManager
         recyclerViewCoordinate.setHasFixedSize(true)
         coordinateItems = java.util.ArrayList()
-//        for (i in 0..30) {
-//            coordinateItems!!.add(CoordinateItem(i, "", ""))
-//        }
+        for (i in 0..3) {
+            coordinateItems!!.add(CoordinateItem(i, "", ""))
+        }
 
-        coordinateItems!!.add(CoordinateItem(0, "1192173.70035635", "603274.689512241"))
-        coordinateItems!!.add(CoordinateItem(1, "1192151.96035533", "603254.799512424"))
+//        coordinateItems!!.add(CoordinateItem(0, "1192173.70035635", "603274.689512241"))
+//        coordinateItems!!.add(CoordinateItem(1, "1192151.96035533", "603254.799512424"))
 //        coordinateItems!!.add(CoordinateItem(2, "1192190.70035625", "603256.379511523"))
 //        coordinateItems!!.add(CoordinateItem(3, "1192173.70035635", "603274.689512241"))
-//        coordinateItems!!.add(CoordinateItem(4, "", ""))
-//        coordinateItems!!.add(CoordinateItem(5, "", ""))
-//        coordinateItems!!.add(CoordinateItem(6, "", ""))
-//        coordinateItems!!.add(CoordinateItem(7, "", ""))
-//        coordinateItems!!.add(CoordinateItem(8, "", ""))
         adapter = CoordinateAdapter(coordinateItems!!, this)
         recyclerViewCoordinate.adapter = adapter
 //        recyclerViewCoordinate.isNestedScrollingEnabled = true
@@ -142,42 +137,14 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
     }
 
     override fun onAddedRowCoor(index: Int) {
-//        recyclerViewCoordinate.smoothScrollToPosition(adapter!!.getCoordinateItems().size)
-//        adapter!!.notifyDataSetChanged()
+        recyclerViewCoordinate.smoothScrollToPosition(index)
     }
 
-    override fun onAddedRowCoorUnder(index: Int) {
-        val oldListItemscount: Int = coordinateItems!!.size
-        val insertIndex = index + 1
-        coordinateItems!!.add(insertIndex, CoordinateItem(insertIndex, "", ""))
-        adapter!!.notifyItemInserted(insertIndex);
-
-//        for (i in (insertIndex+1 ) until coordinateItems!!.size) {
-//            coordinateItems!![i].setIndex(i + 1)
-//            coordinateItems!![i].setCoordinateX(coordinateItems!![i-1].getCoordinateX())
-//            coordinateItems!![i].setCoordinateY(coordinateItems!![i-1].getCoordinateX())
-////            adapter!!.notifyItemChanged(i)
-//        }
-        adapter!!.notifyItemChanged(oldListItemscount + 1, coordinateItems)
-
-//        for (i in coordinateItems!!.size - 1 downTo insertIndex + 1) {
-//            coordinateItems!![i].setCoordinateX(coordinateItems!![i - 1].getCoordinateX())
-//            coordinateItems!![i].setCoordinateY(coordinateItems!![i - 1].getCoordinateY())
-//        }
-//        adapter!!.notifyItemRangeChanged(index, coordinateItems!!.size);
-
-//        adapter!!.notifyItemRangeChanged(index,  coordinateItems!!.size)
-//        recyclerViewCoordinate.smoothScrollToPosition(adapter!!.getCoordinateItems().size)
-    }
-
-    @SuppressLint("LogNotTimber")
     override fun onRemoveRowAt(index: Int) {
-        adapter!!.notifyItemRemoved(index)
-        adapter!!.notifyItemRangeChanged(index, adapter!!.getCoordinateItems().size)
+        recyclerViewCoordinate.smoothScrollToPosition(index)
     }
 
     override fun needDrawSketchLayer(B: DoubleArray?, L: DoubleArray?) {
-        Log.d("huhu", "vao ne")
         if (GlobalVariables.mMap == null) {
             ToastUtils.showLong(R.string.txt_loi_thu_lai)
             return
