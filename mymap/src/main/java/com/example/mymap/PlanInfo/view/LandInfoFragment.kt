@@ -90,20 +90,9 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
     private lateinit var txtTypeChitieu: TextView
     private lateinit var llChitieu: LinearLayout
 
-    private var listener: OnDraggerView? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DemoFragment().setActivityListener(this)
-        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-//        this.listener = context as OnDraggerView
     }
 
     override fun onCreateView(
@@ -390,7 +379,6 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
 
     private fun showOQHPKInfo(ttc: ThongTinChung, i: Int) {
         includeLayoutLandInfo.visibility = View.GONE
-//        includeLayoutQHNInfo.setVisibility(View.GONE)
         includeLayoutOCNInfo.visibility = View.GONE
         includeLayoutQHPKInfo.visibility = View.VISIBLE
         btnBackToLandInfo.visibility = View.VISIBLE
@@ -409,8 +397,6 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         tvSoTo.text = "-"
         tvDienTich.text = "-"
         tvQHPK.text = "-"
-//        tvQHN.setText("-")
-//        QHNs.clear()
         QHPKs.clear()
         loGiois.clear()
         QHPKAdapter!!.notifyDataSetChanged()
@@ -482,7 +468,6 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
 
     private fun showOChucNangInfo(maQHPKSDD: String) {
         includeLayoutLandInfo.visibility = View.GONE
-//        includeLayoutQHNInfo.setVisibility(View.GONE)
         includeLayoutQHPKInfo.visibility = View.GONE
         includeLayoutOCNInfo.visibility = View.VISIBLE
         btnBackToLandInfo.visibility = View.VISIBLE
@@ -584,7 +569,7 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
         linearLayout: LinearLayout,
         i: Int,
         weight: Int
-    ) { // TODO TRONG
+    ) {
         val frameLayout = FrameLayout(requireContext())
         val paramsFrame = LinearLayout.LayoutParams(
             0, LinearLayout.LayoutParams.MATCH_PARENT,

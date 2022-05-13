@@ -1,8 +1,8 @@
-
+package com.example.mymap.search.presenter
 import LocationHelper
+import XY_BL_UTM
 import android.app.Activity
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.example.mymap.Converter.XYVN_2_BL84
 import com.example.mymap.R
 import com.example.mymap.search.view.CoorSearchFragment
@@ -68,7 +68,6 @@ class CoordinateSeachPresenter(coorSearchFragment: CoorSearchFragment) {
         edtsX: List<String>,
         edtsY: List<String>
     ) {
-//        MapPresenter.showBanDoGiayQHPK_1(10.872319264424483, 106.68529271571786);
         val XY = java.lang.reflect.Array.newInstance(
             String::class.java,
             *intArrayOf(edtsX.size, 2)
@@ -115,7 +114,6 @@ class CoordinateSeachPresenter(coorSearchFragment: CoorSearchFragment) {
         }
     }
 
-    //call back lai cho CoorSearchFragment la coor hop le
     interface Callback {
         fun needDrawSketchLayer(B: DoubleArray?, L: DoubleArray?)
     }

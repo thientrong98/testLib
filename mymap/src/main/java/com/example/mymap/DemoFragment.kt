@@ -1,6 +1,7 @@
 import android.app.Activity
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -160,6 +161,11 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
         seekBarLayerOpacity = view.findViewById(R.id.seek_bar_layer_opacity)
         btnLocation = view.findViewById(R.id.btn_location)
 
+        llFrameSearch.setOnClickListener {
+            Log.d("huhu","123")
+        }
+
+
         btnSearch.setOnClickListener {
 //            AddLayer().removeBDSLayers()
 //            GlobalVariables.mMap.removeAnnotations()
@@ -275,7 +281,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             .zoom(zoomMap)
             .build()
         ChangeLayer().changeMapBackground(styleBGMapFirst, null)
-//        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
+        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
 
         mapboxMap.addOnMapClickListener { point ->
             onMapClick(point, activity)
@@ -352,13 +358,13 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
                         mBottomSheetBehavior!!.peekHeight = 0
                     }
 
-                    bottomSheet.setOnTouchListener { v, event ->
-                        val action = MotionEventCompat.getActionMasked(event)
-                        when (action) {
-                            MotionEvent.ACTION_DOWN -> false
-                            else -> true
-                        }
-                    }
+//                    bottomSheet.setOnTouchListener { v, event ->
+//                        val action = MotionEventCompat.getActionMasked(event)
+//                        when (action) {
+//                            MotionEvent.ACTION_DOWN -> false
+//                            else -> true
+//                        }
+//                    }
                 }
 
 

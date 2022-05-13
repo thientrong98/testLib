@@ -26,7 +26,6 @@ class CoordinateVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 //        edtYCoordinate!!.hint = ""
 //        edtXCoordinate!!.isEnabled = false
 //        edtYCoordinate!!.isEnabled = false
-        Log.d("haah", gson.toJson(coordinateItems))
         edtXCoordinate.setText(coordinateItems.getCoordinateX().toString())
         edtYCoordinate.setText(coordinateItems.getCoordinateY().toString())
         txtRowNumber.text = (coordinateItems.getIndex() + 1).toString()

@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.example.mymap.R
+import com.example.mymap.search.presenter.DigitalLandSearchPresenter
 import com.example.mymap.utils.GlobalVariables
 import kotlinx.coroutines.*
 import java.util.*

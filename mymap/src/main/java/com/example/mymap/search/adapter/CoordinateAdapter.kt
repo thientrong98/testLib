@@ -1,3 +1,7 @@
+package com.example.mymap.search.adapter
+
+import CoordinateItem
+import CoordinateVH
 import android.annotation.SuppressLint
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,7 +15,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.example.mymap.R
 
 class CoordinateAdapter(
-  private var coordinateItems: ArrayList<CoordinateItem>,
+    private var coordinateItems: ArrayList<CoordinateItem>,
     activity: Fragment
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

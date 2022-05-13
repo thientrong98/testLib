@@ -1,11 +1,9 @@
-package com.example.mymap.search.view
+package com.example.mymap.search.presenter
 
 import AddLayer
 import ApiHelper
 import MapPresenter
 import PlanningInfo
-import PlanningInfoService
-import android.util.Log
 import androidx.annotation.NonNull
 import androidx.fragment.app.FragmentActivity
 import com.example.mymap.utils.GlobalVariables

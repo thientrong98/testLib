@@ -1,16 +1,16 @@
 package com.example.mymap.search.view
 
 import AddLayer
-import CoordinateAdapter
+import com.example.mymap.search.adapter.CoordinateAdapter
 import CoordinateItem
-import CoordinateSeachPresenter
-import android.annotation.SuppressLint
+import com.example.mymap.search.presenter.CoordinateSeachPresenter
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.MotionEventCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,9 +20,9 @@ import com.blankj.utilcode.util.ToastUtils
 import com.example.mymap.Helper.Extension
 import com.example.mymap.Helper.MapAddLayerHelper
 import com.example.mymap.R
+import com.example.mymap.search.presenter.DigitalLandSearchPresenter
 import com.example.mymap.utils.GlobalVariables
 import org.json.JSONArray
-
 
 class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener,
     CoordinateSeachPresenter.Callback {
@@ -34,8 +34,7 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
     private lateinit var txtSearch: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
+
     }
 
     override fun onCreateView(
@@ -53,7 +52,7 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
         (recyclerViewCoordinate.layoutManager as LinearLayoutManager).isAutoMeasureEnabled
         recyclerViewCoordinate.setHasFixedSize(false)
         coordinateItems = java.util.ArrayList()
-        for (i in 0..3) {
+        for (i in 0..300) {
             coordinateItems!!.add(CoordinateItem(i, "", ""))
         }
 
@@ -69,6 +68,13 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
             onClickSearch()
         }
 
+//        recyclerViewCoordinate.setOnTouchListener { view, event ->
+//            val action = MotionEventCompat.getActionMasked(event)
+//            when (action) {
+//                MotionEvent.ACTION_DOWN -> false
+//                else -> true
+//            }
+//        }
         return view
     }
 
@@ -88,11 +94,6 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
                 val coors: JSONArray = presenter.toJSONArray(edtXs, edtYs)!!
                 if (coors != null) {
                     Extension().hideKeyboard(view)
-
-//                    MyApplication.getInstance().trackEvent(
-//                        "FIND_COORDS", MyApplication.CLIENT_ID,
-//                        MyApplication.CURRENT_LOCATION.toString() + "::" + coors.toString()
-//                    )
                     val digitalLandSearchPresenter = DigitalLandSearchPresenter()
                     digitalLandSearchPresenter.searchPlanningInfoByCoordinate(
                         coors.toString(),
@@ -100,9 +101,6 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
                     )
                 }
             }
-            //            else {
-//                presenter.searchCoordinate(activity, edtXs, edtYs)
-//            }
         }
     }
 
