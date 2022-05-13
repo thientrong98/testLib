@@ -52,7 +52,7 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
         (recyclerViewCoordinate.layoutManager as LinearLayoutManager).isAutoMeasureEnabled
         recyclerViewCoordinate.setHasFixedSize(false)
         coordinateItems = java.util.ArrayList()
-        for (i in 0..300) {
+        for (i in 0..3) {
             coordinateItems!!.add(CoordinateItem(i, "", ""))
         }
 
