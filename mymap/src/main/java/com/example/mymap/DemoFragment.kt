@@ -9,6 +9,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.ToastUtils
+import com.example.mymap.Helper.Extension
 import com.example.mymap.R
 import com.example.mymap.listener.LandInfoBDSListener
 import com.example.mymap.listener.SearchListener
@@ -131,9 +132,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
         savedInstanceState: Bundle?
     ): View? {
 
-
         var view = inflater.inflate(R.layout.fragment_demo, container, false)
-        GlobalVariables.view = view
         configView(view)
 
         mapView = view.findViewById(R.id.mapview)
@@ -258,7 +257,8 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
         mapboxMap.uiSettings.isAttributionEnabled = false
         mapboxMap.uiSettings.isLogoEnabled = false
         mapboxMap.cameraPosition = CameraPosition.Builder()
-            .target(centerPoint)
+//            .target(centerPoint)
+            .target(Extension().checkProvinceLocation(location))
             .zoom(zoomMap)
             .build()
         ChangeLayer().changeMapBackground(styleBGMapFirst, null)

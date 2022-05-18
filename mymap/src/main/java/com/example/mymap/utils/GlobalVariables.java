@@ -7,8 +7,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.mymap.listener.LandInfoBDSListener;
 import com.example.mymap.listener.SearchListener;
+import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import org.json.JSONArray;
+
+import java.security.PublicKey;
 import java.util.ArrayList;
 
 public class GlobalVariables {
@@ -41,5 +44,12 @@ public class GlobalVariables {
     public static String[] provinceID;
     public static Activity activity= null;
     public static String planningInfo;
-    public static View view;
+
+    public static LatLng ws_hcm = new LatLng(10.315654, 106.381485);
+    public static LatLng ne_hcm = new LatLng(11.185870, 106.961014);
+    public static LatLng ws_hue = new LatLng(15.852214, 107.123233);
+    public static LatLng ne_hue = new LatLng(16.889496, 108.099844);
+    public static LatLng center_hue = new LatLng(16.463713, 107.590866);
+    public static LatLng center_hcm = new LatLng(10.762622, 106.660172);
+
 }
