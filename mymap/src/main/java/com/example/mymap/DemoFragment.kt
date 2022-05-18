@@ -3,11 +3,9 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.MotionEventCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.ToastUtils
@@ -30,29 +28,18 @@ import com.mapbox.mapboxsdk.style.layers.PropertyFactory.rasterOpacity
 
 class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
 
-    private lateinit var btnSo: Button
-    private lateinit var btnGiay: Button
-    private lateinit var btnNen: Button
-
-    private lateinit var btnBackgroundMap: ImageButton
     private lateinit var btnSearch: ImageButton
     private lateinit var btnTransparent: ImageButton
     private lateinit var btnLocation: ImageButton
-
     private lateinit var llFrameSearch: LinearLayout
     private lateinit var llFrameInfo: LinearLayout
     private lateinit var containerBottomSheet: FrameLayout
-
     private lateinit var llSeekbar: LinearLayout
     private lateinit var seekBarLayerOpacity: SeekBar
 
-    private var landInfoBDSListener: LandInfoBDSListener? = null
-
-    var mapView: MapView? = null
     private var centerPoint: LatLng = LatLng(10.7994064, 106.7116703)
     private lateinit var location: LatLng
     private var zoomMap: Double = 16.0
-
     private var styleFGMapFirst: String = "FG_TTQH_SO"
     private var styleBGMapFirst: String = "BG_NEN_BAN_DO"
     private lateinit var mMap: MapboxMap
@@ -62,6 +49,8 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
     private var mBottomSheetBehavior: BottomSheetBehavior<FrameLayout>? = null
     private var mapPresenter: MapPresenter? = null
     private var createPostListener: CreatePostListener? = null
+
+    var mapView: MapView? = null
 
     companion object {
         fun newInstance(
@@ -73,8 +62,8 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             location: LatLng,
             fgMapFirst: String,
             bgMapFirst: String,
-            tileBaseMap: String?,
-            tileSatellite: String?,
+            tileBaseMap: String,
+            tileSatellite: String,
             language: String?,
             activity: Activity
         ): DemoFragment {
@@ -104,15 +93,10 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             styleFGMapFirst = it.getString("fgMapFirst").toString()
             styleBGMapFirst = it.getString("bgMapFirst").toString()
             Constants.BG_NEN_BAN_DO =
-                if (it.getString("tileBaseMap")
-                        .isNullOrEmpty()
-                ) "mapbox://styles/tranthientrong/ckr0po0y67exw17rwcwg3ttrv" else it.getString(
-                    "tileBaseMap"
-                )
+                it.getString("tileBaseMap")
+
             Constants.BG_NEN_VE_TINH =
-                if (it.getString("tileSatellite")
-                        .isNullOrEmpty()
-                ) "mapbox://styles/tranthientrong/cl1x7xmkv001914ppuw0ne6et" else it.getString(
+                it.getString(
                     "tileSatellite"
                 )
 
@@ -149,6 +133,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
 
 
         var view = inflater.inflate(R.layout.fragment_demo, container, false)
+        GlobalVariables.view = view
         configView(view)
 
         mapView = view.findViewById(R.id.mapview)
@@ -160,10 +145,6 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
         llSeekbar = view.findViewById(R.id.ll_seekbar)
         seekBarLayerOpacity = view.findViewById(R.id.seek_bar_layer_opacity)
         btnLocation = view.findViewById(R.id.btn_location)
-
-        llFrameSearch.setOnClickListener {
-            Log.d("huhu","123")
-        }
 
 
         btnSearch.setOnClickListener {
@@ -281,7 +262,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             .zoom(zoomMap)
             .build()
         ChangeLayer().changeMapBackground(styleBGMapFirst, null)
-        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
+//        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
 
         mapboxMap.addOnMapClickListener { point ->
             onMapClick(point, activity)

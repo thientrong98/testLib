@@ -1,6 +1,7 @@
 package com.example.mymap.utils;
 import android.app.Activity;
 import android.location.GnssAntennaInfo;
+import android.view.View;
 
 import androidx.fragment.app.Fragment;
 
@@ -40,4 +41,5 @@ public class GlobalVariables {
     public static String[] provinceID;
     public static Activity activity= null;
     public static String planningInfo;
+    public static View view;
 }

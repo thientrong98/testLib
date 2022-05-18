@@ -19,9 +19,9 @@ class MainActivity : AppCompatActivity(), DemoFragment.CreatePostListener {
             LatLng(10.7994064, 106.7116703),
             "FG_TTQH_SO",
             "BG_NEN_BAN_DO",
-            null,
-            null,
-            "vi",this
+            "mapbox://styles/tranthientrong/ckr0po0y67exw17rwcwg3ttrv",
+            "",
+            "vi",this,
         )
         supportFragmentManager
             .beginTransaction()
