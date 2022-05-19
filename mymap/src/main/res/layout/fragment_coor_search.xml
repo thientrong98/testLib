@@ -8,8 +8,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="match_parent"
+        fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,12 +45,12 @@
             <!--            <LinearLayout-->
             <!--                android:layout_width="match_parent"-->
             <!--                android:layout_height="wrap_content">-->
-<!--            <view-->
-<!--                android:id="@+id/recycler_view_coordinate"-->
-<!--                class="androidx.recyclerview.widget.RecyclerView"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                tools:listitem="@layout/item_coordinate" />-->
+            <!--            <view-->
+            <!--                android:id="@+id/recycler_view_coordinate"-->
+            <!--                class="androidx.recyclerview.widget.RecyclerView"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                tools:listitem="@layout/item_coordinate" />-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_coordinate"

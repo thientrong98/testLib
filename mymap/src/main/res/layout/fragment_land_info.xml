@@ -78,11 +78,13 @@
             </LinearLayout>
         </FrameLayout>
 
-        <include layout="@layout/fragment_info" />
-        <include layout="@layout/fragment_o_chuc_nang" />
-        <include layout="@layout/fragment_o_qhpk" />
-        <!--                <include layout="@layout/layout_quy_hoach_nganh"/>-->
-        <!--                <include layout="@layout/fragment_land_info_giay" />-->
-        <!--                <include layout="@layout/fragment_info_dccb_detail" />-->
+        <include layout="@layout/fragment_info"
+            android:visibility="gone"/>
+        <include layout="@layout/fragment_o_chuc_nang"
+            android:visibility="gone"/>
+        <include layout="@layout/fragment_o_qhpk"
+            android:visibility="gone"/>
+                <include layout="@layout/fragment_coor_search" />
+
     </LinearLayout>
 </LinearLayout>

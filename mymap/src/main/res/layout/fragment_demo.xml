@@ -2,55 +2,61 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_map"
     android:fitsSystemWindows="true"
+    tools:ignore="contentDescription"
     tools:openDrawer="start">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="false"
-        >
+        android:fitsSystemWindows="false">
 
-        <com.mapbox.mapboxsdk.maps.MapView
-            android:id="@+id/mapview"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/btn_search"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="18dp"
-            android:background="@drawable/new_bg_map"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_search_new" />
+            <com.mapbox.mapboxsdk.maps.MapView
+                android:id="@+id/mapview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-        <ImageButton
-            android:id="@+id/btn_location"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="75dp"
-            android:layout_marginRight="18dp"
-            android:background="@drawable/new_bg_gps"
-            android:scaleType="fitXY"
-            android:src="@drawable/gps" />
+            <ImageButton
+                android:id="@+id/btn_search"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="18dp"
+                android:background="@drawable/new_bg_map"
+                android:contentDescription=""
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_search_new" />
 
-        <ImageButton
-            android:id="@+id/btn_transparent"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="120dp"
-            android:layout_marginRight="18dp"
-            android:background="@drawable/new_bg_transparent"
-            android:scaleType="fitXY"
-            android:src="@drawable/transparent" />
+            <ImageButton
+                android:id="@+id/btn_location"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="75dp"
+                android:layout_marginRight="18dp"
+                android:background="@drawable/new_bg_gps"
+                android:scaleType="fitXY"
+                android:src="@drawable/gps" />
+
+            <ImageButton
+                android:id="@+id/btn_transparent"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="120dp"
+                android:layout_marginRight="18dp"
+                android:background="@drawable/new_bg_transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/transparent" />
+        </FrameLayout>
 
         <FrameLayout
             android:id="@+id/containerBottomSheet"
@@ -61,43 +67,36 @@
             app:behavior_peekHeight="300dp"
             app:layout_behavior="@string/bottom_sheet_behavior">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
 
-                <LinearLayout
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_frameInfo"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:minHeight="330dp"-->
+<!--                android:visibility="gone">-->
+
+                <androidx.fragment.app.FragmentContainerView
                     android:id="@+id/ll_frameInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:minHeight="330dp"
-                    android:visibility="gone">
-
-                    <fragment
-                        android:id="@+id/fragmentInfo"
-                        android:name="LandInfoFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:layout="@layout/fragment_land_info" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_frameSearch"
+                    android:name="LandInfoFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:minHeight="330dp"
-                    android:visibility="gone">
+                    tools:layout="@layout/fragment_land_info" />
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_frameSearch"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:minHeight="330dp"-->
+<!--                android:visibility="gone">-->
 
-                    <fragment
-                        android:id="@+id/fragmentSearch"
-                        android:name="LandSearchFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        tools:layout="@layout/fragment_land_search" />
-                </LinearLayout>
-            </LinearLayout>
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/ll_frameSearch"
+                    android:name="LandSearchFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:layout="@layout/fragment_land_search" />
+<!--            </LinearLayout>-->
+
         </FrameLayout>
 
         <LinearLayout
@@ -117,7 +116,6 @@
                 android:layout_gravity="bottom|center"
                 android:layout_marginLeft="-78dp"
                 android:max="100"
-                android:outlineSpotShadowColor="#007AFF"
                 android:progress="100"
                 android:progressTint="#007AFF"
                 android:rotation="270"

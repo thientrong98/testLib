@@ -98,7 +98,7 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view: View = inflater.inflate(R.layout.fragment_land_info, container, false)
 
 
@@ -203,14 +203,6 @@ class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.Loa
     private fun onClickBackLandInfo(ranh: String?) {
         MapAddLayerHelper().zoomToRaster(ranh, GlobalVariables.mMap)
         MapRemoveLayerHelper().removeOChucNangLayer()
-    }
-
-
-    interface OnDraggerView {
-        fun onDraggerViewClick()
-//        fun onClickOChucNang(ranh: String?)
-//        fun onClickBackLandInfo(ranh: String?)
-//        fun onClickQHN(ranh: String?, color: String?)
     }
 
     override fun onLoadLandInfoSuccess(body: PlanningInfo?) {

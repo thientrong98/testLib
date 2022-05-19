@@ -1,17 +1,19 @@
 import android.app.Activity
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.FrameLayout
+import android.widget.ImageButton
+import android.widget.LinearLayout
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentContainerView
 import com.blankj.utilcode.util.ToastUtils
 import com.example.mymap.Helper.Extension
 import com.example.mymap.R
-import com.example.mymap.listener.LandInfoBDSListener
 import com.example.mymap.listener.SearchListener
 import com.example.mymap.utils.Constants
 import com.example.mymap.utils.GlobalVariables
@@ -32,8 +34,8 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
     private lateinit var btnSearch: ImageButton
     private lateinit var btnTransparent: ImageButton
     private lateinit var btnLocation: ImageButton
-    private lateinit var llFrameSearch: LinearLayout
-    private lateinit var llFrameInfo: LinearLayout
+    private lateinit var llFrameSearch: FragmentContainerView
+    private lateinit var llFrameInfo: FragmentContainerView
     private lateinit var containerBottomSheet: FrameLayout
     private lateinit var llSeekbar: LinearLayout
     private lateinit var seekBarLayerOpacity: SeekBar
@@ -147,15 +149,8 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
 
 
         btnSearch.setOnClickListener {
-//            AddLayer().removeBDSLayers()
-//            GlobalVariables.mMap.removeAnnotations()
-//            if (!isSearch) {
-//                isSearch = !isSearch
-            btnSearch.setImageResource(R.drawable.ic_search_bold)
-            mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_EXPANDED
-            llFrameInfo.visibility = View.GONE
-            llFrameSearch.visibility = View.VISIBLE
-//            }
+
+            onSearchClick()
         }
 
         btnTransparent.setOnClickListener {
@@ -262,7 +257,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             .zoom(zoomMap)
             .build()
         ChangeLayer().changeMapBackground(styleBGMapFirst, null)
-//        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
+        ChangeLayer().changeMapForeground(styleFGMapFirst, null)
 
         mapboxMap.addOnMapClickListener { point ->
             onMapClick(point, activity)
@@ -283,6 +278,20 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
 
         GlobalVariables.landInfoBDSListener.onClickMap()
         Thread { MapPresenter(null).getDigitalLandMapinfo(point, activity) }.start()
+        return false
+    }
+
+    private fun onSearchClick(): Boolean {
+        AddLayer().removeBDSLayers()
+        GlobalVariables.mMap.removeAnnotations()
+        btnSearch.setImageResource(R.drawable.ic_search_new)
+        mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_EXPANDED
+        llFrameInfo.visibility = View.GONE
+        llFrameSearch.visibility = View.VISIBLE
+        if (GlobalVariables.bottom_sheet_height < 130) {
+            GlobalVariables.bottom_sheet_height = containerBottomSheet.height
+        }
+
         return false
     }
 
@@ -320,9 +329,9 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             mBottomSheetBehavior?.addBottomSheetCallback(object :
                 BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
-//                    if (newState == BottomSheetBehavior.STATE_EXPANDED) {
-//                        landInfoBDSListener.onBottomSheetState(true)
-//                    }
+                    if (newState == BottomSheetBehavior.STATE_EXPANDED) {
+                        mBottomSheetBehavior?.peekHeight = GlobalVariables.height / 3 * 2
+                    }
                     if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
 
                         mBottomSheetBehavior?.peekHeight = GlobalVariables.height / 3
@@ -362,7 +371,6 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
             GlobalVariables.bottom_sheet_height = containerBottomSheet.height
         }
 
-//        GlobalVariables.landInfoBDSListener.onClickMap()
     }
 
 

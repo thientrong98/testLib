@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    android:clickable="true"
     android:animateLayoutChanges="true"
     android:visibility="visible"
     android:id="@+id/include_layout_land_info"
