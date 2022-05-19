@@ -4,11 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_map">
+    android:id="@+id/fragment_map"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="false"
+        >
 
         <com.mapbox.mapboxsdk.maps.MapView
             android:id="@+id/mapview"
@@ -81,7 +85,7 @@
                 <LinearLayout
                     android:id="@+id/ll_frameSearch"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:minHeight="330dp"
                     android:visibility="gone">

@@ -1,25 +1,21 @@
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.ViewPager
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.KeyboardUtils
 import com.example.mymap.R
 import com.example.mymap.search.view.CoorSearchFragment
 import com.example.mymap.search.view.LandIDSearchFragment
 import com.google.android.material.tabs.TabLayout
 
+
 class LandSearchFragment : Fragment() {
     var tabLayout: TabLayout? = null
-    var viewPager: ViewPager? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    var viewPager: ViewPager2? = null
 
 
     override fun onCreateView(
@@ -42,19 +38,20 @@ class LandSearchFragment : Fragment() {
 
         tabLayout!!.tabGravity = TabLayout.GRAVITY_CENTER
 
-        val adapter = PagerAdapter(requireActivity().supportFragmentManager)
+        val adapter = PagerAdapter(requireActivity())
         viewPager!!.adapter = adapter
-
-        viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
+//        viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
 
         tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 KeyboardUtils.hideSoftInput(activity)
                 viewPager!!.currentItem = tab.position
             }
+
             override fun onTabUnselected(tab: TabLayout.Tab) {
 
             }
+
             override fun onTabReselected(tab: TabLayout.Tab) {
 
             }
@@ -72,17 +69,29 @@ class LandSearchFragment : Fragment() {
             }
     }
 
-    public  class PagerAdapter ( fm: FragmentManager) :
-        FragmentStatePagerAdapter(fm) {
-        override fun getCount(): Int = 2
-        override fun getItem(position: Int): Fragment = when (position) {
+    //    class PagerAdapter ( fm: FragmentManager) :
+//        FragmentStatePagerAdapter(fm) {
+//        override fun getCount(): Int = 2
+//        override fun getItem(position: Int): Fragment = when (position) {
+//            0 -> CoorSearchFragment()
+//            else -> LandIDSearchFragment()
+//        }
+//    }
+    class PagerAdapter(fm: FragmentActivity) :
+        FragmentStateAdapter(fm) {
+        //    override fun getCount(): Int = 2
+//    override fun getItem(position: Int): Fragment = when (position) {
+//        0 -> CoorSearchFragment()
+//        else -> LandIDSearchFragment()
+//    }
+        override fun getItemCount(): Int {
+            return 2
+        }
+
+        override fun createFragment(position: Int): Fragment = when (position) {
             0 -> CoorSearchFragment()
             else -> LandIDSearchFragment()
         }
-
-//        @Nullable
-//        fun getPageTitle(position: Int): CharSequence {
-//            return super.getPageTitle(position)
-//        }
     }
+
 }

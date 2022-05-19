@@ -39,14 +39,14 @@ class LandIDSearchFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        super.onCreate(savedInstanceState)
         var view = inflater.inflate(R.layout.fragment_land_id_search, container, false)
         txtChooseDistrict = view.findViewById(R.id.txtChooseDistrict)
         txtChooseWard = view.findViewById(R.id.txtChooseWard)
@@ -208,8 +208,8 @@ class LandIDSearchFragment : Fragment() {
 
 
     private fun showPopUp(view: View, isWard: Boolean, isProvince: Boolean) {
-        val menu = PopupMenu(context, view)
-        menu.gravity = Gravity.CENTER
+        val menu = PopupMenu(context, view,Gravity.NO_GRAVITY, R.attr.actionOverflowMenuStyle, R.drawable.new_bg_land_info)
+//        menu.gravity = Gravity.CENTER
         var list: Array<String?>
         val getDistrictName: Array<String?> = GlobalVariables.districtName
         val getDictrictId: Array<String> = GlobalVariables.districtId
