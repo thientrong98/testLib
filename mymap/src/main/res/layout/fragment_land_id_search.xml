@@ -7,7 +7,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fillViewport="true">
 
         <LinearLayout
@@ -211,12 +211,16 @@
                     android:paddingRight="40dp"
                     android:textSize="18sp" />
             </LinearLayout>
-
-            <include layout="@layout/layout_button_search" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+            <include layout="@layout/layout_button_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="20dp" />
+                android:layout_height="60dp" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

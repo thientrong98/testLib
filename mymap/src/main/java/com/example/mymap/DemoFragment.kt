@@ -39,19 +39,15 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
     private lateinit var llSeekbar: LinearLayout
     private lateinit var seekBarLayerOpacity: SeekBar
 
-    private var centerPoint: LatLng = LatLng(10.7994064, 106.7116703)
     private lateinit var location: LatLng
     private var zoomMap: Double = 16.0
     private var styleFGMapFirst: String = "FG_TTQH_SO"
     private var styleBGMapFirst: String = "BG_NEN_BAN_DO"
     private lateinit var mMap: MapboxMap
-    private var isSearch: Boolean = false
     private var isTransparent: Boolean = false
     private var isClickLocation: Boolean = false
     private var mBottomSheetBehavior: BottomSheetBehavior<FrameLayout>? = null
     private var mapPresenter: MapPresenter? = null
-    private var createPostListener: CreatePostListener? = null
-
     var mapView: MapView? = null
 
     companion object {
@@ -86,6 +82,26 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
 
     fun setActivityListener(activityListener: LandInfoFragment?) {
         GlobalVariables.landInfoBDSListener = activityListener
+    }
+
+    override fun onStart() {
+        super.onStart()
+        mapView?.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mapView?.onStop()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView?.onLowMemory()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mapView?.onDestroy()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,7 +149,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
         savedInstanceState: Bundle?
     ): View? {
 
-        var view = inflater.inflate(R.layout.fragment_demo, container, false)
+        val view = inflater.inflate(R.layout.fragment_demo, container, false)
         configView(view)
 
         mapView = view.findViewById(R.id.mapview)
@@ -170,7 +186,10 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
                 GlobalVariables.mMap.removeAnnotations()
             } else {
                 btnLocation.setImageResource(R.drawable.new_bg_location_color)
-                Extension().showToast(R.string.txt_noti_gps, GlobalVariables.activity.applicationContext)
+                Extension().showToast(
+                    R.string.txt_noti_gps,
+                    GlobalVariables.activity.applicationContext
+                )
                 if (!location.latitude.equals(null) && !location.longitude.equals(null)) {
                     if (mBottomSheetBehavior?.state == BottomSheetBehavior.STATE_EXPANDED) {
                         GlobalVariables.bottom_sheet_height = GlobalVariables.height / 3 * 2
@@ -293,25 +312,6 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
         return false
     }
 
-    override fun onStart() {
-        super.onStart()
-        mapView?.onStart()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        mapView?.onStop()
-    }
-
-    override fun onLowMemory() {
-        super.onLowMemory()
-        mapView?.onLowMemory()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mapView?.onDestroy()
-    }
 
     private fun configView(view: View) {
         val v: FrameLayout = view.findViewById(R.id.containerBottomSheet)
@@ -321,9 +321,6 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
         mBottomSheetBehavior = BottomSheetBehavior.from(v)
         if (mBottomSheetBehavior != null) {
             mBottomSheetBehavior?.state = BottomSheetBehavior.STATE_HIDDEN
-
-//            mBottomSheetBehavior?.onInterceptTouchEvent(view,
-//            )
             mBottomSheetBehavior?.addBottomSheetCallback(object :
                 BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
@@ -331,31 +328,20 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
                         mBottomSheetBehavior?.peekHeight = GlobalVariables.height / 3 * 2
                     }
                     if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
-
                         mBottomSheetBehavior?.peekHeight = GlobalVariables.height / 3
-//                        landInfoBDSListener.onBottomSheetState(false)
                     }
                     if (newState == BottomSheetBehavior.STATE_HIDDEN) {
                         btnSearch.setImageResource(R.drawable.ic_search_new)
-//                        bottomSheetListener.onBottomSheetStateHidden()
+                        Extension().hideKeyboard(view)
                     }
                 }
 
                 override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                    if (slideOffset == 0f && mBottomSheetBehavior!!.state === BottomSheetBehavior.STATE_DRAGGING) {
+                    if (slideOffset == 0f && mBottomSheetBehavior!!.state == BottomSheetBehavior.STATE_DRAGGING) {
                         mBottomSheetBehavior!!.peekHeight = 0
+                        Extension().hideKeyboard(view)
                     }
-
-//                    bottomSheet.setOnTouchListener { v, event ->
-//                        val action = MotionEventCompat.getActionMasked(event)
-//                        when (action) {
-//                            MotionEvent.ACTION_DOWN -> false
-//                            else -> true
-//                        }
-//                    }
                 }
-
-
             })
         }
     }
@@ -370,14 +356,6 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
         }
 
     }
-
-//    override fun onDraggerViewClick() {
-//        if (mBottomSheetBehavior!!.state === BottomSheetBehavior.STATE_COLLAPSED) {
-//            mBottomSheetBehavior!!.setState(BottomSheetBehavior.STATE_EXPANDED)
-//        } else if (mBottomSheetBehavior!!.state === BottomSheetBehavior.STATE_EXPANDED) {
-//            mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_COLLAPSED
-//        }
-//    }
 
     interface CreatePostListener {
         fun sendDataSuccess(info: String?)
