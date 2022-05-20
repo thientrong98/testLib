@@ -1,4 +1,3 @@
-package tech.vlab.ttqhhcm.new_ui.map.models
 
 import DCCucBo
 import Geometry

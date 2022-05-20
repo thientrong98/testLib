@@ -1268,6 +1268,9 @@
     <string name="txt_error_no_data">Thửa đất thuộc khu vực chưa được lập Quy hoạch Phân khu.</string>
     <string name="txt_error_street">Vui lòng nhập tên đường</string>
     <string name="txt_createPost">Tạo bài đăng</string>
+    <string name="txt_choose_province_before">Vui lòng chọn tỉnh trước</string>
+    <string name="txt_choose_province_and_district_before">Vui lòng chọn tỉnh/thành và quận/huyện trước</string>
+    <string name="txt_choose_district_before">Vui lòng chọn quận trước</string>
 
     <string name="test">Tổng vốn đầu tư hơn 10 tỷ USD của Mỹ vào Việt Nam, theo Thủ tướng Phạm Minh Chính, chưa tương xứng với tiềm năng và còn nhiều dư địa phát triển.
 

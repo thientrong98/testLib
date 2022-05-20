@@ -11,8 +11,9 @@ import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.blankj.utilcode.util.ToastUtils
+import com.example.mymap.Helper.Extension
 import com.example.mymap.R
+import com.example.mymap.utils.GlobalVariables
 
 class CoordinateAdapter(
     private var coordinateItems: ArrayList<CoordinateItem>,
@@ -172,7 +173,8 @@ class CoordinateAdapter(
                         setCoordinateItems(coordinateItems)
                         listener.onRemoveRowAt(position)
                     } else {
-                        ToastUtils.showShort("Vui lòng nhập ít nhất 4 cặp tọa độ để tìm kiếm !!")
+                        Extension().showToast(R.string.txt_toado, GlobalVariables.activity.applicationContext)
+
                     }
                 }
 

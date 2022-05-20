@@ -1,25 +1,21 @@
 package com.example.mymap.search.view
 
 import AddLayer
-import com.example.mymap.search.adapter.CoordinateAdapter
 import CoordinateItem
-import com.example.mymap.search.presenter.CoordinateSeachPresenter
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.MotionEventCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.Unbinder
-import com.blankj.utilcode.util.NetworkUtils
-import com.blankj.utilcode.util.ToastUtils
 import com.example.mymap.Helper.Extension
 import com.example.mymap.Helper.MapAddLayerHelper
 import com.example.mymap.R
+import com.example.mymap.search.adapter.CoordinateAdapter
+import com.example.mymap.search.presenter.CoordinateSeachPresenter
 import com.example.mymap.search.presenter.DigitalLandSearchPresenter
 import com.example.mymap.utils.GlobalVariables
 import org.json.JSONArray
@@ -87,7 +83,10 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
             }
         }
         if (isEmpty) {
-            ToastUtils.showShort(getString(R.string.coordinate_error))
+            Extension().showToast(
+                R.string.coordinate_error,
+                GlobalVariables.activity.applicationContext
+            )
         } else {
             val presenter = CoordinateSeachPresenter(this)
             if (edtXs.size > 3) {
@@ -105,8 +104,11 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
     }
 
     private fun onClickSearch() {
-        if (!NetworkUtils.isConnected()) {
-            ToastUtils.showLong(getString(R.string.no_connect_error))
+        if (!Extension().isNetworkAvailable(GlobalVariables.activity)) {
+            Extension().showToast(
+                R.string.coordinate_error,
+                GlobalVariables.activity.applicationContext
+            )
             return
         }
         val x: ArrayList<String?> = java.util.ArrayList()
@@ -118,7 +120,10 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
             }
         }
         if (x.size < 4 || y.size < 4) {
-            ToastUtils.showLong(R.string.txt_toado)
+            Extension().showToast(
+                R.string.txt_toado,
+                GlobalVariables.activity.applicationContext
+            )
             return
         }
         searchLandCoordinate(x, y)
@@ -145,7 +150,10 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
 
     override fun needDrawSketchLayer(B: DoubleArray?, L: DoubleArray?) {
         if (GlobalVariables.mMap == null) {
-            ToastUtils.showLong(R.string.txt_loi_thu_lai)
+            Extension().showToast(
+                R.string.txt_loi_thu_lai,
+                GlobalVariables.activity.applicationContext
+            )
             return
         }
         AddLayer().removeBDGQHPK(GlobalVariables.mMap)

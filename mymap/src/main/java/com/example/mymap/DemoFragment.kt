@@ -11,7 +11,6 @@ import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentContainerView
-import com.blankj.utilcode.util.ToastUtils
 import com.example.mymap.Helper.Extension
 import com.example.mymap.R
 import com.example.mymap.listener.SearchListener
@@ -171,7 +170,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
                 GlobalVariables.mMap.removeAnnotations()
             } else {
                 btnLocation.setImageResource(R.drawable.new_bg_location_color)
-                ToastUtils.showLong(getText(R.string.txt_noti_gps))
+                Extension().showToast(R.string.txt_noti_gps, GlobalVariables.activity.applicationContext)
                 if (!location.latitude.equals(null) && !location.longitude.equals(null)) {
                     if (mBottomSheetBehavior?.state == BottomSheetBehavior.STATE_EXPANDED) {
                         GlobalVariables.bottom_sheet_height = GlobalVariables.height / 3 * 2

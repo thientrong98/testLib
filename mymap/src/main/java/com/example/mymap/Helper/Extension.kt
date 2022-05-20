@@ -1,8 +1,11 @@
 package com.example.mymap.Helper
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.example.mymap.utils.GlobalVariables
 import com.mapbox.mapboxsdk.geometry.LatLng
 
@@ -28,6 +31,21 @@ class Extension {
         }
 
         return GlobalVariables.center_hcm
-
     }
+
+    fun showToast(message: Int, context: Context) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    }
+
+    fun isNetworkAvailable(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        return run {
+            val networkInfo: NetworkInfo? = connectivityManager.activeNetworkInfo
+            networkInfo?.isConnected ?: false
+        }
+    }
+
+
 }

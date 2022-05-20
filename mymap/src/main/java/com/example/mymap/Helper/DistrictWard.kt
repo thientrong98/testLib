@@ -1,15 +1,12 @@
-import ApiHelper
-import DistrictWardID
 import DistrictWardID.Datum
 import android.util.Log
 import androidx.annotation.NonNull
-import com.blankj.utilcode.util.ToastUtils
+import com.example.mymap.Helper.Extension
 import com.example.mymap.utils.GlobalVariables
 import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
 
 class DistrictWard {
     fun getProvinceOffline() {
@@ -50,9 +47,9 @@ class DistrictWard {
                         arrayOfNulls<String>(resource!!.size)
 
                     GlobalVariables.provinceName =
-                        arrayOfNulls<String>(resource!!.size)
+                        arrayOfNulls<String>(resource.size)
 
-                    for ((i, item) in resource!!.withIndex()) {
+                    for ((i, item) in resource.withIndex()) {
                         GlobalVariables.provinceID[i] = item.ma
                         GlobalVariables.provinceName[i] = item.ten
                     }
@@ -60,7 +57,11 @@ class DistrictWard {
             }
 
             override fun onFailure(call: Call<List<Province>?>, t: Throwable) {
-                ToastUtils.showLong("Lỗi lấy thông tin Tỉnh/Thành, vui lòng thử lại sau!");
+//                ToastUtils.showLong("Lỗi lấy thông tin Tỉnh/Thành, vui lòng thử lại sau!");
+                Extension().showToast(
+                    "Lỗi lấy thông tin Tỉnh/Thành, vui lòng thử lại sau!",
+                    GlobalVariables.activity.applicationContext
+                )
             }
         })
     }
@@ -103,11 +104,11 @@ class DistrictWard {
                         GlobalVariables.districtId[i] = datum.ma
                         val datumWards = datum.phuongxa
                         GlobalVariables.wardName[i] = arrayOfNulls<String>(
-                            datumWards!!.size
+                            datumWards.size
                         )
                         GlobalVariables.wardId[i] =
                             arrayOfNulls<String>(
-                                datumWards!!.size
+                                datumWards.size
                             )
                         for ((j, DatumWardList) in datumWards.withIndex()) {
                             GlobalVariables.wardName[i][j] = DatumWardList.ten
@@ -118,7 +119,11 @@ class DistrictWard {
             }
 
             override fun onFailure(call: Call<Province?>, t: Throwable) {
-                ToastUtils.showLong("Lỗi lấy thông tin Tỉnh/Thành, vui lòng thử lại sau!");
+                Extension().showToast(
+                    "Lỗi lấy thông tin Tỉnh/Thành, vui lòng thử lại sau!",
+                    GlobalVariables.activity.applicationContext
+                )
+
             }
         })
 
@@ -156,7 +161,7 @@ class DistrictWard {
                     )
                     GlobalVariables.wardId[i] =
                         arrayOfNulls<String>(
-                            datumWards!!.size
+                            datumWards.size
                         )
                     for ((j, DatumWardList) in datumWards.withIndex()) {
                         GlobalVariables.wardName[i][j] = DatumWardList.tenphuongxa
@@ -166,7 +171,11 @@ class DistrictWard {
             }
 
             override fun onFailure(@NonNull call: Call<DistrictWardID?>, @NonNull t: Throwable) {
-                ToastUtils.showLong("Lỗi dữ liệu, vui lòng nhập lại sau!");
+                Extension().showToast(
+                    "Lỗi dữ liệu, vui lòng nhập lại sau!",
+                    GlobalVariables.activity.applicationContext
+                )
+
             }
         })
     }

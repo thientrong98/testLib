@@ -12,8 +12,7 @@ import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.blankj.utilcode.util.NetworkUtils
-import com.blankj.utilcode.util.ToastUtils
+import com.example.mymap.Helper.Extension
 import com.example.mymap.R
 import com.example.mymap.search.presenter.DigitalLandSearchPresenter
 import com.example.mymap.utils.GlobalVariables
@@ -67,7 +66,8 @@ class LandIDSearchFragment : Fragment() {
         }
         txtChooseDistrict.setOnClickListener {
             if (txtChooseProvince.text.equals("")){
-                ToastUtils.showShort("Vui lòng chọn tỉnh trước")
+                Extension().showToast(R.string.txt_choose_province_before, GlobalVariables.activity.applicationContext)
+
             }else{
                 onClick(view, "txtChooseDistrict")
             }
@@ -75,7 +75,9 @@ class LandIDSearchFragment : Fragment() {
 
         txtChooseWard.setOnClickListener {
             if (!txtChooseProvince.text.equals("") && !txtChooseDistrict.text.equals(""))
-            onClick(view, "txtChooseWard") else  ToastUtils.showShort("Vui lòng chọn tỉnh/thành và quận/huyện trước")
+            onClick(view, "txtChooseWard") else
+            Extension().showToast(R.string.txt_choose_province_and_district_before, GlobalVariables.activity.applicationContext)
+
         }
 
         txtSearch.setOnClickListener {
@@ -111,8 +113,8 @@ class LandIDSearchFragment : Fragment() {
                 showPopUp(view, true, false)
             }
             "search" -> {
-                if (!NetworkUtils.isConnected()) {
-                    ToastUtils.showLong(getString(R.string.no_connect_error))
+                if (!Extension().isNetworkAvailable(GlobalVariables.activity)) {
+                    Extension().showToast(R.string.no_connect_error, GlobalVariables.activity.applicationContext)
                     return
                 }
 
@@ -120,7 +122,7 @@ class LandIDSearchFragment : Fragment() {
                     val maLoDat: String = edtMaLoDat.text.toString()
                     val landID = wardID + "_" + maLoDat
                     if (maLoDat.isEmpty()) {
-                        ToastUtils.showLong(R.string.txt_ma_lo)
+                        Extension().showToast(R.string.txt_ma_lo, GlobalVariables.activity.applicationContext)
                         return
                     }
 //                    DigitalLandSearchPresenter(this).searchPlanningInfoByID(landID)
@@ -130,7 +132,7 @@ class LandIDSearchFragment : Fragment() {
                     val soThua: String = edtSoThua.text.toString()
 
                     if (soTo.isEmpty() || soThua.isEmpty() || wardID.isEmpty()) {
-                        ToastUtils.showLong(R.string.txt_fill_all_input)
+                        Extension().showToast(R.string.txt_fill_all_input, GlobalVariables.activity.applicationContext)
                         return
                     }
                     val parcel = String.format(Locale.getDefault(), "%03d", soTo.toInt())
@@ -231,7 +233,7 @@ class LandIDSearchFragment : Fragment() {
                 }
             }
             if (checkDistrict == 0) {
-                ToastUtils.showShort("Vui lòng chọn quận trước")
+                Extension().showToast(R.string.txt_choose_district_before, GlobalVariables.activity.applicationContext)
                 return
             }
         }

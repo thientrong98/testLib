@@ -6,7 +6,7 @@ import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentActivity
-import com.blankj.utilcode.util.ToastUtils
+import com.example.mymap.Helper.Extension
 import com.example.mymap.Helper.MapAddLayerBDSHelper
 import com.example.mymap.Helper.MapAddLayerHelper
 import com.example.mymap.R
@@ -16,7 +16,8 @@ import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import org.json.JSONArray
 import org.json.JSONException
-import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
+import android.provider.Settings.System.getString
+import android.widget.Toast
 
 class AddLayer {
 
@@ -111,7 +112,7 @@ class AddLayer {
 
     fun onLoadLandInfoSuccess(body: PlanningInfo,activity: FragmentActivity?) {
         if (GlobalVariables.mMap == null) {
-            ToastUtils.showLong(R.string.txt_loi_thu_lai)
+            Extension().showToast(R.string.txt_loi_thu_lai, GlobalVariables.activity.applicationContext)
             return
         }
         try {
@@ -166,11 +167,7 @@ class AddLayer {
     }
 
      fun removeBDGQHPK(mMap: MapboxMap) {
-        if (mMap == null) {
-            ToastUtils.showLong(R.string.txt_loi_thu_lai)
-            return
-        }
-        val qhpkIDCurrent = GlobalVariables.qhpkIDCurrent
+         val qhpkIDCurrent = GlobalVariables.qhpkIDCurrent
         val dccbCurrent = GlobalVariables.dccbCurrent
         //xoa het cac layer ban do giay
         mMap.getStyle {
