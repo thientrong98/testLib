@@ -1,4 +1,3 @@
-package tech.vlab.ttqhhcm.Converter
 
 class Matrix_LT2 {
     var values: Array<DoubleArray?>

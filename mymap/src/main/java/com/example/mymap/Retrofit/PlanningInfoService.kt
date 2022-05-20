@@ -3,7 +3,6 @@ import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.*
-import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
 
 interface PlanningInfoService {
     @FormUrlEncoded

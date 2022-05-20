@@ -33,8 +33,10 @@ class Extension {
         return GlobalVariables.center_hcm
     }
 
-    fun showToast(message: Int, context: Context) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    fun showToast(message: Int, context: Context?) {
+        if (context != null) {
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        }
     }
 
     fun isNetworkAvailable(context: Context): Boolean {

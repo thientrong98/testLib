@@ -1029,13 +1029,8 @@
     <string name="land_info_alert">Lưu ý: Kết quả tra cứu chỉ có giá trị tham khảo</string>
 
     <!-- App intro -->
-    <string name="phat_trien_boi">Phát triển bởi VLAB Co.Ltd</string>
     <string name="beta_alert">Hiện nay, ứng dụng bản đồ quy hoạch trực tuyến đang trong quá trình thử nghiệm, vì vậy các thông tin có thể chưa đầy đủ và có thể được biên tập lại. Vì vậy, thông tin quy hoạch đô thị được cung cấp chỉ mang tính chất tham khảo.</string>
-    <string name="intro_mess_1">
-        <![CDATA[
-        Ứng dụng <b>“Thông tin quy hoạch Thành phố Hồ Chí Minh“</b> được phát triển và quản lý bởi Sở Quy hoạch-Kiến trúc nhằm cung cấp thông tin quy hoạch đô thị tại Thành phố Hồ Chí Minh đến người dân, tổ chức và doanh nghiệp một cách trực tuyến thông qua ứng dụng web và ứng dụng trên thiết bị di động thông minh (điện thoại thông minh và máy tính bảng).<br><br>Thông tin quy hoạch được cung cấp trên ứng dụng <b>“Thông tin quy hoạch Thành phố Hồ Chí Minh”</b> là Quy hoạch sử dụng đất trong hồ sơ quy hoạch phân khu tỷ lệ 1/2000 được phê duyệt trên địa bàn thành phố (24 quận huyện). Ứng dụng cung cấp các bản đồ quy hoạch sử dụng đất TL 1/2000 dạng bản giấy có đóng dấu phê duyệt được sao chụp (scan) và sắp xếp thống nhất vào hệ toạ độ VN2000. Người dùng có thể xác định vị trí của khu đất thông qua việc nhập toạ độ của khu đất (các thông số này có thể tìm thấy trong giấy chứng nhận quyền sử dụng đất hoặc bản đồ hiện trạng vị trí khu đất), hoặc xác định vị trí khu đất thông qua định vị GPS có sẵn trong thiết bị di động thông minh. Ngoài ra, người dùng còn có thể download các bản đồ quy hoạch và quyết định phê duyệt quy hoạch để có thể tham khảo một cách cụ thể hơn. Nội dung thông tin quy hoạch cung cấp thông qua các ứng dụng là các hồ sơ quy hoạch đã được cơ quan có thẩm quyền phê duyệt và có đầy đủ căn cứ pháp lý để áp dụng.<br><br>  Ngoài ra, ứng dụng <b>"Thông tin quy hoạch Thành phố Hồ Chí Minh"</b> cung cấp chức năng bản đồ số. Đây là chức năng cung cấp bản đồ quy hoạch phân khu được xây dựng trên nền tảng công nghệ Hệ thống Thông tin Địa lý (GIS), cho phép người dùng định vị thửa đất thông qua một chức năng nữa là tìm kiếm theo số tờ-số thửa bên cạnh việc tìm kiếm thông qua toạ độ khu đất hoặc định vị GPS. Các khu vực còn lại sẽ được Sở Quy hoạch-Kiến trúc tiếp tục xây dựng hoàn chỉnh dữ liệu và cập nhật trong thời gian tiếp theo.<br><br>Đây là phiên bản đầu tiên của phần mềm, do đó qua quá trình sử dụng, các cá nhân tổ chức quan tâm có thể gửi góp ý để giúp cho phần mềm được hoàn thiện và có nhiều tính năng thiết thực hơn nữa phục vụ người dân và doanh nghiệp thành phố. Các góp ý có thể gửi trực tiếp thông qua ứng dụng "Thông tin quy hoạch TP.HCM" hoặc email đến hộp thư gis.sqhkt@tphcm.gov.vn<br><br><i>Lưu ý: trong trường hợp thông tin tham khảo của bản đồ quy hoạch dạng số có khác so với bản đồ được sao chụp (scan) thì nội dung của bản đồ giấy được sao chụp (scan) có đóng dấu phê duyệt của cơ quan có thẩm quyền là căn cứ pháp lý để áp dụng.</i><br><br>Chúng tôi cũng xin chân thành cảm ơn các đối tác cũng như các đơn vị phát triển và chia sẻ các nền tảng APIs dịch vụ bản đồ mà ứng dụng của chúng tôi đang sử dụng.<br><br><em>Bản đồ quy hoạch trực tuyến <b>"Thông tin quy hoạch Thành phố Hồ Chí Minh"</b> được phát triển bởi Vlab Co,. LTD.</em>
-        ]]>
-    </string>
+
 
     <!-- Showcase -->
     <string name="search_intro">Chọn để định vị khu đất</string>
@@ -1227,7 +1222,6 @@
     <string name="mesage_error_gps">Thiết bị chưa bật định vị, vui lòng thử lại sau</string>
     <string name="title_lunchscreen">ỦY BAN NHÂN DÂN\nTHÀNH PHỐ HỒ CHÍ MINH </string>
     <string name="title_lunchscreen_2">SỞ QUY HOẠCH - KIẾN TRÚC</string>
-    <string name="title_lunchscreen_3">Phát triển bởi Vlab J.S.C</string>
     <string name="txt_luuy">Lưu ý</string>
     <string name="txt_tang"> tầng</string>
     <string name="txt_nguoi"> người</string>
@@ -1271,14 +1265,6 @@
     <string name="txt_choose_province_before">Vui lòng chọn tỉnh trước</string>
     <string name="txt_choose_province_and_district_before">Vui lòng chọn tỉnh/thành và quận/huyện trước</string>
     <string name="txt_choose_district_before">Vui lòng chọn quận trước</string>
-
-    <string name="test">Tổng vốn đầu tư hơn 10 tỷ USD của Mỹ vào Việt Nam, theo Thủ tướng Phạm Minh Chính, chưa tương xứng với tiềm năng và còn nhiều dư địa phát triển.
-
-Sáng 12/5 (giờ địa phương), nhân dự Hội nghị cấp cao đặc biệt ASEAN - Mỹ, thăm, làm việc tại Mỹ và Liên Hợp Quốc, Thủ tướng Phạm Minh Chính có buổi gặp cộng đồng doanh nghiệp Mỹ do Hội đồng Kinh doanh Mỹ-ASEAN (USABC) và Phòng Thương mại Mỹ (USCC) tổ chức.
-
-Lãnh đạo Chính phủ cho biết, suốt 27 năm bình thường hóa quan hệ, tăng trưởng thương mại Việt - Mỹ đạt 17-20% mỗi năm. Năm 1995, quan hệ thương mại hai nước chỉ 400 triệu USD, nhưng đến năm 2021 con số này đã lên tới 112 tỷ USD, tăng gần 280 lần dù trải qua đại dịch. Việc này đưa Việt Nam thành đối tác thương mại lớn thứ 9 của Mỹ, đối tác lớn nhất của Mỹ tại ASEAN.
-
-"Mỹ luôn là một trong những đối tác lớn nhất về đầu tư của Việt Nam, với tổng vốn đầu tư hơn 10 tỷ USD, nhưng điều này vẫn chưa tương xứng với tiềm năng. Chúng ta còn nhiều dư địa phát triển, nhiều việc phải làm để mang lại lợi ích cho nhân dân hai nước", Thủ tướng Phạm Minh Chính khẳng định.
-
-Ông cho biết rất vui mừng khi kết quả khảo sát của AmCham cho thấy 80% doanh nghiệp Mỹ tại Việt Nam đánh giá tích cực về triển vọng trong trung và dài hạn của Việt Nam. Trong khi Việt Nam xuất khẩu sang Mỹ linh kiện, máy móc, hàng dệt may..., thì Mỹ cung cấp ngược lại sản phẩm kỹ thuật số, vật tư y tế, công nghệ cao.</string>
-</resources>
+    <string name="txt_error_get_province">"Lỗi lấy thông tin Tỉnh/Thành, vui lòng thử lại sau!</string>
+    <string name="txt_error_data">Lỗi dữ liệu, vui lòng nhập lại sau!</string>
+   </resources>

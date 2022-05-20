@@ -66,15 +66,15 @@ class MapPresenter(fragment: Fragment?) {
                             GlobalVariables.landInfoBDSListener?.onLoadLandInfoSuccess(landInfo)
                         }
                     } else {
-                        ChangeMap().showInfoNoData(activity!!)
+                        ChangeMap().showInfoNoData(activity!!,0)
                     }
                 } else {
-                    ChangeMap().showInfoNoData(activity!!)
+                    ChangeMap().showInfoNoData(activity!!,0)
                 }
             }
 
             override fun onFailure(@NonNull call: Call<PlanningInfo?>, @NonNull t: Throwable) {
-                ChangeMap().showInfoNoData(activity!!)
+                ChangeMap().showInfoNoData(activity!!,0)
             }
         })
     }
@@ -83,24 +83,20 @@ class MapPresenter(fragment: Fragment?) {
         GlobalVariables.landInfoBDSListener?.onLoadOChucNangInfoSucces(maQHPK)
     }
 
-//    override fun onLoadLandInfoSuccess(planningInfo: PlanningInfo) {
-//        Log.d("haha345","445")
-//    }
-
-
-//    override fun onLoadLandInfoPresenterSuccess(planningInfo: PlanningInfo) {
-//        Log.d("haha345", "4456")
-//        DemoFragment().getInfo(planningInfo)
-//    }
-
     fun searchIDSuccess(body: PlanningInfo?) {
         GlobalVariables.listener.onSearchSuccess()
         GlobalVariables.landInfoBDSListener.onClickMap()
         GlobalVariables.landInfoBDSListener.onLoadLandInfoSuccess(body)
     }
 
-    fun searchIDFail(s: String, activity: FragmentActivity?) {
-        ChangeMap().showInfoNoData(activity!!)
+    fun searchFail(typeSearch: Int, activity: FragmentActivity?) {
+        try{
+            if (activity != null){
+                ChangeMap().showInfoNoData(activity, typeSearch)
+            }
+        }catch(e: Exception){
+            Log.d("error:", e.message.toString())
+        }
     }
 
 

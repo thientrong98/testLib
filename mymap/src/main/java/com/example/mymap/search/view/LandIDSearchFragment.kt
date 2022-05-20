@@ -2,20 +2,20 @@ package com.example.mymap.search.view
 
 import DistrictWard
 import Province
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.example.mymap.Helper.Extension
 import com.example.mymap.R
 import com.example.mymap.search.presenter.DigitalLandSearchPresenter
 import com.example.mymap.utils.GlobalVariables
+import kotlinx.android.synthetic.main.fragment_land_id_search.*
 import kotlinx.coroutines.*
 import java.util.*
 
@@ -29,16 +29,20 @@ class LandIDSearchFragment : Fragment() {
     private lateinit var formPhuongXa: LinearLayout
     private lateinit var formMaOPho: LinearLayout
     private var wardID = ""
-    private lateinit var txtSearch: TextView
-    private lateinit var txtRewrite: TextView
     private lateinit var edtMaLoDat: EditText
     private lateinit var edtSoTo: EditText
     private lateinit var edtSoThua: EditText
-
+    private lateinit var btnLoadingButtonSearch : CircularProgressButton
+    private lateinit var btnLoadingButtonClear: CircularProgressButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        btnLoadingButtonSearch.dispose()
+        btnLoadingButtonClear.dispose()
     }
 
     override fun onCreateView(
@@ -54,12 +58,11 @@ class LandIDSearchFragment : Fragment() {
         formMaOPho = view.findViewById(R.id.formMaOPho)
         formSoThua = view.findViewById(R.id.formSoThua)
         formSoTo = view.findViewById(R.id.formSoTo)
-        txtSearch = view.findViewById(R.id.txtSearch)
-        txtRewrite = view.findViewById(R.id.txtRewrite)
         edtMaLoDat = view.findViewById(R.id.edtMaLoDat)
         edtSoTo = view.findViewById(R.id.edtSoTo)
         edtSoThua = view.findViewById(R.id.edtSoThua)
-
+        btnLoadingButtonSearch = view.findViewById(R.id.btn_loadingButtonSearch)
+        btnLoadingButtonClear = view.findViewById(R.id.btn_loadingButtonClear)
 
         txtChooseProvince.setOnClickListener {
             onClick(view, "txtChooseProvince")
@@ -67,7 +70,6 @@ class LandIDSearchFragment : Fragment() {
         txtChooseDistrict.setOnClickListener {
             if (txtChooseProvince.text.equals("")){
                 Extension().showToast(R.string.txt_choose_province_before, GlobalVariables.activity.applicationContext)
-
             }else{
                 onClick(view, "txtChooseDistrict")
             }
@@ -77,26 +79,29 @@ class LandIDSearchFragment : Fragment() {
             if (!txtChooseProvince.text.equals("") && !txtChooseDistrict.text.equals(""))
             onClick(view, "txtChooseWard") else
             Extension().showToast(R.string.txt_choose_province_and_district_before, GlobalVariables.activity.applicationContext)
-
         }
 
-        txtSearch.setOnClickListener {
-            onClick(view, "search")
-        }
-
-        txtRewrite.setOnClickListener{
+        btnLoadingButtonClear.setOnClickListener{
             onRewrite()
+        }
+
+        btnLoadingButtonSearch.setOnClickListener {
+            onClick(view, "search")
         }
         return view
     }
 
     private fun onRewrite() {
-        wardID = ""
-        edtSoTo.setText("")
-        edtSoThua.setText("")
-        txtChooseDistrict.text = ""
-        txtChooseWard.text = ""
-        txtChooseProvince.text = ""
+        btnLoadingButtonClear.startAnimation{
+            wardID = ""
+            edtSoTo.setText("")
+            edtSoThua.setText("")
+            txtChooseDistrict.text = ""
+            txtChooseWard.text = ""
+            txtChooseProvince.text = ""
+        }
+        btnLoadingButtonClear.revertAnimation()
+
     }
 
     private fun onClick(view: View, type: String) {
@@ -113,8 +118,14 @@ class LandIDSearchFragment : Fragment() {
                 showPopUp(view, true, false)
             }
             "search" -> {
+                btnLoadingButtonSearch.startAnimation()
+
                 if (!Extension().isNetworkAvailable(GlobalVariables.activity)) {
                     Extension().showToast(R.string.no_connect_error, GlobalVariables.activity.applicationContext)
+                    btnLoadingButtonSearch.revertAnimation {
+                        btnLoadingButtonSearch.text = getText(R.string.tim_kiem)
+                        btnLoadingButtonSearch.background = resources.getDrawable(R.drawable.bg_animation_search)
+                    }
                     return
                 }
 
@@ -125,7 +136,11 @@ class LandIDSearchFragment : Fragment() {
                         Extension().showToast(R.string.txt_ma_lo, GlobalVariables.activity.applicationContext)
                         return
                     }
-//                    DigitalLandSearchPresenter(this).searchPlanningInfoByID(landID)
+                    DigitalLandSearchPresenter().searchPlanningInfoByID(
+                        landID,
+                        activity,
+                        btnLoadingButtonSearch
+                    )
                 } else {
 //                    MapPresenter.hiddenBottomSheet()
                     val soTo: String = edtSoTo.text.toString()
@@ -133,19 +148,18 @@ class LandIDSearchFragment : Fragment() {
 
                     if (soTo.isEmpty() || soThua.isEmpty() || wardID.isEmpty()) {
                         Extension().showToast(R.string.txt_fill_all_input, GlobalVariables.activity.applicationContext)
+                        btnLoadingButtonSearch.revertAnimation {
+                            btnLoadingButtonSearch.text = getText(R.string.tim_kiem)
+                        }
                         return
                     }
                     val parcel = String.format(Locale.getDefault(), "%03d", soTo.toInt())
                     val lot = String.format(Locale.getDefault(), "%04d", soThua.toInt())
                     val landID = wardID + parcel + lot
-                    val v = getView()
-                    if (v != null) {
-                        val imm =
-                            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                        imm.hideSoftInputFromWindow(v.windowToken, 0)
-                    }
 
-                    DigitalLandSearchPresenter().searchPlanningInfoByID(landID,activity)
+                    Extension().hideKeyboard(view)
+                    DigitalLandSearchPresenter().searchPlanningInfoByID(landID,activity, btnLoadingButtonSearch)
+
                 }
 
             }
@@ -284,8 +298,6 @@ class LandIDSearchFragment : Fragment() {
         }
         menu.show()
     }
-
-
 }
 
 

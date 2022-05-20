@@ -238,7 +238,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
         mapView?.getMapAsync { mapboxMap ->
             onMapReady(mapboxMap)
         }
-
+        Extension().hideKeyboard(view)
         return view
     }
 
@@ -251,7 +251,6 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
         mapboxMap.uiSettings.isAttributionEnabled = false
         mapboxMap.uiSettings.isLogoEnabled = false
         mapboxMap.cameraPosition = CameraPosition.Builder()
-//            .target(centerPoint)
             .target(Extension().checkProvinceLocation(location))
             .zoom(zoomMap)
             .build()
@@ -371,7 +370,6 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
         }
 
     }
-
 
 //    override fun onDraggerViewClick() {
 //        if (mBottomSheetBehavior!!.state === BottomSheetBehavior.STATE_COLLAPSED) {

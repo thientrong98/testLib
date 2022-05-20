@@ -25,8 +25,6 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.fragment_info.*
 import org.json.JSONException
 import org.json.JSONObject
-import tech.vlab.ttqhhcm.new_ui.land_info.model.QHNganh
-import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
 import java.util.*
 
 class LandInfoFragment : Fragment(), LandInfoBDSListener, OChucNangPresenter.LoadOChucNangListener {

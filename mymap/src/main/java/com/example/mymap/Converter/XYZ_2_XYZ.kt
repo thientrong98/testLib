@@ -1,7 +1,6 @@
 import com.example.mymap.Converter.SevenThamSoVN2000_WGS84
 import com.example.mymap.Converter.SevenThamSoWGS84_VN2000
 import com.example.mymap.Converter.XL_Goc
-import tech.vlab.ttqhhcm.Converter.Matrix_LT2
 
 object XYZ_2_XYZ {
     fun VN2000_2_WGS84(X1: Double, Y1: Double, Z1: Double): DoubleArray {

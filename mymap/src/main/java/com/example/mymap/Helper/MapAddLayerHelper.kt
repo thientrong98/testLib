@@ -3,6 +3,7 @@ package com.example.mymap.Helper
 import DCCucBo
 import LocationHelper
 import MapRemoveLayerHelper
+import QHPK
 import android.app.Activity
 import android.graphics.Color
 import android.util.Log
@@ -19,7 +20,6 @@ import com.mapbox.mapboxsdk.style.sources.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
 
 
 class MapAddLayerHelper {

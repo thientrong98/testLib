@@ -42,7 +42,7 @@ public class GlobalVariables {
     public static String[] districtId;
     public static String[] provinceName;
     public static String[] provinceID;
-    public static Activity activity= null;
+    public static Activity activity = null;
     public static String planningInfo;
 
     public static LatLng ws_hcm = new LatLng(10.315654, 106.381485);

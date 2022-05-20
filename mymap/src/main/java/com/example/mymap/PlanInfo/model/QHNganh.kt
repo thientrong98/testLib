@@ -1,4 +1,3 @@
-package tech.vlab.ttqhhcm.new_ui.land_info.model
 
 import Geometry
 import com.google.gson.annotations.SerializedName

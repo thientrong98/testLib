@@ -2,6 +2,7 @@ import DistrictWardID.Datum
 import android.util.Log
 import androidx.annotation.NonNull
 import com.example.mymap.Helper.Extension
+import com.example.mymap.R
 import com.example.mymap.utils.GlobalVariables
 import com.google.gson.GsonBuilder
 import retrofit2.Call
@@ -59,7 +60,7 @@ class DistrictWard {
             override fun onFailure(call: Call<List<Province>?>, t: Throwable) {
 //                ToastUtils.showLong("Lỗi lấy thông tin Tỉnh/Thành, vui lòng thử lại sau!");
                 Extension().showToast(
-                    "Lỗi lấy thông tin Tỉnh/Thành, vui lòng thử lại sau!",
+                    R.string.txt_error_get_province,
                     GlobalVariables.activity.applicationContext
                 )
             }
@@ -120,7 +121,7 @@ class DistrictWard {
 
             override fun onFailure(call: Call<Province?>, t: Throwable) {
                 Extension().showToast(
-                    "Lỗi lấy thông tin Tỉnh/Thành, vui lòng thử lại sau!",
+                    R.string.txt_error_get_province,
                     GlobalVariables.activity.applicationContext
                 )
 
@@ -172,7 +173,7 @@ class DistrictWard {
 
             override fun onFailure(@NonNull call: Call<DistrictWardID?>, @NonNull t: Throwable) {
                 Extension().showToast(
-                    "Lỗi dữ liệu, vui lòng nhập lại sau!",
+                    R.string.txt_error_data,
                     GlobalVariables.activity.applicationContext
                 )
 

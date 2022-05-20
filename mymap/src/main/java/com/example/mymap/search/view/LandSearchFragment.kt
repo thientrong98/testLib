@@ -3,13 +3,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
-import com.blankj.utilcode.util.KeyboardUtils
+import com.example.mymap.Helper.Extension
 import com.example.mymap.R
 import com.example.mymap.search.view.CoorSearchFragment
 import com.example.mymap.search.view.LandIDSearchFragment
@@ -48,7 +45,7 @@ class LandSearchFragment : Fragment() {
 
         tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                KeyboardUtils.hideSoftInput(activity)
+                Extension().hideKeyboard(view)
                 viewPager!!.currentItem = tab.position
             }
 
@@ -74,21 +71,4 @@ class LandSearchFragment : Fragment() {
             else -> LandIDSearchFragment()
         }
     }
-//    class PagerAdapter(fm: FragmentActivity) :
-//        FragmentStateAdapter(fm) {
-//        //    override fun getCount(): Int = 2
-////    override fun getItem(position: Int): Fragment = when (position) {
-////        0 -> CoorSearchFragment()
-////        else -> LandIDSearchFragment()
-////    }
-//        override fun getItemCount(): Int {
-//            return 2
-//        }
-//
-//        override fun createFragment(position: Int): Fragment = when (position) {
-//            0 -> CoorSearchFragment()
-//            else -> LandIDSearchFragment()
-//        }
-//    }
-
 }

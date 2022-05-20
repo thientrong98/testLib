@@ -1,4 +1,3 @@
-import MapPresenter
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -10,12 +9,8 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.NonNull
-import androidx.annotation.Nullable
-import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.mymap.R
-import tech.vlab.ttqhhcm.new_ui.land_info.model.QHNganh
-import tech.vlab.ttqhhcm.new_ui.map.models.QHPK
 import kotlin.math.roundToInt
 
 class QHPKAdapter(context: Context?, quyHoachList: List<QHPK>, QHNs: List<QHNganh>) :

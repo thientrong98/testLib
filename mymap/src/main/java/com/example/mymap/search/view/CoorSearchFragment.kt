@@ -6,11 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import butterknife.Unbinder
+import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.example.mymap.Helper.Extension
 import com.example.mymap.Helper.MapAddLayerHelper
 import com.example.mymap.R
@@ -24,10 +23,10 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
     CoordinateSeachPresenter.Callback {
     private var coordinateItems: ArrayList<CoordinateItem>? = null
     private var adapter: CoordinateAdapter? = null
-    var unbinder: Unbinder? = null
     private lateinit var recyclerViewCoordinate: RecyclerView
-    private lateinit var txtRewrite: TextView
-    private lateinit var txtSearch: TextView
+    private lateinit var btnLoadingButtonSearch : CircularProgressButton
+    private lateinit var btnLoadingButtonClear: CircularProgressButton
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,8 +39,8 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_coor_search, container, false)
         recyclerViewCoordinate = view.findViewById(R.id.recycler_view_coordinate)
-        txtRewrite = view.findViewById(R.id.txtRewrite)
-        txtSearch = view.findViewById(R.id.txtSearch)
+        btnLoadingButtonSearch = view.findViewById(R.id.btn_loadingButtonSearch)
+        btnLoadingButtonClear = view.findViewById(R.id.btn_loadingButtonClear)
 
         val layoutManager = LinearLayoutManager(context)
         recyclerViewCoordinate.layoutManager = layoutManager
@@ -59,8 +58,8 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
         adapter = CoordinateAdapter(coordinateItems!!, this)
         recyclerViewCoordinate.adapter = adapter
         recyclerViewCoordinate.isNestedScrollingEnabled = true
-        txtRewrite.setOnClickListener { onClickRewrite() }
-        txtSearch.setOnClickListener {
+        btnLoadingButtonClear.setOnClickListener { onClickRewrite() }
+        btnLoadingButtonSearch.setOnClickListener {
             onClickSearch()
         }
 
@@ -87,6 +86,8 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
                 R.string.coordinate_error,
                 GlobalVariables.activity.applicationContext
             )
+            btnLoadingButtonSearch.revertAnimation()
+
         } else {
             val presenter = CoordinateSeachPresenter(this)
             if (edtXs.size > 3) {
@@ -96,7 +97,7 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
                     val digitalLandSearchPresenter = DigitalLandSearchPresenter()
                     digitalLandSearchPresenter.searchPlanningInfoByCoordinate(
                         coors.toString(),
-                        activity
+                        activity,btnLoadingButtonSearch
                     )
                 }
             }
@@ -104,11 +105,13 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
     }
 
     private fun onClickSearch() {
+        btnLoadingButtonSearch.startAnimation()
         if (!Extension().isNetworkAvailable(GlobalVariables.activity)) {
             Extension().showToast(
                 R.string.coordinate_error,
                 GlobalVariables.activity.applicationContext
             )
+            btnLoadingButtonSearch.revertAnimation()
             return
         }
         val x: ArrayList<String?> = java.util.ArrayList()
@@ -124,20 +127,24 @@ class CoorSearchFragment : Fragment(), CoordinateAdapter.AddRowCoodinateListener
                 R.string.txt_toado,
                 GlobalVariables.activity.applicationContext
             )
+            btnLoadingButtonSearch.revertAnimation()
             return
         }
         searchLandCoordinate(x, y)
     }
 
     private fun onClickRewrite() {
-        coordinateItems?.clear()
-        for (i in 0..3) {
-            coordinateItems!!.add(CoordinateItem(i, "", ""))
-        }
-        adapter = CoordinateAdapter(coordinateItems!!, this)
-        recyclerViewCoordinate.adapter = adapter
+        btnLoadingButtonClear.startAnimation {
+            coordinateItems?.clear()
+            for (i in 0..3) {
+                coordinateItems!!.add(CoordinateItem(i, "", ""))
+            }
+            adapter = CoordinateAdapter(coordinateItems!!, this)
+            recyclerViewCoordinate.adapter = adapter
 
-        Extension().hideKeyboard(view)
+            Extension().hideKeyboard(view)
+        }
+        btnLoadingButtonClear.revertAnimation()
     }
 
     override fun onAddedRowCoor(index: Int) {
