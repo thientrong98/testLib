@@ -1267,4 +1267,5 @@
     <string name="txt_choose_district_before">Vui lòng chọn quận trước</string>
     <string name="txt_error_get_province">"Lỗi lấy thông tin Tỉnh/Thành, vui lòng thử lại sau!</string>
     <string name="txt_error_data">Lỗi dữ liệu, vui lòng nhập lại sau!</string>
-   </resources>
+    <string name="tv_chieucao"> Chiều cao:</string>
+</resources>

@@ -34,7 +34,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_dientich"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textSize="@dimen/font_size_default"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -49,7 +50,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_danso"/>
+                android:text="@string/txt_danso"
+                android:textSize="@dimen/font_size_default"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -64,7 +66,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_tang_cao"/>
+                android:text="@string/txt_tang_cao"
+                android:textSize="@dimen/font_size_default"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -79,7 +82,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_mdxd_1"/>
+                android:text="@string/txt_mdxd_1"
+                android:textSize="@dimen/font_size_default"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -94,7 +98,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_hssdd"/>
+                android:text="@string/txt_hssdd"
+                android:textSize="@dimen/font_size_default"/>
         </TableRow>
     </TableLayout>
 </androidx.cardview.widget.CardView>

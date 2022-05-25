@@ -34,7 +34,7 @@
                     android:layout_weight="9"
                     android:text="@string/land_info_alert"
                     android:textColor="@android:color/holo_red_light"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/font_size_default"
                     android:layout_gravity="center" />
                 <ImageView
                     android:id="@+id/iv_legend"
@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:text="@string/txt_ttqhsdd"
-                    android:textSize="20dp"
+                    android:textSize="@dimen/font_size_default"
                     android:textStyle="bold"
                     android:textColor="@android:color/black"
                     android:layout_marginTop="13dp"
@@ -87,7 +87,7 @@
                     android:layout_weight="1"
                     android:text="@string/txt_doan"
                     android:textColor="@color/new_text_color"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/font_size_default"
                     android:paddingLeft="50dp"
                     android:textStyle="bold"/>
 
@@ -99,7 +99,7 @@
                     android:lineSpacingMultiplier="1.5"
                     android:text="Không có QH phân khu"
                     android:textColor="@color/new_text_color"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/font_size_default"
                     android:visibility="visible" />
             </TableRow>
             <TextView
@@ -107,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txt_cham_o_chuc_nang"
-                android:textSize="14dp"
+                android:textSize="@dimen/font_size_default"
                 android:textColor="#FF4530"
                 android:gravity="center"
                 android:layout_marginBottom="13dp"
@@ -124,7 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Thông tin lộ giới"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_size_default"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"
                 android:paddingTop="2dp"
@@ -157,7 +157,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="32dp"
                             android:text="@string/txt_logioi"
-                            android:textSize="15dp"
+                            android:textSize="@dimen/font_size_default"
                             android:textStyle="bold"
                             android:gravity="center"
                             android:textColor="#000000"/>

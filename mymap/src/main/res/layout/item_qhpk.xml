@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="1"
                 android:textColor="@android:color/black"
-                android:textSize="25sp"
+                android:textSize="@dimen/font_size_default"
                 android:layout_gravity="center"/>
         </FrameLayout>
         <FrameLayout
@@ -60,7 +60,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="@string/txt_ochucnang"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/font_size_default"
                         android:gravity="right"
                         android:layout_marginRight="20dp"/>
 
@@ -72,7 +72,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="II.11"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
                 </TableRow>
 
                 <View
@@ -94,7 +94,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="@string/txt_chuc_nang"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/font_size_default"
                         android:gravity="right"
                         android:layout_marginRight="20dp"/>
 
@@ -106,7 +106,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="Đất nhà ở"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
                 </TableRow>
 
                 <View
@@ -128,7 +128,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="@string/txt_dientich"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/font_size_default"
                         android:gravity="right"
                         android:layout_marginRight="20dp"/>
 
@@ -140,7 +140,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="%"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
                 </TableRow>
 
                 <TableRow
@@ -156,7 +156,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="Tỷ lệ %:"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/font_size_default"
                         android:gravity="right"
                         android:paddingRight="20dp"/>
 
@@ -168,7 +168,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="%"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
                 </TableRow>
 
                 <TableRow
@@ -184,7 +184,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="&#xf200; Mật độ:"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
 
                     <TextView
                         android:id="@+id/tvMatDo"
@@ -194,7 +194,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="%"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
                 </TableRow>
 
                 <TableRow
@@ -210,7 +210,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="&#xf200; Hệ số SDĐ:"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
 
                     <TextView
                         android:id="@+id/tvHeSo"
@@ -220,7 +220,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="0"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
                 </TableRow>
 
                 <TableRow
@@ -234,9 +234,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingTop="@dimen/edit_padding"
-                        android:text="&#xf0f7; Chiều cao:"
+                        android:text="@string/tv_chieucao"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
 
                     <TextView
                         android:id="@+id/tvChieuCao"
@@ -246,7 +246,7 @@
                         android:paddingTop="@dimen/edit_padding"
                         android:text="0"
                         android:textColor="@android:color/black"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
                 </TableRow>
             </TableLayout>
         </FrameLayout>

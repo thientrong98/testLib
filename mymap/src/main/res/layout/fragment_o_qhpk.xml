@@ -29,7 +29,7 @@
                 android:textStyle="bold"
                 android:text="@string/txt_ttdoanqhpk"
                 android:textColor="#000000"
-                android:textSize="18dp"
+                android:textSize="@dimen/font_size_default"
                 android:layout_marginLeft="18dp"
                 android:layout_marginTop="20dp"/>
             <TableLayout
@@ -52,7 +52,7 @@
                         android:layout_weight="1"
                         android:text="@string/txt_ten_do_an"
                         android:textColor="@color/new_text_color"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/font_size_default"
                         android:layout_marginLeft="50dp"
                         android:textStyle="bold"/>
 
@@ -63,7 +63,7 @@
                         android:layout_weight="1"
                         android:text="-"
                         android:textColor="@color/new_text_color"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
                 </TableRow>
 
                 <View
@@ -85,7 +85,7 @@
                         android:layout_weight="1"
                         android:text="@string/quanhuyen"
                         android:textColor="@color/new_text_color"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/font_size_default"
                         android:layout_marginLeft="50dp"
                         android:textStyle="bold"/>
 
@@ -96,7 +96,7 @@
                         android:layout_weight="1"
                         android:text="-"
                         android:textColor="@color/new_text_color"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
                 </TableRow>
 
                 <View
@@ -118,7 +118,7 @@
                         android:layout_weight="1"
                         android:text="@string/txt_soqd"
                         android:textColor="@color/new_text_color"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/font_size_default"
                         android:layout_marginLeft="50dp"
                         android:textStyle="bold"/>
 
@@ -129,7 +129,7 @@
                         android:layout_weight="1"
                         android:text="-"
                         android:textColor="@color/new_text_color"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default" />
                 </TableRow>
 
                 <View
@@ -151,7 +151,7 @@
                         android:layout_weight="1"
                         android:text="@string/txt_cqpd"
                         android:textColor="@color/new_text_color"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/font_size_default"
                         android:layout_marginLeft="50dp"
                         android:textStyle="bold"/>
 
@@ -162,7 +162,7 @@
                         android:layout_weight="1"
                         android:text="-"
                         android:textColor="@color/new_text_color"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default"/>
                 </TableRow>
 
                 <View
@@ -184,7 +184,7 @@
                         android:layout_weight="1"
                         android:text="@string/txt_ngay_duyet"
                         android:textColor="@color/new_text_color"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/font_size_default"
                         android:layout_marginLeft="50dp"
                         android:textStyle="bold"/>
 
@@ -195,7 +195,7 @@
                         android:layout_weight="1"
                         android:text="-"
                         android:textColor="@color/new_text_color"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/font_size_default"/>
                 </TableRow>
             </TableLayout>
 
