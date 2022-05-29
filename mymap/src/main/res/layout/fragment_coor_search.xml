@@ -28,6 +28,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/toa_do_x"
+                    android:textSize="@dimen/font_size_default"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                     android:textColor="@android:color/black" />
 
@@ -37,6 +38,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@string/toa_do_y"
+                    android:textSize="@dimen/font_size_default"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                     android:textColor="@android:color/black" />
 
@@ -71,10 +73,10 @@
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="@string/luu_y"
+                    android:textSize="@dimen/font_size_default"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
                 <include layout="@layout/layout_button_search" />
-
             </LinearLayout>
 
             <View

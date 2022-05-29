@@ -38,8 +38,7 @@
                     android:layout_gravity="center"
                     android:text="@string/o_pho_alert"
                     android:textColor="@android:color/holo_red_light"
-                    android:textSize="15sp"
-                   />
+                    android:textSize="@dimen/font_size_default" />
 
                 <ImageView
                     android:id="@+id/iv_legend_cn"
@@ -74,7 +73,7 @@
                         android:layout_weight="8"
                         android:text="@string/txt_ttocn"
                         android:textColor="#000000"
-                        android:textSize="20dp"
+                        android:textSize="@dimen/font_size_default"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -98,7 +97,7 @@
                             android:layout_weight="1"
                             android:text="@string/txt_ochucnang"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:layout_marginLeft="50dp"
                             android:visibility="visible"
                             android:textStyle="bold"/>
@@ -110,7 +109,7 @@
                             android:layout_weight="1"
                             android:text="-"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:visibility="visible"/>
                     </TableRow>
 
@@ -133,7 +132,7 @@
                             android:layout_weight="1"
                             android:text="@string/txt_cnsdđ"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:layout_marginLeft="50dp"
                             android:visibility="visible"
                             android:textStyle="bold"/>
@@ -162,7 +161,7 @@
                             android:layout_weight="1"
                             android:text="@string/txt_dientich"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:layout_marginLeft="50dp"
                             android:visibility="visible"
                             android:textStyle="bold"/>
@@ -174,7 +173,7 @@
                             android:layout_weight="1"
                             android:text="-"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:visibility="visible"/>
                     </TableRow>
                     <View
@@ -196,7 +195,7 @@
                             android:layout_weight="1"
                             android:text="@string/txt_danso"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:layout_marginLeft="50dp"
                             android:id="@+id/tr_dan_so"
                             android:visibility="visible"
@@ -209,7 +208,7 @@
                             android:layout_weight="1"
                             android:text="-"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:visibility="visible"/>
                     </TableRow>
 
@@ -234,7 +233,7 @@
                             android:layout_weight="1"
                             android:text="@string/txt_tang_cao"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:layout_marginLeft="50dp"
                             android:visibility="visible"
                             android:textStyle="bold"/>
@@ -269,7 +268,7 @@
                             android:layout_weight="1"
                             android:text="@string/txt_chieucao"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:layout_marginLeft="50dp"
                             android:visibility="visible"
                             android:textStyle="bold"/>
@@ -281,7 +280,7 @@
                             android:layout_weight="1"
                             android:text="-"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:visibility="visible"/>
                     </TableRow>
 
@@ -305,7 +304,7 @@
                             android:layout_weight="1"
                             android:text="@string/txt_mdxd_2"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:layout_marginLeft="50dp"
                             android:visibility="visible"
                             android:textStyle="bold"/>
@@ -317,7 +316,7 @@
                             android:layout_weight="1"
                             android:text="-"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:visibility="visible" />
                     </TableRow>
 
@@ -341,7 +340,7 @@
                             android:layout_weight="1"
                             android:text="@string/txt_hssdd_2"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:layout_marginLeft="50dp"
                             android:visibility="visible"
                             android:textStyle="bold"/>
@@ -353,7 +352,7 @@
                             android:layout_weight="1"
                             android:text="-"
                             android:textColor="@color/new_text_color"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/font_size_default"
                             android:visibility="visible"/>
                     </TableRow>
                 </TableLayout>
@@ -381,7 +380,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Chỉ tiêu quy hoạch kiến trúc"
-                        android:textSize="20dp"
+                        android:textSize="@dimen/font_size_default"
                         android:textStyle="bold"
                         android:textColor="#303030"
                         android:paddingLeft="18dp"
@@ -432,7 +431,7 @@
                                         android:layout_weight="1"
                                         android:text="@string/txt_chuc_nang"
                                         android:textColor="@android:color/black"
-                                        android:textSize="15sp"
+                                        android:textSize="@dimen/font_size_default"
                                         android:layout_gravity="center"/>
                                 </FrameLayout>
 
