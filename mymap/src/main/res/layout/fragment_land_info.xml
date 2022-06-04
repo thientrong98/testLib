@@ -38,7 +38,7 @@
                 android:text="@string/title_bangthongtin"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/font_size_default"
+                android:textSize="@dimen/font_size_title"
                 android:textStyle="bold" />
 
             <LinearLayout

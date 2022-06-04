@@ -227,12 +227,12 @@ class LandIDSearchFragment : Fragment() {
         val menu = PopupMenu(context, view,Gravity.NO_GRAVITY, R.attr.actionOverflowMenuStyle, R.drawable.new_bg_land_info)
 //        menu.gravity = Gravity.CENTER
         var list: Array<String?>
-        val getDistrictName: Array<String?> = GlobalVariables.districtName
+        val getDistrictName: Array<String?> =GlobalVariables.districtName
         val getDictrictId: Array<String> = GlobalVariables.districtId
         val getWardname: Array<Array<String>> = GlobalVariables.wardName
         val getWardId: Array<Array<String>> = GlobalVariables.wardId
 
-        list = getDistrictName
+        list = getDistrictName!!
 
         if (isWard) {
             var checkDistrict = 0

@@ -17,7 +17,6 @@ class LandSearchFragment : Fragment() {
     var tabLayout: TabLayout? = null
     var viewPager: ViewPager? = null
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,13 +35,9 @@ class LandSearchFragment : Fragment() {
         tabLayout!!.getTabAt(0)!!.text = getString(R.string.tim_toa_do)
         tabLayout!!.getTabAt(1)!!.text = getString(R.string.tim_land_id)
 
-        tabLayout!!.tabGravity = TabLayout.GRAVITY_CENTER
-
         val adapter = PagerAdapter(requireActivity().supportFragmentManager)
         viewPager!!.adapter = adapter
-
         viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
-
         tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 Extension().hideKeyboard(view)

@@ -30,15 +30,16 @@
             android:layout_marginBottom="8dp"
             android:text="@string/txt_search"
             android:textColor="#000000"
-            android:textSize="@dimen/font_size_default"
+            android:textSize="@dimen/font_size_title"
             android:textStyle="bold"
             />
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp"
+            android:layout_marginHorizontal="80dp"
+            android:layout_marginVertical="10dp"
             app:cardCornerRadius="20dp"
             app:strokeColor="#007aff"
             app:strokeWidth="2dp">
@@ -47,14 +48,15 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                app:tabGravity="fill"
+                android:padding="0dp"
                 app:tabIndicatorColor="#007aff"
                 app:tabIndicatorGravity="stretch"
                 app:tabMaxWidth="0dp"
-                app:tabMode="fixed"
                 app:tabSelectedTextColor="@android:color/white"
                 app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-                app:tabTextColor="#007aff">
+                app:tabTextColor="#007aff"
+                android:stretchColumns="2"
+                >
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/tab1"
