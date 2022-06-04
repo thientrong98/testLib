@@ -45,7 +45,7 @@
         <entry key="..\:/testLib/mymap/src/main/res/layout/layout_land_info.xml" value="0.1" />
         <entry key="..\:/testLib/mymap/src/main/res/layout/popup_window.xml" value="0.22" />
         <entry key="mymap/src/main/res/layout/fragment_coor_search.xml" value="0.1" />
-        <entry key="mymap/src/main/res/layout/fragment_land_info.xml" value="0.1078125" />
+        <entry key="mymap/src/main/res/layout/fragment_land_info.xml" value="0.1" />
         <entry key="mymap/src/main/res/layout/layout_button_search.xml" value="0.358148193359375" />
       </map>
     </option>
