@@ -1,5 +1,4 @@
 import android.app.Activity
-import android.app.Fragment
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.view.LayoutInflater
@@ -9,11 +8,24 @@ import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.SeekBar
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentContainerView
 import com.example.mymap.Helper.Extension
 import com.example.mymap.R
 import com.example.mymap.listener.SearchListener
 import com.example.mymap.utils.Constants
 import com.example.mymap.utils.GlobalVariables
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.mapbox.mapboxsdk.annotations.MarkerOptions
+import com.mapbox.mapboxsdk.camera.CameraPosition
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
+import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.geometry.LatLngBounds
+import com.mapbox.mapboxsdk.maps.MapView
+import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
+import com.mapbox.mapboxsdk.style.layers.PropertyFactory.rasterOpacity
 
 class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
 
@@ -312,7 +324,7 @@ class DemoFragment : Fragment(), OnMapReadyCallback, SearchListener {
                 BottomSheetBehavior.BottomSheetCallback() {
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
                     if (newState == BottomSheetBehavior.STATE_EXPANDED) {
-                        mBottomSheetBehavior?.peekHeight = GlobalVariables.height / 3 * 2
+//                        mBottomSheetBehavior?.peekHeight = GlobalVariables.height / 3 * 2
                     }
                     if (newState == BottomSheetBehavior.STATE_COLLAPSED) {
                         mBottomSheetBehavior?.peekHeight = GlobalVariables.height / 3

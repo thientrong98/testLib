@@ -68,6 +68,10 @@
                     android:src="@drawable/threedot"
                     android:visibility="gone" />
 
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"/>
+
                 <ProgressBar
                     android:id="@+id/indicator"
                     android:layout_width="32dp"
@@ -75,6 +79,19 @@
                     android:indeterminate="true"
                     android:indeterminateTint="@color/colorPrimary"
                     android:padding="3dp" />
+
+<!--                <View-->
+<!--                    android:layout_width="5dp"-->
+<!--                    android:layout_height="match_parent"/>-->
+
+<!--                <ImageButton-->
+<!--                    android:layout_width="32dp"-->
+<!--                    android:layout_height="32dp"-->
+<!--                    android:background="@android:color/transparent"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:scaleType="centerCrop"-->
+<!--                    android:src="@drawable/ic_close_info"-->
+<!--                    android:visibility="visible" />-->
             </LinearLayout>
         </FrameLayout>
 
@@ -84,7 +101,6 @@
             android:visibility="gone"/>
         <include layout="@layout/fragment_o_qhpk"
             android:visibility="gone"/>
-                <include layout="@layout/fragment_coor_search" />
 
     </LinearLayout>
 </LinearLayout>
